@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 00:28:17 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 02:46:11 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:22:22 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*x_lstnew(void *content)
 	return (list);
 }
 
-void	*x_mallox(t_list **lst, size_t size)
+void	*x_malloc(t_list **lst, size_t size)
 {
 	t_list			*new;
 	unsigned char	*ret;

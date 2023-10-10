@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 02:52:09 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/10 14:25:30 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 /*================================= DEFINES ==================================*/
 
@@ -47,14 +48,15 @@ typedef struct s_list
 
 typedef struct s_game_data
 {
-	char			*map;
+	char			**file;
+	char			**map;
 	t_list			*malloc_chain;
 }					t_game_data;
 
 /*================================ FUNCTIONS =================================*/
 
 /* OTHERS */
-void				*x_mallox(t_list **lst, size_t size);
+void				*x_malloc(t_list **lst, size_t size);
 void				x_free(t_list **lst);
 t_game_data			game_data_init(void);
 void				exit_error(t_game_data *data, char *message);
@@ -69,6 +71,8 @@ int					ft_strlen(const char *str);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 t_list				*ft_lstlast(t_list *lst);
 int					ft_isascii(int c);
+char				*ft_strdup(t_list **x_chain, const char *s1);
+char				*ft_strjoin(t_list **x_chain, char const *s1, char const *s2);
 
 /* TEMP */
 void				print_map(char **map);
