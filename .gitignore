@@ -1,0 +1,8 @@
+cub3d
+.objs
+MLX42
+*.o
+.DS_Store
+*.dSYM
+.vscode
+a.out
