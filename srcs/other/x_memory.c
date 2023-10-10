@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 00:28:17 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 14:22:22 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/10 19:40:30 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	x_free(t_list **lst)
 
 	while (*lst)
 	{
-		temp = (*lst)->next;
-		free((*lst)->content);
-		free(*lst);
-		*lst = temp;
+		temp = *lst;
+		*lst = (*lst)->next;
+		free(temp->content);
+		free(temp);
 	}
 	free(*lst);
 }

@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_tabdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 20:11:01 by edelarbr         ###   ########.fr       */
+/*   Created: 2023/09/12 20:37:20 by edelarbr          #+#    #+#             */
+/*   Updated: 2023/10/10 21:34:12 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_game_data	game_data_init(void)
+char	**ft_tabdup(t_game_data *data, char **tab)
 {
-	t_game_data	data;
+	int		i;
+	char	**new_tab;
 
-	data.x_chain = NULL;
-	return (data);
-}
-
-t_parsing	*parsing_init(t_game_data *data)
-{
-	t_parsing	*parsing;
-
-	parsing = x_malloc(&data->x_chain, sizeof(t_parsing));
-	if (!parsing)
-		exit_error(data, "malloc error");
-	return (parsing);
+	i = 0;
+	if (!tab)
+		return (NULL);
+	while (tab[i])
+		i++;
+	new_tab = x_malloc(&data->malloc_chain, sizeof(char *) * (i + 1));
+	if (!new_tab)
+		return (perror("Malloc"), NULL);
+	i = 0;
+	while (tab[i])
+	{
+		new_tab[i] = ft_strdup(data, tab[i]);
+		i++;
+	}
+	new_tab[i] = NULL;
+	return (new_tab);
 }

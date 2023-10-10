@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 20:11:01 by edelarbr         ###   ########.fr       */
+/*   Created: 2023/10/10 18:43:50 by edelarbr          #+#    #+#             */
+/*   Updated: 2023/10/10 18:44:04 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_game_data	game_data_init(void)
+void	check_file(t_game_data *data, char *file)
 {
-	t_game_data	data;
+	int		fd;
+	char	buf[1];
 
-	data.x_chain = NULL;
-	return (data);
-}
-
-t_parsing	*parsing_init(t_game_data *data)
-{
-	t_parsing	*parsing;
-
-	parsing = x_malloc(&data->x_chain, sizeof(t_parsing));
-	if (!parsing)
-		exit_error(data, "malloc error");
-	return (parsing);
+	if (ft_strncmp(file + ft_strlen(file) - 4, ".cub", 4))
+		exit_error(data, "wrong file extension");
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		exit_error(data, "file not found");
+	if (read(fd, buf, 1) <= 0)
+		return (close(fd), exit_error(data, "file is empty"));
+	close(fd);
 }

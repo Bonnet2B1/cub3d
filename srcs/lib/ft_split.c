@@ -17,7 +17,7 @@ static size_t	nextlen(const char *s, size_t i, char c)
 	size_t	len;
 
 	len = 0;
-	while (s[i] == c)
+	if (s[i] == c)
 		i++;
 	while (s[i] != c && s[i])
 	{
@@ -32,11 +32,11 @@ static size_t	wordcount(const char *s, char c)
 	size_t	count;
 	size_t	i;
 
-	i = 1;
+	i = 0;
 	count = 0;
-	while (s[i - 1])
+	while (s[i])
 	{
-		if (i != 0 && s[i - 1] != c && (s[i] == c || !s[i]))
+		if (s[i] == c)
 			count++;
 		i++;
 	}
@@ -49,7 +49,7 @@ static char	*nextword(const char *s, size_t *i, char c, size_t len)
 	size_t	y;
 
 	y = 0;
-	while (s[*i] == c)
+	if (s[*i] == c)
 		(*i)++;
 	cpy = malloc(sizeof(char) * (len + 1));
 	if (!cpy)
@@ -77,7 +77,7 @@ static char	**freeall(char **tab, size_t indice)
 	return (NULL);
 }
 
-char	**ft_split(t_game_data *data, char *s, char c)
+char	**ft_split(t_list **x_chain, char *s, char c)
 {
 	size_t	i;
 	size_t	y;
@@ -88,13 +88,13 @@ char	**ft_split(t_game_data *data, char *s, char c)
 	y = 0;
 	if (!s)
 		return (NULL);
-	tab = x_malloc(&data->malloc_chain, sizeof(char *) * (wordcount(s, c) + 1));
+	tab = x_malloc(x_chain, sizeof(char *) * (wordcount(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	while (y < wordcount(s, c))
 	{
 		temp = nextword(s, &i, c, nextlen(s, i, c));
-		tab[y] = ft_strdup(data, temp);
+		tab[y] = ft_strdup(x_chain, temp);
 		free(temp);
 		if (!tab[y])
 			return (freeall(tab, y));

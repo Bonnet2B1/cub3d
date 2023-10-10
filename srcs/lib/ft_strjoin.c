@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../cub3d.h"
 
-char	*ft_strjoin(t_list *x_chain, char const *s1, char const *s2)
+char	*ft_strjoin(t_list **x_chain, char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
 
 	i = 0;
 	if (!s1)
-		return (ft_strdup(data, s2));
+		return (ft_strdup(x_chain, s2));
 	if (!s2)
 		return (NULL);
-	str = ft_calloc(x_chain, (ft_strlen(s1) + ft_strlen(s2)) + 1, sizeof(char));
+	str = x_malloc(x_chain, (ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
 	while (*s1)

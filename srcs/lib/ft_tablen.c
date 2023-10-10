@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 02:08:11 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 13:19:36 by edelarbr         ###   ########.fr       */
+/*   Created: 2023/09/30 18:18:27 by edelarbr          #+#    #+#             */
+/*   Updated: 2023/10/10 21:33:14 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	exit_error(t_game_data *data, char *message)
+int	ft_tablen(char **tab)
 {
-	if (data)
-		x_free(&data->malloc_chain);
-	ft_putstr_fd("Error\n", 2);
-	if (message)
-	{
-		ft_putstr_fd(message, 2);
-		ft_putstr_fd("\n", 2);
-	}
-	exit(0);
+	int	i;
+
+	if (!tab)
+		return (0);
+	i = -1;
+	while (tab[++i])
+		continue ;
+	return (i);
 }
