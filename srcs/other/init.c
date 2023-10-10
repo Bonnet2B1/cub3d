@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 20:11:01 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:11:05 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ t_parsing	*parsing_init(t_game_data *data)
 
 	parsing = x_malloc(&data->x_chain, sizeof(t_parsing));
 	if (!parsing)
-		exit_error(data, "malloc error");
+		exit_error(&data->x_chain, "malloc error");
+	parsing->map_hole = 0;
+	parsing->temp_map = NULL;
 	return (parsing);
 }

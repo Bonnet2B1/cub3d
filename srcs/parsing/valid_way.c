@@ -6,65 +6,81 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:41:18 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 21:39:54 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:09:11 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	find_player_x(t_game_data *data)
+int	find_player_x(char **map)
 {
 	int	x;
 	int	y;
 
 	y = -1;
-	x = -1;
-	while (data->map[++y])
+	while (map[++y])
 	{
-		while (data->map[y][++x])
+		x = -1;
+		while (map[y][++x])
 		{
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
-				|| data->map[y][x] == 'W' || data->map[y][x] == 'E')
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'W' || map[y][x] == 'E')
 				return (x);
 		}
-		x = -1;
 	}
 	return (0);
 }
 
-int	find_player_y(t_game_data *data)
+int	find_player_y(char **map)
 {
 	int	x;
 	int	y;
 
 	y = -1;
-	x = -1;
-	while (data->map[++y])
+	while (map[++y])
 	{
-		while (data->map[y][++x])
+		x = -1;
+		while (map[y][++x])
 		{
-			if (data->map[y][x] == 'N' || data->map[y][x] == 'S'
-				|| data->map[y][x] == 'W' || data->map[y][x] == 'E')
+			if (map[y][x] == 'N' || map[y][x] == 'S'
+				|| map[y][x] == 'W' || map[y][x] == 'E')
 				return (y);
 		}
-		x = -1;
 	}
 	return (0);
 }
 
-int	valid_way(t_map *temp, int x, int y)
+char	**map_w_null_background(t_list **x_chain, char **map)
 {
-	if (temp->map[y][x] == '1')
-		return (0);
-	if (temp->map[y][x] == ' ' || temp->map[y][x] == '\0')
-		return (temp->hole, 1);
+	int		i;
+	char	**new;
+	int		max_len;
 
-	temp->map[y][x] = '1';
-	valid_way(temp, (x + 1), y);
-	valid_way(temp, (x - 1), y);
-	valid_way(temp, x, (y + 1));
-	valid_way(temp, x, (y - 1));
-	if (!temp->collectible)
-		return (1);
-	return (0);
+	new = x_malloc(x_chain, sizeof(char *) * (ft_tablen(map) + 3));
+	max_len = 0;
+	i = -1;
+	while (map[++i])
+		if (ft_strlen(map[i]) > max_len)
+			max_len = ft_strlen(map[i]);
+	i = -1;
+	while (++i < ft_tablen(map) + 2)
+		new[i] = x_malloc(x_chain, sizeof(char) * (max_len + 3));
+	new[i] = NULL;
+	i = -1;
+	while (map[++i])
+		ft_strncpy(&new[i + 1][1], map[i], ft_strlen(map[i]));
+	return (new);
+}
+
+void	valid_way(t_list **x_chain, char **map, int x, int y)
+{
+	if (map[y][x] == '\0' || map[y][x] == ' ')
+		exit_error(x_chain, "map not closed");
+	if (map[y][x] == '1')
+		return ;
+	map[y][x] = '1';
+	valid_way(x_chain, map, (x + 1), y);
+	valid_way(x_chain, map, (x - 1), y);
+	valid_way(x_chain, map, x, (y + 1));
+	valid_way(x_chain, map, x, (y - 1));
 }

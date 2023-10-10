@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 21:40:14 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:12:21 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,8 @@ typedef struct s_parsing
 	char			*east_path;
 	char			*floor_color;
 	char			*ceiling_color;
-	int				n;
-	int				s;
-	int				w;
-	int				e;
-	char			**map;
-	int				hole;
+	char			**temp_map;
+	int				map_hole;
 }					t_parsing;
 
 typedef struct s_game_data
@@ -87,14 +83,18 @@ typedef struct s_game_data
 void				*x_malloc(t_list **lst, size_t size);
 void				x_free(t_list **lst);
 t_game_data			game_data_init(void);
-void				exit_error(t_game_data *data, char *message);
-void				free_n_exit(t_game_data *data, int exit_code);
+void				exit_error(t_list **x_chain, char *message);
+void				free_n_exit(t_list **x_chain, int exit_code);
 
 /* PARSING */
 void				parsing(t_game_data *data, int argc, char **argv);
 void				check_file(t_game_data *data, char *file);
 char				**extract_file_to_tab(t_game_data *data, char *file);
 t_parsing			*parsing_init(t_game_data *data);
+void				valid_way(t_list **x_chain, char **map, int x, int y);
+int					find_player_y(char **map);
+int					find_player_x(char **map);
+char				**map_w_null_background(t_list **x_chain, char **map);
 
 /* LIB */
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -107,7 +107,8 @@ char				*ft_strdup(t_list **x_chain, const char *s1);
 char				*ft_strjoin(t_list **x_chain, char *s1, char *s2);
 char				**ft_split(t_list **x_chain, char *s, char c);
 int					ft_tablen(char **tab);
-char				**ft_tabdup(t_game_data *data, char **tab);
+char				**ft_tabdup(t_list **x_chain, char **tab);
+char				*ft_strncpy(char *dest, const char *src, size_t n);
 
 /* TEMP */
 void				print_file(char **file);

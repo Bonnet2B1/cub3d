@@ -6,13 +6,13 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:08:11 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 16:29:03 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:05:57 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	exit_error(t_game_data *data, char *message)
+void	exit_error(t_list **x_chain, char *message)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (message)
@@ -21,5 +21,5 @@ void	exit_error(t_game_data *data, char *message)
 		ft_putstr_fd(message, 2);
 		ft_putstr_fd("\n", 2);
 	}
-	free_n_exit(data, 1);
+	free_n_exit(x_chain, 1);
 }
