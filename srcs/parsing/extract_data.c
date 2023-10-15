@@ -6,64 +6,48 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:40:17 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/12 00:13:59 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:54:22 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-t_map	*extract_map(t_game_data *data, t_parsing *parsing, int i)
+char	**get_rgb(t_game_data *data, char *line)
 {
-	t_map	*gps;
+	char	**rgb;
+	int		i;
 
-	while (parsing->file[i] && ft_strncmp(parsing->file[i], "", 1) == 0)
+	i = 0;
+	while (line[i] == ' ')
 		i++;
-	gps = map_init(data);
-	gps->map = &parsing->file[i];
-	if (!gps->map[0])
-		exit_error(&data->x_chain, "there is no map");
-	while (gps->map[++gps->height])
+	if (!ft_strchr(&line[i], ','))
+		exit_error(data, "invalid color");
+	rgb = ft_split(&data->x_chain, ft_strdup(&data->x_chain, &line[i]), ',');
+	i = -1;
+	while (rgb[++i])
 	{
-		if (ft_strlen(gps->map[gps->height]) > gps->width)
-			gps->width = ft_strlen(gps->map[gps->height]);
+		if (!ft_str_is_num(rgb[i])
+			|| ft_atoi_mod(rgb[i]) < 0 || ft_atoi_mod(rgb[i]) > 255
+			|| i > 2)
+			exit_error(data, "invalid color");
 	}
-	print_map(gps->map);
-	return (gps);
-}
-
-char	*get_object(t_game_data *data, char *search, char **tab, int *i)
-{
-	char	*object;
-	int		j;
-
-	j = 0;
-	while (tab[*i] && ft_strncmp(tab[*i], "", 1) == 0)
-		(*i)++;
-	while (tab[*i][j] && search[j] && tab[*i][j] == search[j])
-		j++;
-	if (j != ft_strlen(search))
-		exit_error(&data->x_chain, FILE_FORMAT);
-	object = ft_strdup(&data->x_chain, &tab[(*i)++][j]);
-	return (object);
-}
-
-void	extract_assets_lines(t_game_data *data, t_parsing *parsing, int *i)
-{
-	parsing->north_path = get_object(data, "NO ", parsing->file, i);
-	parsing->south_path = get_object(data, "SO ", parsing->file, i);
-	parsing->west_path = get_object(data, "WE ", parsing->file, i);
-	parsing->east_path = get_object(data, "EA ", parsing->file, i);
-	parsing->floor_color = get_object(data, "F ", parsing->file, i);
-	parsing->ceiling_color = get_object(data, "C ", parsing->file, i);
+	return (rgb);
 }
 
 t_map	*extract_data(t_game_data *data, t_parsing *parsing)
 {
-	int		i;
 	t_map	*gps;
 
-	i = 0;
-	extract_assets_lines(data, parsing, &i);
-	gps = extract_map(data, parsing, i);
+	gps = map_init(data);
+	parsing->north_path = ft_strdup(&data->x_chain, &parsing->file[0][3]);
+	parsing->south_path = ft_strdup(&data->x_chain, &parsing->file[1][3]);
+	parsing->west_path = ft_strdup(&data->x_chain, &parsing->file[2][3]);
+	parsing->east_path = ft_strdup(&data->x_chain, &parsing->file[3][3]);
+	parsing->floor_rgb = get_rgb(data, &parsing->file[4][2]);
+	parsing->ceiling_rgb = get_rgb(data, &parsing->file[5][2]);
+	gps->map = &parsing->file[6];
+	while (gps->map[++gps->height])
+		if (gps->width < ft_strlen(gps->map[gps->height]))
+			gps->width = ft_strlen(gps->map[gps->height]);
 	return (gps);
 }

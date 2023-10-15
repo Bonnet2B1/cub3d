@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 00:28:17 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/10 19:40:30 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:43:24 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void	*x_malloc(t_list **lst, size_t size)
 	return (ret);
 }
 
-void	x_free(t_list **lst)
+void	x_free(t_list **x_chain)
 {
 	t_list	*temp;
 
-	while (*lst)
+	while (*x_chain)
 	{
-		temp = *lst;
-		*lst = (*lst)->next;
+		temp = *x_chain;
+		*x_chain = (*x_chain)->next;
 		free(temp->content);
 		free(temp);
 	}
-	free(*lst);
+	free(*x_chain);
 }

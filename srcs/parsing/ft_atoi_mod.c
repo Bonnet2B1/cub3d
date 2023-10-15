@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_file_to_tab.c                              :+:      :+:    :+:   */
+/*   ft_atoi_mod.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 18:43:22 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/12 17:12:55 by edelarbr         ###   ########.fr       */
+/*   Created: 2022/08/02 19:51:17 by edelarbr          #+#    #+#             */
+/*   Updated: 2023/10/15 15:53:32 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**extract_file_to_tab(t_game_data *data, char *file)
+int	ft_atoi_mod(const char *str)
 {
-	int		fd;
-	char	buf[2];
-	char	*file_one_line;
+	int	i;
+	int	sign;
+	int	nbr;
 
-	fd = open(file, O_RDONLY);
-	buf [1] = '\0';
-	file_one_line = NULL;
-	while (read(fd, buf, 1) == 1)
-		file_one_line = ft_strjoin(&data->x_chain, file_one_line, buf);
-	close(fd);
-	return (ft_split(&data->x_chain, file_one_line, '\n'));
+	i = 0;
+	sign = 1;
+	nbr = 0;
+	if (ft_strlen(str) > 3)
+		return (-1);
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	if (str[i] == '-' || str[i] == '+')
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + (str[i] - 48);
+		i++;
+	}
+	return (sign * nbr);
 }

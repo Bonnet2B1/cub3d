@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:40:42 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/11 18:40:58 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:28:12 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 void	format_error(t_game_data *data, t_parsing *parsing)
 {
-	int	i;
-
-	i = 0;
-	if (ft_strncmp(parsing->file[i++], "NO ", 3) != 0
-		|| ft_strncmp(parsing->file[i++], "SO ", 3) != 0
-		|| ft_strncmp(parsing->file[i++], "WE ", 3) != 0
-		|| ft_strncmp(parsing->file[i++], "EA ", 3) != 0
-		|| ft_strncmp(parsing->file[i++], "", 1) != 0
-		|| ft_strncmp(parsing->file[i++], "F ", 2) != 0
-		|| ft_strncmp(parsing->file[i++], "C ", 2) != 0
-		|| ft_strncmp(parsing->file[i++], "", 1) != 0
-		|| !parsing->file[i++])
-		exit_error(&data->x_chain, FILE_FORMAT);
+	if (!parsing->file[0] || ft_strncmp(parsing->file[0], "NO ", 3) != 0
+		|| !parsing->file[1] || ft_strncmp(parsing->file[1], "SO ", 3) != 0
+		|| !parsing->file[2] || ft_strncmp(parsing->file[2], "WE ", 3) != 0
+		|| !parsing->file[3] || ft_strncmp(parsing->file[3], "EA ", 3) != 0
+		|| !parsing->file[4] || ft_strncmp(parsing->file[4], "F ", 2) != 0
+		|| !parsing->file[5] || ft_strncmp(parsing->file[5], "C ", 2) != 0)
+		exit_error(data, FILE_FORMAT);
+	if (!parsing->file[6])
+		exit_error(data, "there is no map");
 }

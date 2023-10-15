@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_file_to_tab.c                              :+:      :+:    :+:   */
+/*   launch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 18:43:22 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/12 17:12:55 by edelarbr         ###   ########.fr       */
+/*   Created: 2023/10/12 20:47:57 by edelarbr          #+#    #+#             */
+/*   Updated: 2023/10/12 20:52:09 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-char	**extract_file_to_tab(t_game_data *data, char *file)
+void	launch_mlx(t_game_data *data)
 {
-	int		fd;
-	char	buf[2];
-	char	*file_one_line;
-
-	fd = open(file, O_RDONLY);
-	buf [1] = '\0';
-	file_one_line = NULL;
-	while (read(fd, buf, 1) == 1)
-		file_one_line = ft_strjoin(&data->x_chain, file_one_line, buf);
-	close(fd);
-	return (ft_split(&data->x_chain, file_one_line, '\n'));
+	data->mlx = mlx_init(
+			data->gps->width * 64, data->gps->height * 64, "cub3D", false);
+	data->assets = get_assets(data, data->parsing);
+	mlx_loop(data->mlx);
 }

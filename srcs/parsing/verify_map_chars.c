@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:39:46 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/11 18:40:00 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:28:12 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	verify_map_chars(t_game_data *data, char **map)
 			if (map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'W'
 				&& map[i][j] != 'E' && map[i][j] != '0' && map[i][j] != '1'
 				&& map[i][j] != ' ')
-				exit_error(&data->x_chain, "unauthorized character in map");
+				exit_error(data, "unauthorized character in map");
 			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 				player++;
 		}
 	}
 	if (player < 1)
-		exit_error(&data->x_chain, "no player in map");
+		exit_error(data, "no player in map");
 	if (player > 1)
-		exit_error(&data->x_chain, "too many players in map");
+		exit_error(data, "too many players in map");
 }

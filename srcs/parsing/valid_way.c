@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:41:18 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/11 00:09:11 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:28:55 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,15 @@ char	**map_w_null_background(t_list **x_chain, char **map)
 	return (new);
 }
 
-void	valid_way(t_list **x_chain, char **map, int x, int y)
+void	valid_way(t_game_data *data, char **map, int x, int y)
 {
 	if (map[y][x] == '\0' || map[y][x] == ' ')
-		exit_error(x_chain, "map not closed");
+		exit_error(data, "map not closed");
 	if (map[y][x] == '1')
 		return ;
 	map[y][x] = '1';
-	valid_way(x_chain, map, (x + 1), y);
-	valid_way(x_chain, map, (x - 1), y);
-	valid_way(x_chain, map, x, (y + 1));
-	valid_way(x_chain, map, x, (y - 1));
+	valid_way(data, map, (x + 1), y);
+	valid_way(data, map, (x - 1), y);
+	valid_way(data, map, x, (y + 1));
+	valid_way(data, map, x, (y - 1));
 }
