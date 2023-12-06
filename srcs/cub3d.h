@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/15 15:49:42 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:56:13 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ typedef struct s_assets
 
 	int				floor_trgb;
 	int				ceiling_trgb;
+
+	mlx_image_t		*minimap_wall_img;
+	mlx_image_t		*minimap_floor_img;
+	mlx_image_t		*minimap_player_img;
 }					t_assets;
 
 typedef struct s_map
@@ -78,6 +82,8 @@ typedef struct s_map
 	char			**map;
 	int				height;
 	int				width;
+
+	int				minimap_size;
 }					t_map;
 
 typedef struct s_parsing
@@ -93,6 +99,7 @@ typedef struct s_parsing
 	char			*east_path;
 	char			**floor_rgb;
 	char			**ceiling_rgb;
+
 }					t_parsing;
 
 typedef struct s_game_data
@@ -102,6 +109,7 @@ typedef struct s_game_data
 	t_assets		*assets;
 
 	t_list			*x_chain;
+	mlx_image_t		*img_chain;
 
 	mlx_t			*mlx;
 }					t_game_data;
@@ -132,8 +140,11 @@ void				verify_map_chars(t_game_data *data, char **map);
 int					ft_atoi_mod(const char *str);
 
 /* MLX */
-t_assets			*get_assets(t_game_data *data, t_parsing *parsing);
-void				launch_mlx(t_game_data *data);
+mlx_image_t			*asset_to_image(t_game_data *data, char *path);
+void				get_minimap_assets(t_game_data *data, t_assets *assets);
+void				get_dot_ber_assets(t_game_data *data, t_assets *assets,
+						t_parsing *parsing);
+void				load_assets(t_game_data *data);
 
 /* LIB */
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
