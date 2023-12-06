@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/04 18:56:13 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:59:40 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,10 @@ void				get_minimap_assets(t_game_data *data, t_assets *assets);
 void				get_dot_ber_assets(t_game_data *data, t_assets *assets,
 						t_parsing *parsing);
 void				load_assets(t_game_data *data);
+
+/* MINIMAP */
+int					find_mimimap_img_size(int width, int height);
+void				display_minimap(t_game_data *data, int img_size);
 
 /* LIB */
 int					ft_strncmp(const char *s1, const char *s2, size_t n);

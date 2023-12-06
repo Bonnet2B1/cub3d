@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:40:31 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/04 18:01:32 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:14:12 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ mlx_image_t	*asset_to_image(t_game_data *data, char *path)
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;
 
-	printf("path: %s\n", path);
 	texture = mlx_load_png(path);
 	if (!texture)
 		exit_error(data, "invalid path to texture");
