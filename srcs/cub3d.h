@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/06 19:59:40 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:44:15 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ typedef struct s_game_data
 	t_assets		*assets;
 
 	t_list			*x_chain;
-	mlx_image_t		*img_chain;
 
 	mlx_t			*mlx;
 }					t_game_data;
@@ -145,6 +144,7 @@ void				get_minimap_assets(t_game_data *data, t_assets *assets);
 void				get_dot_ber_assets(t_game_data *data, t_assets *assets,
 						t_parsing *parsing);
 void				load_assets(t_game_data *data);
+void				loops(t_game_data *data);
 
 /* MINIMAP */
 int					find_mimimap_img_size(int width, int height);
