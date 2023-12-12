@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:39:46 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/12 19:28:12 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:08:27 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	verify_map_chars(t_game_data *data, char **map)
 		{
 			if (map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'W'
 				&& map[i][j] != 'E' && map[i][j] != '0' && map[i][j] != '1'
-				&& map[i][j] != ' ')
+				&& map[i][j] != ' ' && map[i][j] != '2')
 				exit_error(data, "unauthorized character in map");
 			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')

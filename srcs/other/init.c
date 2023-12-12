@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/15 15:50:14 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:17:14 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,10 @@ t_map	*map_init(t_game_data *data)
 	if (!map)
 		exit_error(data, "malloc error");
 	map->map = NULL;
-	map->height = 0;
-	map->width = 0;
+	map->height = -1;
+	map->width = -1;
+	map->px = -1;
+	map->py = -1;
 	return (map);
 }
 

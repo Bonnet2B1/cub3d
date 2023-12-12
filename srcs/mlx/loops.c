@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:43:54 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/11 17:44:04 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/12 17:34:18 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	loops(t_game_data *data)
 {
+	mlx_loop_hook(data->mlx, keyboard, data);
 	mlx_loop(data->mlx);
 }
