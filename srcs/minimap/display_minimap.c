@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:53:32 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/12 19:18:58 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/15 16:55:03 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	put_player(t_game_data *data, int img_size, int depth)
 
 void	display_minimap(t_game_data *data, int img_size)
 {
+	data->gps->minimap_img_size = img_size;
 	mlx_resize_image(data->assets->minimap_floor_img, img_size, img_size);
 	mlx_resize_image(data->assets->minimap_wall_img, img_size, img_size);
 	mlx_resize_image(data->assets->minimap_player_img, img_size, img_size);

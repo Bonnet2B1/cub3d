@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/12 19:19:18 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:27:39 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_map
 
 	int				px;
 	int				py;
+
+	int				minimap_img_size;
 }					t_map;
 
 typedef struct s_parsing
@@ -148,6 +150,8 @@ void				get_dot_ber_assets(t_game_data *data, t_assets *assets,
 void				load_assets(t_game_data *data);
 void				loops(t_game_data *data);
 void				keyboard(void *param);
+void				player_movement(t_game_data *data, int delta_x,
+						int delta_y);
 
 /* MINIMAP */
 int					find_mimimap_img_size(int width, int height);
