@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:36:00 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 23:04:27 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,21 @@
 # include <fcntl.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 
+/*============================= CUSTOMS SETTINGS =============================*/
+
+/* MINIMAP */
+# define ASSET_SIZE 50
+// * automatic scale of the minimap
+# define GRIDE_DOT_SIZE 1
+# define PLAYER_SIZE 3
+
+/* PLAYER */
+# define STEP_LEN 0.05f
+// * 0.1 is default (f = float)
+
 /*================================= DEFINES ==================================*/
 
-# define TRUE 1
-# define SUCCESS 1
-# define FALSE 0
-# define ERROR -1
+/* ERROR */
 # define FILE_FORMAT "file.cub must be formatted like this:\n\
 		\nNO [path_to_the_north_texture].png\
 		\nSO [path_to_the_south_texture].png\
@@ -49,8 +58,6 @@
 		\n\nF [R,G,B]\
 		\nC [R,G,B]\
 		\n\n[map]\n..."
-# define OPAQUE 255
-# define TRANSPARENT 0
 
 /*================================= STRUCTS ==================================*/
 
@@ -74,7 +81,6 @@ typedef struct s_assets
 
 	mlx_image_t		*minimap_wall_img;
 	mlx_image_t		*minimap_floor_img;
-	mlx_image_t		*minimap_player_img;
 	mlx_image_t		*minimap_door_img;
 }					t_assets;
 
@@ -83,9 +89,6 @@ typedef struct s_map
 	char			**map;
 	int				height;
 	int				width;
-
-	float			px;
-	float			py;
 
 	int				minimap_img_size;
 }					t_map;
@@ -106,11 +109,22 @@ typedef struct s_parsing
 
 }					t_parsing;
 
+typedef struct s_player
+{
+	mlx_image_t		*minimap_img;
+	// - add hitbox_radius concept to movement n collisions
+
+	float			x;
+	float			y;
+
+}					t_player;
+
 typedef struct s_game_data
 {
 	t_parsing		*parsing;
-	t_map			*gps;
 	t_assets		*assets;
+	t_map			*gps;
+	t_player		*player;
 
 	t_list			*x_chain;
 
@@ -120,13 +134,17 @@ typedef struct s_game_data
 /*================================ FUNCTIONS =================================*/
 
 /* OTHERS */
+	/* Error */
+void				exit_error(t_game_data *data, char *message);
+	/* Memory */
 void				*x_malloc(t_list **lst, size_t size);
 void				x_free(t_list **x_chain);
+void				free_n_exit(t_game_data *data, int exit_code);
+	/* Struc init */
 t_game_data			game_data_init(void);
 t_map				*map_init(t_game_data *data);
 t_assets			*assets_init(t_game_data *data);
-void				exit_error(t_game_data *data, char *message);
-void				free_n_exit(t_game_data *data, int exit_code);
+t_player			*player_init(t_game_data *data);
 
 /* PARSING */
 t_parsing			*parsing(t_game_data *data, int argc, char **argv);
@@ -143,9 +161,13 @@ void				verify_map_chars(t_game_data *data, char **map);
 int					ft_atoi_mod(const char *str);
 
 /* EVENTS */
+	/* mlx events */
 void				keyboard(void *param);
-void				player_movement(t_game_data *data, int delta_x,
-						int delta_y);
+	/* player movements */
+void				move_forward(t_game_data *data);
+void				move_backward(t_game_data *data);
+void				move_left(t_game_data *data);
+void				move_right(t_game_data *data);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game_data *data, char *path);
@@ -157,7 +179,7 @@ void				loops(t_game_data *data);
 
 /* MINIMAP */
 int					find_mimimap_img_size(int width, int height);
-void				display_minimap(t_game_data *data, int img_size);
+void				create_minimap(t_game_data *data, int img_size);
 
 /* LIB */
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -183,6 +205,7 @@ int					ft_isdigit(int c);
 int					ft_str_is_num(char *str);
 
 /* TEMP */
+void				display_gride(t_game_data *data, int img_size, int depth);
 void				print_file(char **file);
 void				print_map(char **map);
 

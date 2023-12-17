@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 01:43:15 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:43:02 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:55:01 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ int	main(int argc, char **argv)
 	data.parsing = parsing(&data, argc, argv);
 	(&(data))->mlx = mlx_init(1500, 1000, "cub3D", 0);
 	load_assets(&data);
-	display_minimap(&data, 50); // ! Big minimap
-	// display_minimap(&data, find_mimimap_img_size(data.gps->width,
-	// 		data.gps->height)); // ! Normal & scalable minimap size
+	create_minimap(&data, find_mimimap_img_size(data.gps->width,
+			data.gps->height));
 	loops(&data);
 	free_n_exit(&data, 0);
 }

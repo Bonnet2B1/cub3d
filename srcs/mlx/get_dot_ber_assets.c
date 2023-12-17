@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 20:43:32 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/04 18:09:58 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:15:27 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ mlx_image_t	*extract_img(t_game_data *data, char *path)
 
 int	extract_color(char **color)
 {
-	return (create_trgb(OPAQUE,
+	return (create_trgb(255,
 			(unsigned char)ft_atoi_mod(color[0]),
 			(unsigned char)ft_atoi_mod(color[1]),
 			(unsigned char)ft_atoi_mod(color[2])));

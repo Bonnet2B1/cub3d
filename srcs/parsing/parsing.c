@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:15:45 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/11 19:18:56 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:24:28 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_parsing	*parsing(t_game_data *data, int argc, char **argv)
 	t_parsing	*parsing;
 
 	parsing = parsing_init(data);
+	data->player = player_init(data);
 	if (argc < 2)
 		exit_error(data, ".cub file needed");
 	if (argc > 2)
