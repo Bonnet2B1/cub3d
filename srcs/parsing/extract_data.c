@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:40:17 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/11 19:29:39 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 17:56:05 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ t_map	*extract_data(t_game_data *data, t_parsing *parsing)
 	while (gps->map[++gps->height])
 		if (gps->width < ft_strlen(gps->map[gps->height]))
 			gps->width = ft_strlen(gps->map[gps->height]);
-	while (gps->map[++gps->py])
+	while (gps->map[(int)++gps->py])
 	{
 		gps->px = -1;
-		while (gps->map[gps->py][++gps->px])
-			if (gps->map[gps->py][gps->px] == 'N'
-				|| gps->map[gps->py][gps->px] == 'S'
-				|| gps->map[gps->py][gps->px] == 'E'
-				|| gps->map[gps->py][gps->px] == 'W')
+		while (gps->map[(int)gps->py][(int)++gps->px])
+			if (gps->map[(int)gps->py][(int)gps->px] == 'N'
+				|| gps->map[(int)gps->py][(int)gps->px] == 'S'
+				|| gps->map[(int)gps->py][(int)gps->px] == 'E'
+				|| gps->map[(int)gps->py][(int)gps->px] == 'W')
 				return (gps);
 	}
 	return (exit_error(data, "no player position"), NULL);

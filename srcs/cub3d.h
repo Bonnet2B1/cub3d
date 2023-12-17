@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 15:27:39 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 17:53:16 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ typedef struct s_map
 	int				height;
 	int				width;
 
-	int				px;
-	int				py;
+	float			px;
+	float			py;
 
 	int				minimap_img_size;
 }					t_map;
