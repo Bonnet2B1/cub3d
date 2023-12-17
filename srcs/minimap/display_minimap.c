@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:53:32 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 18:53:53 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:28:20 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,16 @@ void	display_gride(t_game_data *data, int img_size, int depth) // ! temp
 	int			k;
 	mlx_image_t	*img;
 
+	img = mlx_new_image(data->mlx, img_size / 10, img_size / 10);
+	i = -1;
+	while (i++ < img_size / 10)
+	{
+		j = -1;
+		while (j++ < img_size / 10)
+			mlx_put_pixel(img, i, j, 0x808080);
+	}
 	k = -1;
 	i = -1;
-	img = mlx_new_image(data->mlx, 1, 1);
-	mlx_put_pixel(img, 0, 0, 0x808080);
 	while (++i < data->gps->height)
 	{
 		j = -1;

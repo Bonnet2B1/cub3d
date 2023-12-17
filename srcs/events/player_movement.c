@@ -6,11 +6,27 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 15:27:01 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 19:07:35 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:45:49 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+// void	move_forward(t_game_data *data)
+// {
+// }
+
+// void	move_backward(t_game_data *data)
+// {
+// }
+
+// void	move_left(t_game_data *data)
+// {
+// }
+
+// void	move_right(t_game_data *data)
+// {
+// }
 
 void	player_movement(t_game_data *data, int delta_x, int delta_y)
 {
@@ -30,7 +46,7 @@ void	player_movement(t_game_data *data, int delta_x, int delta_y)
 	data->gps->py += player_step * delta_y;
 	data->gps->px += player_step * delta_x;
 	// printf("Going in %f, %f (%d, %d)\n", data->gps->px, data->gps->py,
-		// (int)data->gps->px, (int)data->gps->py);
+	// 	(int)data->gps->px, (int)data->gps->py);
 	data->assets->minimap_player_img->instances[0].y
 		= data->gps->py * data->gps->minimap_img_size;
 	data->assets->minimap_player_img->instances[0].x

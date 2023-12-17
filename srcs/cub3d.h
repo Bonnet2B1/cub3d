@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 17:53:16 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:36:00 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,11 @@ t_map				*extract_data(t_game_data *data, t_parsing *parsing);
 void				verify_map_chars(t_game_data *data, char **map);
 int					ft_atoi_mod(const char *str);
 
+/* EVENTS */
+void				keyboard(void *param);
+void				player_movement(t_game_data *data, int delta_x,
+						int delta_y);
+
 /* MLX */
 mlx_image_t			*asset_to_image(t_game_data *data, char *path);
 void				get_minimap_assets(t_game_data *data, t_assets *assets);
@@ -149,9 +154,6 @@ void				get_dot_ber_assets(t_game_data *data, t_assets *assets,
 						t_parsing *parsing);
 void				load_assets(t_game_data *data);
 void				loops(t_game_data *data);
-void				keyboard(void *param);
-void				player_movement(t_game_data *data, int delta_x,
-						int delta_y);
 
 /* MINIMAP */
 int					find_mimimap_img_size(int width, int height);
