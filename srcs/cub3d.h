@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 23:04:27 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:05:45 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@
 /*============================= CUSTOMS SETTINGS =============================*/
 
 /* MINIMAP */
-# define ASSET_SIZE 50
-// * automatic scale of the minimap
+# define ASSET_SIZE 0
+// * 0 for automatic scale of the minimap
 # define GRIDE_DOT_SIZE 1
 # define PLAYER_SIZE 3
 
 /* PLAYER */
 # define STEP_LEN 0.05f
-// * 0.1 is default (f = float)
+// * 0.05 is default (f = float)
 
 /*================================= DEFINES ==================================*/
 

@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:53:32 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 23:02:10 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:02:45 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	display_walls(t_game_data *data, int img_size, int depth)
 
 	k = -1;
 	i = -1;
-	while (++i < data->gps->height)
+	while (data->gps->map[++i])
 	{
 		j = -1;
-		while (++j < data->gps->width)
+		while (data->gps->map[i][++j])
 		{
 			if (data->gps->map[i][j] == '1')
 			{
@@ -63,10 +63,10 @@ void	display_doors(t_game_data *data, int img_size, int depth)
 
 	k = -1;
 	i = -1;
-	while (++i < data->gps->height)
+	while (data->gps->map[++i])
 	{
 		j = -1;
-		while (++j < data->gps->width)
+		while (data->gps->map[i][++j])
 		{
 			if (data->gps->map[i][j] == '2')
 			{
@@ -86,10 +86,10 @@ void	put_player(t_game_data *data, int img_size, int depth)
 
 	k = -1;
 	i = -1;
-	while (++i < data->gps->height)
+	while (data->gps->map[++i])
 	{
 		j = -1;
-		while (++j < data->gps->width)
+		while (data->gps->map[i][++j])
 		{
 			if (data->gps->map[i][j] == 'N'
 				|| data->gps->map[i][j] == 'S'
@@ -97,8 +97,8 @@ void	put_player(t_game_data *data, int img_size, int depth)
 				|| data->gps->map[i][j] == 'E')
 			{
 				mlx_image_to_window(data->mlx, data->player->minimap_img,
-					j * img_size + img_size / 2 - img_size / 5 / 2,
-					i * img_size + img_size / 2 - img_size / 5 / 2);
+					(j + 0.5) * img_size,
+					(i + 0.5) * img_size);
 				data->player->minimap_img->instances[++k].z = depth;
 				return ;
 			}
