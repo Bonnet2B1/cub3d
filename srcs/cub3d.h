@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/29 19:50:19 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/29 19:57:12 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 /*============================= CUSTOMS SETTINGS =============================*/
 
 /* WINDOW */
-# define WINDOW_HEIGHT 1000
 # define WINDOW_WIDTH 1500
+# define WINDOW_HEIGHT 1000
 
 /* MINIMAP */
 # define ASSET_SIZE 0
