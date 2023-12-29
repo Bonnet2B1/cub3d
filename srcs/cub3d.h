@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/28 20:05:45 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/29 19:50:19 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@
 
 /*============================= CUSTOMS SETTINGS =============================*/
 
+/* WINDOW */
+# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 1500
+
 /* MINIMAP */
 # define ASSET_SIZE 0
 // * 0 for automatic scale of the minimap
@@ -44,8 +48,14 @@
 # define PLAYER_SIZE 3
 
 /* PLAYER */
-# define STEP_LEN 0.05f
-// * 0.05 is default (f = float)
+# define STEP_LEN 0.05
+# define ROTATE_SPEED 0.05
+
+/* MATHS */
+# define PI 3.14159265358979323846
+# define PI_2 PI/2
+# define TWOPI_3 3*PI_2
+
 
 /*================================= DEFINES ==================================*/
 
@@ -112,10 +122,11 @@ typedef struct s_parsing
 typedef struct s_player
 {
 	mlx_image_t		*minimap_img;
-	// - add hitbox_radius concept to movement n collisions
 
-	float			x;
-	float			y;
+	double			x;
+	double			y;
+
+	double			angle;
 
 }					t_player;
 
@@ -168,6 +179,12 @@ void				move_forward(t_game_data *data);
 void				move_backward(t_game_data *data);
 void				move_left(t_game_data *data);
 void				move_right(t_game_data *data);
+
+/* ENGINE */
+void				set_player_angle(t_player *player, char c);
+double				get_principal_measure(double angle);
+void				rotate_left(t_player *player);
+void				rotate_right(t_player *player);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game_data *data, char *path);

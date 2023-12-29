@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:53:32 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/28 20:02:45 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:40:48 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	put_player(t_game_data *data, int img_size, int depth)
 					(j + 0.5) * img_size,
 					(i + 0.5) * img_size);
 				data->player->minimap_img->instances[++k].z = depth;
-				return ;
+				return (set_player_angle(data->player, data->gps->map[i][j]), (void)0);
 			}
 		}
 	}

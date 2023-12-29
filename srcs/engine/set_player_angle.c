@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_mimimap_img_size.c                            :+:      :+:    :+:   */
+/*   set_player_angle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 19:56:14 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/29 19:47:40 by edelarbr         ###   ########.fr       */
+/*   Created: 2023/12/28 21:18:02 by edelarbr          #+#    #+#             */
+/*   Updated: 2023/12/29 16:43:51 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	find_mimimap_img_size(int width, int height)
+void	set_player_angle(t_player *player, char c)
 {
-	if (ASSET_SIZE > 0)
-		return (ASSET_SIZE);
-	if (width > height)
-		return ((WINDOW_WIDTH / 5) / width);
-	else
-		return ((WINDOW_WIDTH / 5) / height);
+	if (c == 'E')
+		player->angle = 0;
+	else if (c == 'S')
+		player->angle = TWOPI_3;
+	else if (c == 'W')
+		player->angle = PI;
+	else if (c == 'N')
+		player->angle = PI_2;
 }
+
+// /* et t'en peux plus là ? T'as trop envie de chier ? chie toi dessus */

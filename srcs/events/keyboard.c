@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:34:53 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 21:23:35 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/29 17:13:57 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,8 @@ void	keyboard(void *param)
 		move_left(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		move_right(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		rotate_left(data->player);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		rotate_right(data->player);
 }

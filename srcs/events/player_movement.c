@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 15:27:01 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 22:59:04 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:45:49 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	move_right(t_game_data *data)
 
 // void	player_movement(t_game_data *data, int delta_x, int delta_y)
 // {
-// 	float	player_step;
+// 	double	player_step;
 // 	int		wanted_x;
 // 	int		wanted_y;
 
