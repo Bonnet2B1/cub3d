@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/29 19:57:12 by edelarbr         ###   ########.fr       */
+/*   Updated: 2023/12/29 20:06:27 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,23 @@
 /*============================= CUSTOMS SETTINGS =============================*/
 
 /* WINDOW */
-# define WINDOW_WIDTH 1500
-# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH	1500
+# define WINDOW_HEIGHT	1000
 
 /* MINIMAP */
-# define ASSET_SIZE 0
+# define ASSET_SIZE		0
 // * 0 for automatic scale of the minimap
-# define GRIDE_DOT_SIZE 1
-# define PLAYER_SIZE 3
+# define GRIDE_DOT_SIZE	1
+# define PLAYER_SIZE	3
 
 /* PLAYER */
-# define STEP_LEN 0.05
-# define ROTATE_SPEED 0.05
+# define STEP_LEN		0.05
+# define ROTATE_SPEED	0.05
 
 /* MATHS */
-# define PI 3.14159265358979323846
-# define PI_2 PI/2
-# define TWOPI_3 3*PI_2
+# define PI				3.14159265358979323846
+# define PI_2			PI/2
+# define TWOPI_3		3*PI_2
 
 
 /*================================= DEFINES ==================================*/
