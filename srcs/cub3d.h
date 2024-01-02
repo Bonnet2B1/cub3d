@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/29 20:06:27 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:57:45 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@
 # define STEP_LEN		0.05
 # define ROTATE_SPEED	0.05
 
-/* MATHS */
-# define PI				3.14159265358979323846
-# define PI_2			PI/2
-# define TWOPI_3		3*PI_2
-
-
 /*================================= DEFINES ==================================*/
 
 /* ERROR */
@@ -68,6 +62,9 @@
 		\n\nF [R,G,B]\
 		\nC [R,G,B]\
 		\n\n[map]\n..."
+
+/* MATHS */
+# define PI				3.14159265358979323846
 
 /*================================= STRUCTS ==================================*/
 
@@ -128,6 +125,9 @@ typedef struct s_player
 
 	double			angle;
 
+	mlx_image_t		*lazer_img[20]; // ! temp
+	int				lazer_inited; // ! temp
+
 }					t_player;
 
 typedef struct s_game_data
@@ -185,6 +185,7 @@ void				set_player_angle(t_player *player, char c);
 double				get_principal_measure(double angle);
 void				rotate_left(t_player *player);
 void				rotate_right(t_player *player);
+void				ray_casting(void *param);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game_data *data, char *path);

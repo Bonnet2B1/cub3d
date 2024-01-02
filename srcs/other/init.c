@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 21:15:42 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:24:46 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ t_player	*player_init(t_game_data *data)
 	player->minimap_img = NULL;
 	player->x = -1;
 	player->y = -1;
+	player->angle = -1;
+	player->lazer_inited = 0;
 	return (player);
 }
