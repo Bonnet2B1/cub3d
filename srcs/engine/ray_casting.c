@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/02 19:57:10 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:37:38 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_lazer(t_game_data *data, t_player *player, double angle)
 	if (!player->lazer_inited)
 	{
 		i = -1;
-		while(++i < 20)
+		while(++i < 10)
 		{
 			player->lazer_img[i] = mlx_new_image(data->mlx, 1, 1);
 			mlx_put_pixel(player->lazer_img[i], 0, 0, 0xFF0);
@@ -40,14 +40,14 @@ void	draw_lazer(t_game_data *data, t_player *player, double angle)
 			lazer_pos_x += cos(angle);
 			printf("x: %f, y: %f\n", lazer_pos_x, lazer_pos_y);
 			mlx_image_to_window(data->mlx, player->lazer_img[i], lazer_pos_x, lazer_pos_y);
-			player->lazer_img[i]->instances->z = 20;
+			player->lazer_img[i]->instances->z = 10;
 		}
 		player->lazer_inited = 1;
 	}
 	lazer_pos_y = player->y * data->gps->minimap_img_size;
 	lazer_pos_x = player->x * data->gps->minimap_img_size;
 	i = -1;
-	while(++i < 20)
+	while(++i < 10)
 	{
 		lazer_pos_y += sin(angle);
 		lazer_pos_x += cos(angle);
@@ -56,6 +56,8 @@ void	draw_lazer(t_game_data *data, t_player *player, double angle)
 	}
 }
 
+//calculs pour murs, afficher la dist entre joueur et mur pour tester si ça fonctionne
+
 void	ray_casting(void *param)
 {
 	t_game_data	*data;
@@ -63,4 +65,5 @@ void	ray_casting(void *param)
 	data = param;
 	trace_ray(data, data->player->angle);
 	draw_lazer(data, data->player, data->player->angle);
+	// maths(data, data->player, data->ray);
 }

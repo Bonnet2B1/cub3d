@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/02 19:57:45 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:22:00 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,19 @@ typedef struct s_player
 
 	double			angle;
 
-	mlx_image_t		*lazer_img[20]; // ! temp
+	mlx_image_t		*lazer_img[10]; // ! temp
 	int				lazer_inited; // ! temp
 
 }					t_player;
+
+typedef struct s_ray
+{
+	double	angle;
+	double	rx;
+	double	ry;
+	double	len;
+
+}				t_ray;
 
 typedef struct s_game_data
 {
@@ -136,6 +145,7 @@ typedef struct s_game_data
 	t_assets		*assets;
 	t_map			*gps;
 	t_player		*player;
+	t_ray			*ray;
 
 	t_list			*x_chain;
 
@@ -156,6 +166,7 @@ t_game_data			game_data_init(void);
 t_map				*map_init(t_game_data *data);
 t_assets			*assets_init(t_game_data *data);
 t_player			*player_init(t_game_data *data);
+void				init_player_spec_sn(t_player *player);
 
 /* PARSING */
 t_parsing			*parsing(t_game_data *data, int argc, char **argv);
