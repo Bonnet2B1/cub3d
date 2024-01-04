@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/04 16:22:00 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/04 20:13:06 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,14 @@
 # define WINDOW_HEIGHT	1000
 
 /* MINIMAP */
-# define ASSET_SIZE		0
+# define ASSET_SIZE		50
 // * 0 for automatic scale of the minimap
 # define GRIDE_DOT_SIZE	1
 # define PLAYER_SIZE	3
 
 /* PLAYER */
 # define STEP_LEN		0.05
-# define ROTATE_SPEED	0.05
-
+# define ROTATE_SPEED	0.01
 /*================================= DEFINES ==================================*/
 
 /* ERROR */
@@ -125,16 +124,19 @@ typedef struct s_player
 
 	double			angle;
 
-	mlx_image_t		*lazer_img[10]; // ! temp
+	mlx_image_t		*lazer_img; // ! temp
 	int				lazer_inited; // ! temp
+	struct s_ray	*ray;
 
 }					t_player;
 
 typedef struct s_ray
 {
 	double	angle;
+
 	double	rx;
 	double	ry;
+
 	double	len;
 
 }				t_ray;
@@ -145,7 +147,6 @@ typedef struct s_game_data
 	t_assets		*assets;
 	t_map			*gps;
 	t_player		*player;
-	t_ray			*ray;
 
 	t_list			*x_chain;
 
