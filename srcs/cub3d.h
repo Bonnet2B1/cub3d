@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/04 20:13:06 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:53:34 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 /* PLAYER */
 # define STEP_LEN		0.05
 # define ROTATE_SPEED	0.01
+# define RAY_NUMBER		1
+
 /*================================= DEFINES ==================================*/
 
 /* ERROR */
@@ -74,6 +76,24 @@ typedef struct s_list
 	struct s_list	*next;
 	struct s_list	*prev;
 }					t_list;
+
+typedef struct s_ray
+{
+	double			*x;
+	double			*y;
+	double			angle;
+
+	double			one_piece_x;
+	double			one_piece_y;
+
+	double			len;
+
+	struct s_ray	*vertical;
+	struct s_ray	*horizontal;
+
+	mlx_image_t		*lazer_img; // ! temp
+
+}				t_ray;
 
 typedef struct s_assets
 {
@@ -124,22 +144,9 @@ typedef struct s_player
 
 	double			angle;
 
-	mlx_image_t		*lazer_img; // ! temp
-	int				lazer_inited; // ! temp
-	struct s_ray	*ray;
+	t_ray			*ray;
 
 }					t_player;
-
-typedef struct s_ray
-{
-	double	angle;
-
-	double	rx;
-	double	ry;
-
-	double	len;
-
-}				t_ray;
 
 typedef struct s_game_data
 {
@@ -235,6 +242,7 @@ int					ft_isdigit(int c);
 int					ft_str_is_num(char *str);
 
 /* TEMP */
+void				draw_lazer(t_game_data *data, t_ray *ray);
 void				display_gride(t_game_data *data, int img_size, int depth);
 void				print_file(char **file);
 void				print_map(char **map);

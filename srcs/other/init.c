@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/03 16:34:30 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/06 02:05:38 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_assets	*assets_init(t_game_data *data)
 t_player	*player_init(t_game_data *data)
 {
 	t_player	*player;
+	int			i;
 
 	player = x_malloc(&data->x_chain, sizeof(t_player));
 	if (!player)
@@ -78,6 +79,13 @@ t_player	*player_init(t_game_data *data)
 	player->x = -1;
 	player->y = -1;
 	player->angle = -1;
-	player->lazer_inited = 0;
+	player->ray = x_malloc(&data->x_chain, sizeof(t_ray) * RAY_NUMBER);
+	i = -1;
+	while (++i < RAY_NUMBER)
+	{
+		player->ray[i].x = &player->x;
+		player->ray[i].y = &player->y;
+		player->ray[i].lazer_img = NULL;
+	}
 	return (player);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_player_angle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:18:02 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/06 12:26:50 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/08 16:47:49 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,4 @@ void	set_player_angle(t_player *player, char c)
 
 // /* et t'en peux plus là ? T'as trop envie de chier ? chie toi dessus */
 // ?????? completement fou toi
+// C'est ton easter egg nullos
