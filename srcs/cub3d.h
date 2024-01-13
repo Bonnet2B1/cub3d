@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/08 19:53:34 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/13 19:50:38 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct s_ray
 
 }				t_ray;
 
-typedef struct s_assets
+typedef struct weeews_assets
 {
 	mlx_image_t		*north_img;
 	mlx_image_t		*south_img;
@@ -205,6 +205,8 @@ double				get_principal_measure(double angle);
 void				rotate_left(t_player *player);
 void				rotate_right(t_player *player);
 void				ray_casting(void *param);
+double				get_len_to_vertical_collision(t_game_data *data, t_ray *ray);
+int					is_collision(char pos);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game_data *data, char *path);

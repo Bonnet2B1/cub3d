@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/08 20:19:30 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:05:55 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,13 @@ double	get_len(t_game_data *data, t_ray *ray)
 	double	len_x;
 	double	len_y;
 
-	len_x = get_len_to_horizontal_collision(data, ray->horizontal);
-	len_y = get_len_to_vertical_collision(data, ray->vertical);
+	// len_x = get_len_to_horizontal_collision(data, ray->horizontal);
+	len_x = 100;
+	len_y = fabs(get_len_to_vertical_collision(data, ray->vertical));
 	if (len_x < len_y)
 		return (len_x);
 	else
 		return (len_y);
-}
-
-void	get_ray_data(t_game_data *data, t_player *player)
-{
-	int	i;
-
-	i = -1;
-	(void)data;
-	while (++i < RAY_NUMBER)
-	{
-		deep_ray_cpy(&player->ray[i]);
-		player->ray[i].angle = get_angle(player, i);
-		// player->ray[i].angle = player->angle;
-		player->ray[i].len = get_len(data, &player->ray[i]);
-		// player->ray[i].len = 1;
-	}
 }
 
 void	deep_ray_cpy(t_ray *ray)
@@ -49,10 +34,10 @@ void	deep_ray_cpy(t_ray *ray)
 	ray->vertical->y = ray->y;
 	ray->horizontal->angle = ray->angle;
 	ray->vertical->angle = ray->angle;
-	ray->horizontal->one_piece_x = ray->x;
-	ray->vertical->one_piece_x = ray->x;
-	ray->horizontal->one_piece_y = ray->y;
-	ray->vertical->one_piece_y = ray->y;
+	ray->horizontal->one_piece_x = *ray->x;
+	ray->vertical->one_piece_x = *ray->x;
+	ray->horizontal->one_piece_y = *ray->y;
+	ray->vertical->one_piece_y = *ray->y;
 	ray->horizontal->len = 0;
 	ray->vertical->len = 0;
 	ray->horizontal->vertical = NULL;
@@ -61,7 +46,25 @@ void	deep_ray_cpy(t_ray *ray)
 	ray->vertical->horizontal = NULL;
 }
 
-void	ray_casting(void *param)
+void	get_ray_data(t_game_data *data, t_player *player)
+{
+	int	i;
+
+	i = -1;
+	(void)data;
+	while (++i < RAY_NUMBER)
+	{
+		player->ray[i].vertical = x_malloc(&data->x_chain, sizeof(t_ray));
+		player->ray[i].horizontal = x_malloc(&data->x_chain, sizeof(t_ray));
+		deep_ray_cpy(&player->ray[i]);
+		// player->ray[i].angle = get_angle(player, i);
+		player->ray[i].angle = player->angle;
+		player->ray[i].len = get_len(data, &player->ray[i]);
+		// player->ray[i].len = 1;
+	}
+}
+
+void	ray_casting(void *param) /* 1 */
 {
 	int i;
 	t_game_data	*data;
@@ -69,12 +72,13 @@ void	ray_casting(void *param)
 	data = param;
 	get_ray_data(data, data->player);
 	i = -1;
-	while (++i < RAY_NUMBER)
+	while (++i < RAY_NUMBER) /* tempo */
 	{
 		draw_lazer(data, &data->player->ray[i]);
 	}
 }
 
+// stock de calculs
 void	trace_ray(t_game_data *data)
 {
 	t_player	*player;

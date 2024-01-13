@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_player_angle.c                                 :+:      :+:    :+:   */
+/*   is_collision.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/28 21:18:02 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/13 20:11:01 by momox            ###   ########.fr       */
+/*   Created: 2024/01/13 19:47:54 by momox             #+#    #+#             */
+/*   Updated: 2024/01/13 19:50:59 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
-void	set_player_angle(t_player *player, char c)
+int	is_collision(char pos)
 {
-	if (c == 'E')
-		player->angle = 0;
-	else if (c == 'S')
-		player->angle = PI / 2;
-	else if (c == 'W')
-		player->angle = PI;
-	else if (c == 'N')
-		player->angle = 3 * PI / 2;
+	if (pos == '0')
+		return (0);
+	else
+		return (1);
 }
-
-// /* et t'en peux plus là ? T'as trop envie de chier ? chie toi dessus */
-// ?????? completement fou toi
-// C'est ton easter egg nullos
