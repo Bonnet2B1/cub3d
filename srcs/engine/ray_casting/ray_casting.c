@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/13 20:05:55 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/14 17:21:17 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,19 @@ double	get_len(t_game_data *data, t_ray *ray)
 	len_x = 100;
 	len_y = fabs(get_len_to_vertical_collision(data, ray->vertical));
 	if (len_x < len_y)
+	{
+		ray->one_piece_x = ray->horizontal->one_piece_x;
+		ray->one_piece_y = ray->horizontal->one_piece_y;
+		ray->len = ray->horizontal->len;
 		return (len_x);
+	}
 	else
+	{
+		ray->one_piece_x = ray->vertical->one_piece_x;
+		ray->one_piece_y = ray->vertical->one_piece_y;
+		ray->len = ray->vertical->len;
 		return (len_y);
+	}
 }
 
 void	deep_ray_cpy(t_ray *ray)
