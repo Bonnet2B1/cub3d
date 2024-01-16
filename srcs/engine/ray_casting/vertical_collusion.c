@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:48:53 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/16 17:54:15 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/16 19:22:32 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ double	looking_left(t_ray *ray, char **map)
 {
 	(void)map;
 	ray->one_piece_x = floor(*ray->x);
-	ray->one_piece_y = (*ray->y) - tan(ray->angle);
 	ray->len = (*ray->x - floor(*ray->x)) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
+	ray->one_piece_y = (*ray->y) + sqrt(pow(ray->len, 2) - (pow((*ray->x - floor(*ray->x)), 2)));
 	printf("Checking in x: %d, y: %d\n", (int)ray->one_piece_x - 1, (int)ray->one_piece_y);
 	printf("one piece = x: %f, y: %f\n", ray->one_piece_x, ray->one_piece_y);
 	// if (is_collision(map[(int)ray->one_piece_y][(int)ray->one_piece_x - 1])) /* check de collisions */
@@ -37,8 +37,8 @@ double	looking_right(t_ray *ray, char **map)
 {
 	(void)map;
 	ray->one_piece_x = floor(*ray->x) + 1;
-	ray->one_piece_y = (*ray->y) + tan(ray->angle);
 	ray->len = (*ray->x - floor(*ray->x) - 1) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
+	ray->one_piece_y = (*ray->y) + sqrt(pow(ray->len, 2) - pow((*ray->x - floor(*ray->x)), 2));
 	printf("Checking in x: %d, y: %d\n", (int)ray->one_piece_x, (int)ray->one_piece_y);
 	printf("one piece = x: %f, y: %f\n", ray->one_piece_x, ray->one_piece_y);
 	// if (is_collision(map[(int)ray->one_piece_y][(int)ray->one_piece_x])) /* check de collisions */
