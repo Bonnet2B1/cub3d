@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/20 16:08:02 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/20 22:00:31 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ void				rotate_left(t_player *player);
 void				rotate_right(t_player *player);
 void				ray_casting(void *param);
 double				get_len_to_vertical_collision(t_game_data *data, t_ray *ray);
+double				get_len_to_horizontal_collision(t_game_data *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
 
 /* MLX */
