@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/18 22:02:41 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/20 15:27:01 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	get_ray_data(t_game_data *data, t_player *player)
 	{
 		player->ray[i].vertical = x_malloc(&data->x_chain, sizeof(t_ray));
 		player->ray[i].horizontal = x_malloc(&data->x_chain, sizeof(t_ray));
-		printf("ANGLE : %f\n", player->angle);
 		player->ray[i].angle = player->angle;
 		// player->ray[i].angle = get_angle(player, i);
 		deep_ray_cpy(&player->ray[i]);

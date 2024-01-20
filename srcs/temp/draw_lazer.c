@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:36:58 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/14 17:18:48 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:25:33 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	draw_lazer(t_game_data *data, t_ray *ray)
 	ray->lazer_img = mlx_new_image(data->mlx, 1, 1);
 	mlx_put_pixel(ray->lazer_img, 0, 0, 0xFF0);
 	i = -1;
-	// printf("len = %f\n", ray->len);
-	// printf("angle = %f\n", ray->angle);
-	printf("pos = x: %f & y: %f\n", *ray->x, *ray->y);
 	while(++i < ray->len * data->gps->minimap_img_size)
 	{
 		lazer_pos_y += sin(ray->angle);
