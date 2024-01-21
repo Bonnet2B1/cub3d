@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/21 00:05:38 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/21 03:47:04 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ double	get_len(t_game_data *data, t_ray *ray)
 	double	len_x;
 	double	len_y;
 
+	len_y = fabs(get_len_to_vertical_collision(data, ray->vertical));
 	len_x = fabs(get_len_to_horizontal_collision(data, ray->horizontal));
-	len_y = 20;
-	// len_y = fabs(get_len_to_vertical_collision(data, ray->vertical));
+	// len_y = 20;
 	if (len_x < len_y)
 	{
 		ray->one_piece_x = ray->horizontal->one_piece_x;
