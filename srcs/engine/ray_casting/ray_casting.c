@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/21 16:45:38 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/22 20:36:59 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ double	get_len(t_game_data *data, t_ray *ray)
 
 	len_y = fabs(get_len_to_vertical_collision(data, ray->vertical));
 	len_x = fabs(get_len_to_horizontal_collision(data, ray->horizontal));
-	// len_y = 20;
 	if (len_x < len_y)
 	{
 		ray->one_piece_x = ray->horizontal->one_piece_x;
@@ -105,7 +104,7 @@ void	trace_ray(t_game_data *data)
 			/* Measure len between two y lines */
 	// player->ray->len = sqrt(pow(1, 2) + pow(tan(player->angle), 2));
 			/* Measure len between two x lines */
-	player->ray->len = sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2));
+	// player->ray->len = sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2)); // ! principal
 		/* FIRST */
 			/* Measure len between player and first y line */
 	// if (player->angle < PI / 2 || player->angle > 3 * PI / 2)
@@ -113,10 +112,12 @@ void	trace_ray(t_game_data *data)
 	// else
 		// player->ray->len = relative_x * sqrt(pow(1, 2) + pow(tan(player->angle), 2));
 			/* Measure len between player and first x line */
-	if (player->angle < PI)
-		player->ray->len = (1 - relative_y) * sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2));
-	else
-		player->ray->len = relative_y * sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2));
+	// if (player->angle < PI)
+	// 	player->ray->len = (1 - relative_y) * sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2)); // ! first down
+	// else
+	// 	player->ray->len = relative_y * sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2)); // ! first up
+		/* OTHERS */
+			/* Measure len between two y lines */
 	/* WALL */
 
 	/* SECU */
