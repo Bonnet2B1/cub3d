@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/22 20:36:59 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:10:35 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	deep_ray_cpy(t_ray *ray)
 	ray->vertical->y = ray->y;
 	ray->horizontal->angle = ray->angle;
 	ray->vertical->angle = ray->angle;
-	ray->horizontal->one_piece_x = *ray->x;
-	ray->vertical->one_piece_x = *ray->x;
-	ray->horizontal->one_piece_y = *ray->y;
-	ray->vertical->one_piece_y = *ray->y;
+	ray->horizontal->one_piece_x = 0;
+	ray->vertical->one_piece_x = 0;
+	ray->horizontal->one_piece_y = 0;
+	ray->vertical->one_piece_y = 0;
 	ray->horizontal->len = 0;
 	ray->vertical->len = 0;
 	ray->horizontal->vertical = NULL;
@@ -57,70 +57,24 @@ void	deep_ray_cpy(t_ray *ray)
 
 void	get_ray_data(t_game_data *data, t_player *player)
 {
-	int	i;
+	int		i;
+	double	first_ray_angle;
 
 	i = -1;
-	(void)data;
-	while (++i < RAY_NUMBER)
+	first_ray_angle = data->player->angle - ft_deg_to_rad(FOV/RAY_AMOUNT/2);
+	while (++i < RAY_AMOUNT)
 	{
-		player->ray[i].vertical = x_malloc(&data->x_chain, sizeof(t_ray));
-		player->ray[i].horizontal = x_malloc(&data->x_chain, sizeof(t_ray));
-		player->ray[i].angle = player->angle;
-		// player->ray[i].angle = get_angle(player, i);
 		deep_ray_cpy(&player->ray[i]);
+		player->ray[i].angle = first_ray_angle + i * ft_deg_to_rad(FOV/RAY_AMOUNT);
 		player->ray[i].len = get_len(data, &player->ray[i]);
-		// player->ray[i].len = 1;
-	}
-}
-
-void	ray_casting(void *param) /* 1 */
-{
-	int i;
-	t_game_data	*data;
-
-	data = param;
-	get_ray_data(data, data->player);
-	i = -1;
-	while (++i < RAY_NUMBER) /* tempo */
-	{
 		draw_lazer(data, &data->player->ray[i]);
 	}
 }
 
-// stock de calculs
-void	trace_ray(t_game_data *data)
+void	ray_casting(void *param)
 {
-	t_player	*player;
-	double		relative_y;
-	double		relative_x;
+	t_game_data	*data;
 
-	(void)relative_y;
-	(void)relative_x;
-	player = data->player;
-	relative_y = player->y - floor(player->y);
-	relative_x = player->x - floor(player->x);
-	/* COLLISIONS CONTRE LES LIGNES VERTICALES */
-		/* OTHERS */
-			/* Measure len between two y lines */
-	// player->ray->len = sqrt(pow(1, 2) + pow(tan(player->angle), 2));
-			/* Measure len between two x lines */
-	// player->ray->len = sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2)); // ! principal
-		/* FIRST */
-			/* Measure len between player and first y line */
-	// if (player->angle < PI / 2 || player->angle > 3 * PI / 2)
-		// player->ray->len = (1 - relative_x) * sqrt(pow(1, 2) + pow(tan(player->angle), 2));
-	// else
-		// player->ray->len = relative_x * sqrt(pow(1, 2) + pow(tan(player->angle), 2));
-			/* Measure len between player and first x line */
-	// if (player->angle < PI)
-	// 	player->ray->len = (1 - relative_y) * sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2)); // ! first down
-	// else
-	// 	player->ray->len = relative_y * sqrt(pow(1, 2) + pow(1 / tan(player->angle), 2)); // ! first up
-		/* OTHERS */
-			/* Measure len between two y lines */
-	/* WALL */
-
-	/* SECU */
-	if (player->ray->len > 100)
-		player->ray->len = 100;
+	data = param;
+	get_ray_data(data, data->player);
 }

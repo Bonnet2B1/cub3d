@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/06 02:05:38 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:11:57 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,13 @@ t_player	*player_init(t_game_data *data)
 	player->x = -1;
 	player->y = -1;
 	player->angle = -1;
-	player->ray = x_malloc(&data->x_chain, sizeof(t_ray) * RAY_NUMBER);
+	player->ray = x_malloc(&data->x_chain, sizeof(t_ray) * RAY_AMOUNT);
 	i = -1;
-	while (++i < RAY_NUMBER)
+	while (++i < RAY_AMOUNT)
 	{
+		player->ray[i].vertical = x_malloc(&data->x_chain, sizeof(t_ray));
+		player->ray[i].horizontal = x_malloc(&data->x_chain, sizeof(t_ray));
+		player->ray[i].instance_amount = 0;
 		player->ray[i].x = &player->x;
 		player->ray[i].y = &player->y;
 		player->ray[i].lazer_img = NULL;

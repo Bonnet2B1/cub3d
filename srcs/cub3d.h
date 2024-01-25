@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/22 20:33:58 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:12:55 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,17 @@
 # define WINDOW_HEIGHT	1000
 
 /* MINIMAP */
-# define ASSET_SIZE		50
-// * 0 for automatic scale of the minimap
+# define ASSET_SIZE		50 /* 0 for automatic scale of the minimap */
 # define GRIDE_DOT_SIZE	1
 # define PLAYER_SIZE	3
 
 /* PLAYER */
 # define STEP_LEN		0.05
 # define ROTATE_SPEED	0.01
-# define RAY_NUMBER		1
+
+/* DISPLAY */
+# define FOV			60 /* in degree */
+# define RAY_AMOUNT		10
 
 /*================================= DEFINES ==================================*/
 
@@ -92,6 +94,7 @@ typedef struct s_ray
 	struct s_ray	*horizontal;
 
 	mlx_image_t		*lazer_img; // ! temp
+	int				instance_amount;
 
 }				t_ray;
 
@@ -243,6 +246,8 @@ unsigned char		get_b(int trgb);
 char				*ft_strchr(const char *s, int c);
 int					ft_isdigit(int c);
 int					ft_str_is_num(char *str);
+double				ft_rad_to_deg(double rad);
+double				ft_deg_to_rad(double deg);
 
 /* TEMP */
 void				draw_lazer(t_game_data *data, t_ray *ray);
