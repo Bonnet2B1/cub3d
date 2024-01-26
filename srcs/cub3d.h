@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 19:10:04 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:36:55 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,12 @@ typedef struct s_ray
 	double			*y;
 	double			angle;
 
+	double			len;
+
 	double			one_piece_x;
 	double			one_piece_y;
 
-	double			len;
+	char			side;
 
 	struct s_ray	*vertical;
 	struct s_ray	*horizontal;

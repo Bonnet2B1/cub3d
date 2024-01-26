@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 19:10:36 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:40:08 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ double	get_len(t_game_data *data, t_ray *ray)
 	{
 		ray->one_piece_x = ray->horizontal->one_piece_x;
 		ray->one_piece_y = ray->horizontal->one_piece_y;
+		ray->side = ray->horizontal->side;
 		return (ray->horizontal->len);
 	}
 	else
 	{
 		ray->one_piece_x = ray->vertical->one_piece_x;
 		ray->one_piece_y = ray->vertical->one_piece_y;
+		ray->side = ray->vertical->side;
 		return (ray->vertical->len);
 	}
 }

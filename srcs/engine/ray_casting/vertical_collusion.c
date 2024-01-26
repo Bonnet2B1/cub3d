@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:48:53 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 19:00:24 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:38:18 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 double	looking_left_up(t_ray *ray, t_map *gps)
 {
+	ray->side = 'E';
 	ray->len = (*ray->x - floor(*ray->x)) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
 	ray->one_piece_x = floor(*ray->x);
 	ray->one_piece_y = *ray->y - sqrt(pow(ray->len, 2) - (pow(*ray->x - floor(*ray->x), 2)));
@@ -28,6 +29,7 @@ double	looking_left_up(t_ray *ray, t_map *gps)
 
 double	looking_left_down(t_ray *ray, t_map *gps)
 {
+	ray->side = 'E';
 	ray->len = (*ray->x - floor(*ray->x)) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
 	ray->one_piece_x = floor(*ray->x);
 	ray->one_piece_y = *ray->y + sqrt(pow(ray->len, 2) - (pow(*ray->x - floor(*ray->x), 2)));
@@ -42,6 +44,7 @@ double	looking_left_down(t_ray *ray, t_map *gps)
 
 double	looking_right_up(t_ray *ray, t_map *gps)
 {
+	ray->side = 'W';
 	ray->len = (1 - (*ray->x - floor(*ray->x))) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
 	ray->one_piece_x = floor(*ray->x) + 1;
 	ray->one_piece_y = *ray->y - sqrt(pow(ray->len, 2) - pow((1 - (*ray->x - floor(*ray->x))), 2));
@@ -56,6 +59,7 @@ double	looking_right_up(t_ray *ray, t_map *gps)
 
 double	looking_right_down(t_ray *ray, t_map *gps)
 {
+	ray->side = 'W';
 	ray->len = (1 - (*ray->x - floor(*ray->x))) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
 	ray->one_piece_x = floor(*ray->x) + 1;
 	ray->one_piece_y = *ray->y + sqrt(pow(ray->len, 2) - pow((1 - (*ray->x - floor(*ray->x))), 2));
