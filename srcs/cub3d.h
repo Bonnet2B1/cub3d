@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 14:39:03 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:54:19 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 // - bug
 // Sauf pour la map elle-même, les informations de chaque élément peuvent être
 // séparées par un ou plusieurs espace(s).
+// Le perso regarde pas droit
 
 // ? trucs à fiare si on a vraaaaaaaiment le temps
 // verifier atoi en mettant des inputs étranges en RGB dans le .cub
@@ -52,7 +53,7 @@
 
 /* DISPLAY */
 # define FOV			60 /* in degree */
-# define RAY_AMOUNT		100
+# define RAY_AMOUNT		50
 
 /*================================= DEFINES ==================================*/
 
