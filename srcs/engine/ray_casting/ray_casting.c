@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 14:53:46 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:10:36 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	get_ray_data(t_game_data *data, t_player *player)
 	int		i;
 	double	first_ray_angle;
 
-	first_ray_angle = get_principal_measure(data->player->angle - ft_deg_to_rad(FOV/2));
+	first_ray_angle = get_principal_measure(data->player->angle - ft_deg_to_rad((float)FOV/2));
 	i = -1;
 	while (++i < RAY_AMOUNT)
 	{
-		player->ray[i].angle = get_principal_measure(first_ray_angle + i * ft_deg_to_rad(FOV/RAY_AMOUNT));
+		player->ray[i].angle = get_principal_measure(first_ray_angle + i * ft_deg_to_rad((float)FOV/(RAY_AMOUNT - 1)));
 		deep_ray_cpy(&player->ray[i]);
 		player->ray[i].len = get_len(data, &player->ray[i]);
 		draw_lazer(data, &data->player->ray[i]);

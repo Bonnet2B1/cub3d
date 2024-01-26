@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_player_angle.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 21:18:02 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/21 02:02:59 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/26 19:00:24 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	set_player_angle(t_player *player, char c)
 	if (c == 'E')
 		player->angle = 0;
 	else if (c == 'S')
-		player->angle = PI / 2;
+		player->angle = M_PI / 2;
 	else if (c == 'W')
-		player->angle = PI;
+		player->angle = M_PI;
 	else if (c == 'N')
-		player->angle = 3 * PI / 2;
+		player->angle = 3 * M_PI / 2;
 }
 
 // /* et t'en peux plus là ? T'as trop envie de chier ? chie toi dessus */

@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:48:07 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/22 20:30:44 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:00:24 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ double	looking_right_down_h(t_ray *ray, t_map *gps)
 
 double	get_len_to_horizontal_collision(t_game_data *data, t_ray *ray)
 {
-	if (ray->angle >= PI / 2 && ray->angle <= PI)
+	if (ray->angle >= M_PI / 2 && ray->angle <= M_PI)
 		return (looking_left_down_h(ray, data->gps));
-	else if (ray->angle >= PI && ray->angle <= 3 * PI / 2)
+	else if (ray->angle >= M_PI && ray->angle <= 3 * M_PI / 2)
 		return (looking_left_up_h(ray, data->gps));
-	else if (ray->angle >= 0 && ray->angle <= PI / 2)
+	else if (ray->angle >= 0 && ray->angle <= M_PI / 2)
 		return (looking_right_down_h(ray, data->gps));
 	else
 		return (looking_right_up_h(ray, data->gps));

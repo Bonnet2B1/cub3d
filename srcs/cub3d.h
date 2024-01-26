@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 14:54:19 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 19:10:04 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define PLAYER_SIZE	3
 
 /* PLAYER */
-# define STEP_LEN		0.05
+# define STEP_LEN		0.01
 # define ROTATE_SPEED	0.01
 
 /* DISPLAY */
@@ -66,9 +66,6 @@
 		\n\nF [R,G,B]\
 		\nC [R,G,B]\
 		\n\n[map]\n..."
-
-/* MATHS */
-# define PI				3.14159265358979323846
 
 /*================================= STRUCTS ==================================*/
 
