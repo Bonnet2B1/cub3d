@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/25 20:10:35 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:55:57 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,19 @@
 
 double	get_len(t_game_data *data, t_ray *ray)
 {
-	double	len_x;
-	double	len_y;
-
-	len_y = fabs(get_len_to_vertical_collision(data, ray->vertical));
-	len_x = fabs(get_len_to_horizontal_collision(data, ray->horizontal));
-	if (len_x < len_y)
+	get_len_to_vertical_collision(data, ray->vertical);
+	get_len_to_horizontal_collision(data, ray->horizontal);
+	if (ray->horizontal->len < ray->vertical->len)
 	{
 		ray->one_piece_x = ray->horizontal->one_piece_x;
 		ray->one_piece_y = ray->horizontal->one_piece_y;
-		ray->len = ray->horizontal->len;
-		return (len_x);
+		return (ray->horizontal->len);
 	}
 	else
 	{
 		ray->one_piece_x = ray->vertical->one_piece_x;
 		ray->one_piece_y = ray->vertical->one_piece_y;
-		ray->len = ray->vertical->len;
-		return (len_y);
+		return (ray->vertical->len);
 	}
 }
 
@@ -43,16 +38,6 @@ void	deep_ray_cpy(t_ray *ray)
 	ray->vertical->y = ray->y;
 	ray->horizontal->angle = ray->angle;
 	ray->vertical->angle = ray->angle;
-	ray->horizontal->one_piece_x = 0;
-	ray->vertical->one_piece_x = 0;
-	ray->horizontal->one_piece_y = 0;
-	ray->vertical->one_piece_y = 0;
-	ray->horizontal->len = 0;
-	ray->vertical->len = 0;
-	ray->horizontal->vertical = NULL;
-	ray->vertical->vertical = NULL;
-	ray->horizontal->horizontal = NULL;
-	ray->vertical->horizontal = NULL;
 }
 
 void	get_ray_data(t_game_data *data, t_player *player)
@@ -67,6 +52,7 @@ void	get_ray_data(t_game_data *data, t_player *player)
 		deep_ray_cpy(&player->ray[i]);
 		player->ray[i].angle = first_ray_angle + i * ft_deg_to_rad(FOV/RAY_AMOUNT);
 		player->ray[i].len = get_len(data, &player->ray[i]);
+		printf("%d: x = %f, y = %f,x angle = %f, vertical = %f, horizontal = %f\n", i, *player->ray[i].x, *player->ray[i].x, player->ray[i].angle, player->ray[i].vertical->len, player->ray[i].horizontal->len);
 		draw_lazer(data, &data->player->ray[i]);
 	}
 }
