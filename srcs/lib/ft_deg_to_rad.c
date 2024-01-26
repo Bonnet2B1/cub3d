@@ -6,13 +6,13 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:09:34 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/25 20:32:10 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:00:48 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-double	ft_deg_to_rad(double deg) // - corriger cette fonction pour qu'elle respecte la valeur principale d'un angle en radian lors de la conversion.
+double	ft_deg_to_rad(double deg)
 {
 	double rad;
 

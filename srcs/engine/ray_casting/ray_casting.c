@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 13:55:57 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:26:08 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ void	get_ray_data(t_game_data *data, t_player *player)
 	int		i;
 	double	first_ray_angle;
 
+	first_ray_angle = data->player->angle - ft_deg_to_rad(FOV/2);
 	i = -1;
-	first_ray_angle = data->player->angle - ft_deg_to_rad(FOV/RAY_AMOUNT/2);
+	printf("\n");
 	while (++i < RAY_AMOUNT)
 	{
+		player->ray[i].angle = get_principal_measure(first_ray_angle + i * ft_deg_to_rad(FOV/RAY_AMOUNT));
 		deep_ray_cpy(&player->ray[i]);
-		player->ray[i].angle = first_ray_angle + i * ft_deg_to_rad(FOV/RAY_AMOUNT);
 		player->ray[i].len = get_len(data, &player->ray[i]);
-		printf("%d: x = %f, y = %f,x angle = %f, vertical = %f, horizontal = %f\n", i, *player->ray[i].x, *player->ray[i].x, player->ray[i].angle, player->ray[i].vertical->len, player->ray[i].horizontal->len);
+		printf("%d: x = %f, y = %f,x angle = %f\n", i, *player->ray[i].x, *player->ray[i].y, player->ray[i].angle);
 		draw_lazer(data, &data->player->ray[i]);
 	}
 }
