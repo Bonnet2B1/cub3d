@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 14:26:08 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:38:44 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	get_ray_data(t_game_data *data, t_player *player)
 	int		i;
 	double	first_ray_angle;
 
-	first_ray_angle = data->player->angle - ft_deg_to_rad(FOV/2);
+	first_ray_angle = get_principal_measure(data->player->angle - ft_deg_to_rad(FOV/2));
 	i = -1;
 	printf("\n");
 	while (++i < RAY_AMOUNT)

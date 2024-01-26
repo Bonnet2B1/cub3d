@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 13:58:57 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/26 14:39:03 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 
 /* DISPLAY */
 # define FOV			60 /* in degree */
-# define RAY_AMOUNT		6
+# define RAY_AMOUNT		100
 
 /*================================= DEFINES ==================================*/
 
