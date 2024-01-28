@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 16:34:25 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/27 23:15:59 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/28 21:37:43 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	put_assets(t_game_data *data, t_ray *ray, char **map)
 	ray_idx = -1;
 	while (++ray_idx < WINDOW_WIDTH)
 	{
-		ray[ray_idx].len *= cos(get_principal_measure(data->player->angle - ray[ray_idx].angle)); // * fix fish eye (essaye de l'enlever mdr)
+		// ray[ray_idx].len *= cos(get_principal_measure(data->player->angle - ray[ray_idx].angle)); // * fix fish eye (essaye de l'enlever mdr)
 		if (map[ray->map_y][ray->map_x] == '1') // * si le rayon tombe sur un mur
 			put_wall(data, &ray[ray_idx], ray_idx); // * on une ligne verticale de mur
 		else // ! tous les rayons devraient finir par tomber sur un mur
@@ -96,6 +96,7 @@ void	put_assets(t_game_data *data, t_ray *ray, char **map)
 			printf("len = %f\n", ray[ray_idx].len); // ! comparer la len finale avec la len de la verticale et de l'horizontale pour savoir d'où vient l'erreur (ici c'est l'horizontale)
 			printf("angle = %f\n", ray[ray_idx].angle); // ! l'erreur vient seulement en en regardant en haut à gauche
 			// ! le problème vient probablement de looking_left_up_h()
+			// ! looking_right_up(h?) aussi
 			/* BITE!
 			map[5][10] = 0
 			horizontal->len = 8.128225
