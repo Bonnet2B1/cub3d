@@ -96,6 +96,12 @@ void	put_assets(t_game_data *data, t_ray *ray, char **map)
 			printf("len = %f\n", ray[ray_idx].len); // ! comparer la len finale avec la len de la verticale et de l'horizontale pour savoir d'où vient l'erreur (ici c'est l'horizontale)
 			printf("angle = %f\n", ray[ray_idx].angle); // ! l'erreur vient seulement en en regardant en haut à gauche
 			// ! le problème vient probablement de looking_left_up_h()
+			/* BITE!
+			map[5][10] = 0
+			horizontal->len = 8.128225
+			vertical->len = 8.556722
+			len = 7.039250
+			angle = 5.565988 */ // ! NOUVEAU PROBLEME
 		}
 		// else if (ray[ray_idx].type == 'C')
 		// 	put_closed_door(data, &ray[ray_idx]);
