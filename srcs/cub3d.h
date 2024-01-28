@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 19:36:55 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 23:08:37 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@
 # define WINDOW_HEIGHT	1000
 
 /* MINIMAP */
-# define ASSET_SIZE		50 /* 0 for automatic scale of the minimap */
+# define MINIMAP_ASSET_SIZE		0 /* 0 for automatic scale of the minimap */
 # define GRIDE_DOT_SIZE	1
 # define PLAYER_SIZE	3
 
 /* PLAYER */
-# define STEP_LEN		0.01
-# define ROTATE_SPEED	0.01
+# define STEP_LEN		0.05
+# define ROTATE_SPEED	0.03
 
 /* DISPLAY */
 # define FOV			60 /* in degree */
-# define RAY_AMOUNT		50
+# define ASSET_SIZE		64
 
 /*================================= DEFINES ==================================*/
 
@@ -88,6 +88,8 @@ typedef struct s_ray
 	double			one_piece_x;
 	double			one_piece_y;
 
+	int				map_x;
+	int				map_y;
 	char			side;
 
 	struct s_ray	*vertical;
@@ -98,7 +100,7 @@ typedef struct s_ray
 
 }				t_ray;
 
-typedef struct weeews_assets
+typedef struct s_assets
 {
 	mlx_image_t		*north_img;
 	mlx_image_t		*south_img;
@@ -160,6 +162,7 @@ typedef struct s_game_data
 
 	t_list			*x_chain;
 
+	mlx_image_t		*big_mask;
 	mlx_t			*mlx;
 }					t_game_data;
 
@@ -211,6 +214,7 @@ void				ray_casting(void *param);
 double				get_len_to_vertical_collision(t_game_data *data, t_ray *ray);
 double				get_len_to_horizontal_collision(t_game_data *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
+void				game_display(t_game_data *data);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game_data *data, char *path);

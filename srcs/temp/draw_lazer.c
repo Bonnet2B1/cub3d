@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:36:58 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/25 20:07:51 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:27:18 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@ void	draw_lazer(t_game_data *data, t_ray *ray)
 	if (!ray->lazer_img)
 	{
 		ray->lazer_img = mlx_new_image(data->mlx, 1, 1);
-		mlx_put_pixel(ray->lazer_img, 0, 0, 0xFF0);
+		mlx_put_pixel(ray->lazer_img, 0, 0, 0x00FF00FF);
+		i = -1;
+		while (++i < 1500)
+		{
+			mlx_image_to_window(data->mlx, ray->lazer_img, 0, 0);
+			ray->instance_amount = i + 1;
+			ray->lazer_img->instances[i].enabled = 0;
+		}
 	}
 	i = -1;
 	while (++i < ray->len * data->gps->minimap_img_size)
@@ -41,6 +48,6 @@ void	draw_lazer(t_game_data *data, t_ray *ray)
 		ray->lazer_img->instances[i].y = lazer_pos_y;
 		lazer_pos_x += cos(ray->angle);
 		ray->lazer_img->instances[i].x = lazer_pos_x;
-		ray->lazer_img->instances[i].z = 10;
+		ray->lazer_img->instances[i].z = 30;
 	}
 }

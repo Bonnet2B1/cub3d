@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:48:07 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 19:39:19 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:54:24 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ double	looking_left_up_h(t_ray *ray, t_map *gps)
 	ray->side = 'S';
 	ray->len = (*ray->y - floor(*ray->y)) * sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
 	ray->one_piece_x = *ray->x - sqrt(pow(ray->len, 2) - pow(*ray->y - floor(*ray->y), 2));
-	ray->one_piece_y = floor(*ray->y) - 1;
-	while (!is_collision(gps, (int)floor(ray->one_piece_y), (int)floor(ray->one_piece_x)))
+	ray->one_piece_y = floor(*ray->y);
+	while (!is_collision(gps, (int)floor(ray->one_piece_y) -1, (int)floor(ray->one_piece_x)))
 	{
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
 		ray->one_piece_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->one_piece_y -= 1;
 	}
+	ray->map_x = (int)floor(ray->one_piece_x);
+	ray->map_y = (int)floor(ray->one_piece_y) - 1;
 	return (ray->len);
 }
 
@@ -39,6 +41,8 @@ double	looking_left_down_h(t_ray *ray, t_map *gps)
 		ray->one_piece_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->one_piece_y += 1;
 	}
+	ray->map_x = (int)floor(ray->one_piece_x);
+	ray->map_y = (int)floor(ray->one_piece_y);
 	return (ray->len);
 }
 
@@ -47,13 +51,15 @@ double	looking_right_up_h(t_ray *ray, t_map *gps)
 	ray->side = 'S';
 	ray->len = (*ray->y - floor(*ray->y)) * sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
 	ray->one_piece_x = *ray->x + sqrt(pow(ray->len, 2) - pow(*ray->y - floor(*ray->y), 2));
-	ray->one_piece_y = floor(*ray->y) - 1;
-	while (!is_collision(gps, (int)floor(ray->one_piece_y), (int)floor(ray->one_piece_x)))
+	ray->one_piece_y = floor(*ray->y);
+	while (!is_collision(gps, (int)floor(ray->one_piece_y) -1, (int)floor(ray->one_piece_x)))
 	{
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
 		ray->one_piece_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->one_piece_y -= 1;
 	}
+	ray->map_x = (int)floor(ray->one_piece_x);
+	ray->map_y = (int)floor(ray->one_piece_y) - 1;
 	return (ray->len);
 }
 
@@ -68,8 +74,9 @@ double	looking_right_down_h(t_ray *ray, t_map *gps)
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
 		ray->one_piece_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->one_piece_y += 1;
-		// return (ray->len);
 	}
+	ray->map_x = (int)floor(ray->one_piece_x);
+	ray->map_y = (int)floor(ray->one_piece_y);
 	return (ray->len);
 }
 

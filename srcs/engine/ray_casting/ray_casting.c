@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/26 19:40:08 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 22:33:44 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ double	get_len(t_game_data *data, t_ray *ray)
 	{
 		ray->one_piece_x = ray->horizontal->one_piece_x;
 		ray->one_piece_y = ray->horizontal->one_piece_y;
+		ray->map_x = ray->horizontal->map_x;
+		ray->map_y = ray->horizontal->map_y;
 		ray->side = ray->horizontal->side;
 		return (ray->horizontal->len);
 	}
@@ -27,6 +29,8 @@ double	get_len(t_game_data *data, t_ray *ray)
 	{
 		ray->one_piece_x = ray->vertical->one_piece_x;
 		ray->one_piece_y = ray->vertical->one_piece_y;
+		ray->map_x = ray->vertical->map_x;
+		ray->map_y = ray->vertical->map_y;
 		ray->side = ray->vertical->side;
 		return (ray->vertical->len);
 	}
@@ -49,12 +53,17 @@ void	get_ray_data(t_game_data *data, t_player *player)
 
 	first_ray_angle = get_principal_measure(data->player->angle - ft_deg_to_rad((float)FOV/2));
 	i = -1;
-	while (++i < RAY_AMOUNT)
+	while (++i < WINDOW_WIDTH)
 	{
-		player->ray[i].angle = get_principal_measure(first_ray_angle + i * ft_deg_to_rad((float)FOV/(RAY_AMOUNT - 1)));
+		player->ray[i].angle = get_principal_measure(first_ray_angle + i * ft_deg_to_rad((float)FOV/(WINDOW_WIDTH - 1)));
 		deep_ray_cpy(&player->ray[i]);
 		player->ray[i].len = get_len(data, &player->ray[i]);
+	}
+	i = 0;
+	while(i < WINDOW_WIDTH)
+	{
 		draw_lazer(data, &data->player->ray[i]);
+		i += 15;
 	}
 }
 
@@ -64,4 +73,5 @@ void	ray_casting(void *param)
 
 	data = param;
 	get_ray_data(data, data->player);
+	game_display(data);
 }

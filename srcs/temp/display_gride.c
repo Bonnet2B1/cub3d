@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 22:11:39 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 22:19:25 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:13:56 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	display_gride(t_game_data *data, int img_size, int depth)
 		{
 			mlx_image_to_window(data->mlx, img, j * img_size, i * img_size);
 			img->instances[++k].z = depth;
-			if (ASSET_SIZE > 0)
+			if (MINIMAP_ASSET_SIZE > 0)
 			{
 				mlx_image_to_window(data->mlx, img, j * img_size + img_size - GRIDE_DOT_SIZE,
 					i * img_size + img_size - GRIDE_DOT_SIZE);

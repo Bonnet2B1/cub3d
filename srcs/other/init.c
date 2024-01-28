@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/25 20:11:57 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 22:33:56 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ t_player	*player_init(t_game_data *data)
 	player->x = -1;
 	player->y = -1;
 	player->angle = -1;
-	player->ray = x_malloc(&data->x_chain, sizeof(t_ray) * RAY_AMOUNT);
+	player->ray = x_malloc(&data->x_chain, sizeof(t_ray) * WINDOW_WIDTH);
 	i = -1;
-	while (++i < RAY_AMOUNT)
+	while (++i < WINDOW_WIDTH)
 	{
 		player->ray[i].vertical = x_malloc(&data->x_chain, sizeof(t_ray));
 		player->ray[i].horizontal = x_malloc(&data->x_chain, sizeof(t_ray));

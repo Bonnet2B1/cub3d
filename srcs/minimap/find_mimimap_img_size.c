@@ -14,8 +14,8 @@
 
 int	find_mimimap_img_size(int width, int height)
 {
-	if (ASSET_SIZE > 0)
-		return (ASSET_SIZE);
+	if (MINIMAP_ASSET_SIZE > 0)
+		return (MINIMAP_ASSET_SIZE);
 	if (width > height)
 		return ((WINDOW_WIDTH / 5) / width);
 	else

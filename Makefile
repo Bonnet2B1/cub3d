@@ -6,7 +6,7 @@
 #    By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 16:59:43 by edelarbr          #+#    #+#              #
-#    Updated: 2024/01/08 17:18:56 by edelarbr         ###   ########.fr        #
+#    Updated: 2024/01/27 16:34:40 by edelarbr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ NAME		:=	cub3D
 SRCS		:=	$(wildcard srcs/*.c) \
 				$(wildcard srcs/*/*.c) \
 				$(wildcard srcs/*/*/*.c) \
+				$(wildcard srcs/*/*/*/*.c) \
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

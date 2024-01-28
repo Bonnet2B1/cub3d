@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:53:32 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/20 15:36:38 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/27 18:09:32 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	display_doors(t_game_data *data, int img_size, int depth)
 		j = -1;
 		while (data->gps->map[i][++j])
 		{
-			if (data->gps->map[i][j] == '2')
+			if (data->gps->map[i][j] == 'C')
 			{
 				mlx_image_to_window(data->mlx, data->assets->minimap_door_img,
 					j * img_size, i * img_size);
@@ -114,9 +114,9 @@ void	create_minimap(t_game_data *data, int img_size)
 	mlx_resize_image(data->assets->minimap_wall_img, img_size, img_size);
 	mlx_resize_image(data->assets->minimap_door_img, img_size, img_size);
 	mlx_resize_image(data->player->minimap_img, img_size / 5, img_size / 5);
-	display_floor(data, img_size, 0);
-	display_walls(data, img_size, 2);
-	display_doors(data, img_size, 2);
-	display_gride(data, img_size, 1);
-	put_player(data, img_size, 1);
+	display_floor(data, img_size, 20);
+	display_walls(data, img_size, 22);
+	display_doors(data, img_size, 22);
+	display_gride(data, img_size, 21);
+	put_player(data, img_size, 21);
 }
