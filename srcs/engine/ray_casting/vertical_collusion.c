@@ -12,7 +12,7 @@
 
 #include "../../cub3d.h"
 
-double	looking_left_up(t_ray *ray, t_map *gps)
+double	looking_left_up_v(t_ray *ray, t_map *gps)
 {
 	ray->side = 'E';
 	ray->len = (*ray->x - floor(*ray->x)) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
@@ -24,12 +24,12 @@ double	looking_left_up(t_ray *ray, t_map *gps)
 		ray->one_piece_x -= 1;
 		ray->one_piece_y -= sqrt(pow(sqrt(pow(1, 2) + pow(tan(ray->angle), 2)), 2) - pow(1, 2));
 	}
-	ray->map_x = (int)floor(ray->one_piece_x);
+	ray->map_x = (int)floor(ray->one_piece_x) - 1;
 	ray->map_y = (int)floor(ray->one_piece_y);
 	return (ray->len);
 }
 
-double	looking_left_down(t_ray *ray, t_map *gps)
+double	looking_left_down_v(t_ray *ray, t_map *gps)
 {
 	ray->side = 'E';
 	ray->len = (*ray->x - floor(*ray->x)) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
@@ -47,7 +47,7 @@ double	looking_left_down(t_ray *ray, t_map *gps)
 	return (ray->len);
 }
 
-double	looking_right_up(t_ray *ray, t_map *gps)
+double	looking_right_up_v(t_ray *ray, t_map *gps)
 {
 	ray->side = 'W';
 	ray->len = (1 - (*ray->x - floor(*ray->x))) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
@@ -64,7 +64,7 @@ double	looking_right_up(t_ray *ray, t_map *gps)
 	return (ray->len);
 }
 
-double	looking_right_down(t_ray *ray, t_map *gps)
+double	looking_right_down_v(t_ray *ray, t_map *gps)
 {
 	ray->side = 'W';
 	ray->len = (1 - (*ray->x - floor(*ray->x))) * sqrt(pow(1, 2) + pow(tan(ray->angle), 2));
@@ -84,11 +84,11 @@ double	looking_right_down(t_ray *ray, t_map *gps)
 double	get_len_to_vertical_collision(t_game_data *data, t_ray *ray)
 {
 	if (ray->angle >= M_PI / 2 && ray->angle <= M_PI)
-		return (looking_left_down(ray, data->gps));
+		return (looking_left_down_v(ray, data->gps));
 	else if (ray->angle >= M_PI && ray->angle <= 3 * M_PI / 2)
-		return (looking_left_up(ray, data->gps));
+		return (looking_left_up_v(ray, data->gps));
 	else if (ray->angle >= 0 && ray->angle <= M_PI / 2)
-		return (looking_right_down(ray, data->gps));
+		return (looking_right_down_v(ray, data->gps));
 	else
-		return (looking_right_up(ray, data->gps));
+		return (looking_right_up_v(ray, data->gps));
 }

@@ -84,26 +84,10 @@ void	put_assets(t_game_data *data, t_ray *ray, char **map)
 	ray_idx = -1;
 	while (++ray_idx < WINDOW_WIDTH)
 	{
-		// ray[ray_idx].len *= cos(get_principal_measure(data->player->angle - ray[ray_idx].angle)); // * fix fish eye (essaye de l'enlever mdr)
-		if (map[ray->map_y][ray->map_x] == '1') // * si le rayon tombe sur un mur
-			put_wall(data, &ray[ray_idx], ray_idx); // * on une ligne verticale de mur
-		else // ! tous les rayons devraient finir par tomber sur un mur
-		{
-			printf("\nBITE!\n");
-			printf("map[%d][%d] = %c\n", ray->map_y, ray->map_x, map[ray->map_y][ray->map_x]);
-			printf("horizontal->len = %f\n", ray[ray_idx].horizontal->len);
-			printf("vertical->len = %f\n", ray[ray_idx].vertical->len);
-			printf("len = %f\n", ray[ray_idx].len); // ! comparer la len finale avec la len de la verticale et de l'horizontale pour savoir d'où vient l'erreur (ici c'est l'horizontale)
-			printf("angle = %f\n", ray[ray_idx].angle); // ! l'erreur vient seulement en en regardant en haut à gauche
-			// ! le problème vient probablement de looking_left_up_h()
-			// ! looking_right_up(h?) aussi
-			/* BITE!
-			map[5][10] = 0
-			horizontal->len = 8.128225
-			vertical->len = 8.556722
-			len = 7.039250
-			angle = 5.565988 */ // ! NOUVEAU PROBLEME
-		}
+		ray[ray_idx].len *= cos(get_principal_measure(data->player->angle - ray[ray_idx].angle)); // * fix fish eye (essaye de l'enlever mdr)
+		if (ray->map_x >= 0 && ray->map_y >= 0 && ray->map_x < data->gps->width && ray->map_y < data->gps->height)
+			if (map[ray->map_y][ray->map_x] == '1') // * si le rayon tombe sur un mur
+				put_wall(data, &ray[ray_idx], ray_idx); // * on une ligne verticale de mur
 		// else if (ray[ray_idx].type == 'C')
 		// 	put_closed_door(data, &ray[ray_idx]);
 	}
