@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/27 22:33:56 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:19:03 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,13 @@ t_player	*player_init(t_game_data *data)
 	player->x = -1;
 	player->y = -1;
 	player->angle = -1;
-	player->ray = x_malloc(&data->x_chain, sizeof(t_ray) * WINDOW_WIDTH);
+	player->front = ray_init(data, player);
+	player->back = ray_init(data, player);
+	player->left = ray_init(data, player);
+	player->right = ray_init(data, player);
+	player->ray = x_malloc(&data->x_chain, sizeof(t_ray *) * WINDOW_WIDTH);
 	i = -1;
 	while (++i < WINDOW_WIDTH)
-	{
-		player->ray[i].vertical = x_malloc(&data->x_chain, sizeof(t_ray));
-		player->ray[i].horizontal = x_malloc(&data->x_chain, sizeof(t_ray));
-		player->ray[i].instance_amount = 0;
-		player->ray[i].x = &player->x;
-		player->ray[i].y = &player->y;
-		player->ray[i].lazer_img = NULL;
-	}
+		player->ray[i] = ray_init(data, player);
 	return (player);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/27 23:08:37 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:17:22 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,11 @@ typedef struct s_player
 
 	double			angle;
 
-	t_ray			*ray;
+	t_ray			**ray;
+	t_ray			*front;
+	t_ray			*left;
+	t_ray			*right;
+	t_ray			*back;
 
 }					t_player;
 
@@ -180,6 +184,7 @@ t_game_data			game_data_init(void);
 t_map				*map_init(t_game_data *data);
 t_assets			*assets_init(t_game_data *data);
 t_player			*player_init(t_game_data *data);
+t_ray				*ray_init(t_game_data *data, t_player *player);
 void				init_player_spec_sn(t_player *player);
 
 /* PARSING */
@@ -211,6 +216,8 @@ double				get_principal_measure(double angle);
 void				rotate_left(t_player *player);
 void				rotate_right(t_player *player);
 void				ray_casting(void *param);
+void				deep_ray_cpy(t_ray *ray);
+double				get_len(t_game_data *data, t_ray *ray);
 double				get_len_to_vertical_collision(t_game_data *data, t_ray *ray);
 double				get_len_to_horizontal_collision(t_game_data *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
