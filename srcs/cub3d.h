@@ -39,21 +39,21 @@
 /*============================= CUSTOMS SETTINGS =============================*/
 
 /* WINDOW */
-# define WINDOW_WIDTH	1500
-# define WINDOW_HEIGHT	1000
+# define WINDOW_WIDTH		1500
+# define WINDOW_HEIGHT		1000
 
 /* MINIMAP */
-# define MINIMAP_ASSET_SIZE		0 /* 0 for automatic scale of the minimap */
-# define GRIDE_DOT_SIZE	1
-# define PLAYER_SIZE	3
+# define MINIMAP_ASSET_SIZE	0 /* 0 for automatic scale of the minimap */
+# define GRIDE_DOT_SIZE		1
+# define PLAYER_SIZE		3
 
 /* PLAYER */
-# define STEP_LEN		0.05
-# define ROTATE_SPEED	0.03
+# define STEP_LEN			0.02
+# define ROTATE_SPEED		0.03
 
 /* DISPLAY */
-# define FOV			60 /* in degree */
-# define ASSET_SIZE		64
+# define FOV				60 /* in degree */
+# define ASSET_SIZE			64
 
 /*================================= DEFINES ==================================*/
 
@@ -107,8 +107,8 @@ typedef struct s_assets
 	mlx_image_t		*west_img;
 	mlx_image_t		*east_img;
 
-	int				floor_trgb;
-	int				ceiling_trgb;
+	uint32_t		floor_trgb;
+	uint32_t		ceiling_trgb;
 
 	mlx_image_t		*minimap_wall_img;
 	mlx_image_t		*minimap_floor_img;

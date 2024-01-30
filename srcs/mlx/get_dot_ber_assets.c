@@ -22,7 +22,7 @@ mlx_image_t	*extract_img(t_game_data *data, char *path)
 	return (img);
 }
 
-int	extract_color(char **color)
+uint32_t	extract_color(char **color)
 {
 	return (create_trgb(255,
 			(unsigned char)ft_atoi_mod(color[0]),

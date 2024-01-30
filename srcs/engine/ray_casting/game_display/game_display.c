@@ -22,13 +22,13 @@ void	put_floor_and_ceiling(t_game_data *data)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(data->big_mask, j, i, 0x0000FFFF);
+			mlx_put_pixel(data->big_mask, j, i, data->assets->ceiling_trgb);
 	}
 	while (i < WINDOW_HEIGHT)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(data->big_mask, j, i, 0x00FF00FF);
+			mlx_put_pixel(data->big_mask, j, i, data->assets->floor_trgb);
 		i++;
 	}
 }
