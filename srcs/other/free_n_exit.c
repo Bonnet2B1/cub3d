@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	rm_mlx_leaks(t_game_data *data)
+void	rm_mlx_leaks(t_game *data)
 {
 	if (data->assets->north_img)
 		mlx_delete_image(data->mlx, data->assets->north_img);
@@ -24,7 +24,7 @@ void	rm_mlx_leaks(t_game_data *data)
 		mlx_delete_image(data->mlx, data->assets->east_img);
 }
 
-void	free_n_exit(t_game_data *data, int exit_code)
+void	free_n_exit(t_game *data, int exit_code)
 {
 	if (data->assets)
 		rm_mlx_leaks(data);

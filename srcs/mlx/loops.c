@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	loops(t_game_data *data)
+void	loops(t_game *data)
 {
 	mlx_loop_hook(data->mlx, keyboard, data);
 	mlx_loop_hook(data->mlx, ray_casting, data);

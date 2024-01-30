@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-char	**extract_file_to_tab(t_game_data *data, char *file)
+char	**extract_file_to_tab(t_game *data, char *file)
 {
 	int		fd;
 	char	buf[2];

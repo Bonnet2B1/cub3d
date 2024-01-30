@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-mlx_image_t	*asset_to_image(t_game_data *data, char *path)
+mlx_image_t	*asset_to_image(t_game *data, char *path)
 {
 	mlx_image_t		*img;
 	mlx_texture_t	*texture;

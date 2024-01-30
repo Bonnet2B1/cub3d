@@ -16,16 +16,16 @@ double	looking_left_up_h(t_ray *ray, t_map *gps)
 {
 	ray->side = 'S';
 	ray->len = (*ray->y - floor(*ray->y)) * sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-	ray->one_piece_x = *ray->x - sqrt(pow(ray->len, 2) - pow(*ray->y - floor(*ray->y), 2));
-	ray->one_piece_y = floor(*ray->y);
-	while (!is_collision(gps, (int)floor(ray->one_piece_y) -1, (int)floor(ray->one_piece_x)))
+	ray->op_x = *ray->x - sqrt(pow(ray->len, 2) - pow(*ray->y - floor(*ray->y), 2));
+	ray->op_y = floor(*ray->y);
+	while (!is_collision(gps, (int)floor(ray->op_y) -1, (int)floor(ray->op_x)))
 	{
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-		ray->one_piece_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
-		ray->one_piece_y -= 1;
+		ray->op_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
+		ray->op_y -= 1;
 	}
-	ray->map_x = (int)floor(ray->one_piece_x);
-	ray->map_y = (int)floor(ray->one_piece_y) - 1;
+	ray->map_x = (int)floor(ray->op_x);
+	ray->map_y = (int)floor(ray->op_y) - 1;
 	return (ray->len);
 }
 
@@ -33,16 +33,16 @@ double	looking_left_down_h(t_ray *ray, t_map *gps)
 {
 	ray->side = 'N';
 	ray->len = (1 - (*ray->y - floor(*ray->y))) * sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-	ray->one_piece_x = *ray->x - sqrt(pow(ray->len, 2) - pow(1 - (*ray->y - floor(*ray->y)), 2));
-	ray->one_piece_y = floor(*ray->y) + 1;
-	while (!is_collision(gps, (int)floor(ray->one_piece_y), (int)floor(ray->one_piece_x)))
+	ray->op_x = *ray->x - sqrt(pow(ray->len, 2) - pow(1 - (*ray->y - floor(*ray->y)), 2));
+	ray->op_y = floor(*ray->y) + 1;
+	while (!is_collision(gps, (int)floor(ray->op_y), (int)floor(ray->op_x)))
 	{
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-		ray->one_piece_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
-		ray->one_piece_y += 1;
+		ray->op_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
+		ray->op_y += 1;
 	}
-	ray->map_x = (int)floor(ray->one_piece_x);
-	ray->map_y = (int)floor(ray->one_piece_y);
+	ray->map_x = (int)floor(ray->op_x);
+	ray->map_y = (int)floor(ray->op_y);
 	return (ray->len);
 }
 
@@ -50,16 +50,16 @@ double	looking_right_up_h(t_ray *ray, t_map *gps)
 {
 	ray->side = 'S';
 	ray->len = (*ray->y - floor(*ray->y)) * sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-	ray->one_piece_x = *ray->x + sqrt(pow(ray->len, 2) - pow(*ray->y - floor(*ray->y), 2));
-	ray->one_piece_y = floor(*ray->y);
-	while (!is_collision(gps, (int)floor(ray->one_piece_y) -1, (int)floor(ray->one_piece_x)))
+	ray->op_x = *ray->x + sqrt(pow(ray->len, 2) - pow(*ray->y - floor(*ray->y), 2));
+	ray->op_y = floor(*ray->y);
+	while (!is_collision(gps, (int)floor(ray->op_y) -1, (int)floor(ray->op_x)))
 	{
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-		ray->one_piece_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
-		ray->one_piece_y -= 1;
+		ray->op_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
+		ray->op_y -= 1;
 	}
-	ray->map_x = (int)floor(ray->one_piece_x);
-	ray->map_y = (int)floor(ray->one_piece_y) - 1;
+	ray->map_x = (int)floor(ray->op_x);
+	ray->map_y = (int)floor(ray->op_y) - 1;
 	return (ray->len);
 }
 
@@ -67,20 +67,20 @@ double	looking_right_down_h(t_ray *ray, t_map *gps)
 {
 	ray->side = 'N';
 	ray->len = (1 - (*ray->y - floor(*ray->y))) * sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-	ray->one_piece_x = *ray->x + sqrt(pow(ray->len, 2) - pow(1 - (*ray->y - floor(*ray->y)), 2));
-	ray->one_piece_y = floor(*ray->y) + 1;
-	while (!is_collision(gps, (int)floor(ray->one_piece_y), (int)floor(ray->one_piece_x)))
+	ray->op_x = *ray->x + sqrt(pow(ray->len, 2) - pow(1 - (*ray->y - floor(*ray->y)), 2));
+	ray->op_y = floor(*ray->y) + 1;
+	while (!is_collision(gps, (int)floor(ray->op_y), (int)floor(ray->op_x)))
 	{
 		ray->len += sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2));
-		ray->one_piece_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
-		ray->one_piece_y += 1;
+		ray->op_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
+		ray->op_y += 1;
 	}
-	ray->map_x = (int)floor(ray->one_piece_x);
-	ray->map_y = (int)floor(ray->one_piece_y);
+	ray->map_x = (int)floor(ray->op_x);
+	ray->map_y = (int)floor(ray->op_y);
 	return (ray->len);
 }
 
-double	get_len_to_horizontal_collision(t_game_data *data, t_ray *ray)
+double	get_len_to_horizontal_collision(t_game *data, t_ray *ray)
 {
 	if (ray->angle >= M_PI / 2 && ray->angle <= M_PI)
 		return (looking_left_down_h(ray, data->gps));

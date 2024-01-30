@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	load_assets(t_game_data *data)
+void	load_assets(t_game *data)
 {
 	data->assets = assets_init(data);
 	get_dot_ber_assets(data, data->assets, data->parsing);

@@ -12,41 +12,41 @@
 
 #include "../../cub3d.h"
 
-double	get_len(t_game_data *data, t_ray *ray)
+double	get_len(t_game *data, t_ray *ray)
 {
-	get_len_to_vertical_collision(data, ray->vertical);
-	get_len_to_horizontal_collision(data, ray->horizontal);
-	if (ray->horizontal->len < ray->vertical->len)
+	get_len_to_vertical_collision(data, ray->v);
+	get_len_to_horizontal_collision(data, ray->h);
+	if (ray->h->len < ray->v->len)
 	{
-		ray->one_piece_x = ray->horizontal->one_piece_x;
-		ray->one_piece_y = ray->horizontal->one_piece_y;
-		ray->map_x = ray->horizontal->map_x;
-		ray->map_y = ray->horizontal->map_y;
-		ray->side = ray->horizontal->side;
-		return (ray->horizontal->len);
+		ray->op_x = ray->h->op_x;
+		ray->op_y = ray->h->op_y;
+		ray->map_x = ray->h->map_x;
+		ray->map_y = ray->h->map_y;
+		ray->side = ray->h->side;
+		return (ray->h->len);
 	}
 	else
 	{
-		ray->one_piece_x = ray->vertical->one_piece_x;
-		ray->one_piece_y = ray->vertical->one_piece_y;
-		ray->map_x = ray->vertical->map_x;
-		ray->map_y = ray->vertical->map_y;
-		ray->side = ray->vertical->side;
-		return (ray->vertical->len);
+		ray->op_x = ray->v->op_x;
+		ray->op_y = ray->v->op_y;
+		ray->map_x = ray->v->map_x;
+		ray->map_y = ray->v->map_y;
+		ray->side = ray->v->side;
+		return (ray->v->len);
 	}
 }
 
 void	deep_ray_cpy(t_ray *ray)
 {
-	ray->horizontal->x = ray->x;
-	ray->vertical->x = ray->x;
-	ray->horizontal->y = ray->y;
-	ray->vertical->y = ray->y;
-	ray->horizontal->angle = ray->angle;
-	ray->vertical->angle = ray->angle;
+	ray->h->x = ray->x;
+	ray->v->x = ray->x;
+	ray->h->y = ray->y;
+	ray->v->y = ray->y;
+	ray->h->angle = ray->angle;
+	ray->v->angle = ray->angle;
 }
 
-void	get_ray_data(t_game_data *data, t_player *player)
+void	get_ray_data(t_game *data, t_player *player)
 {
 	int		i;
 	double	first_ray_angle;
@@ -69,7 +69,7 @@ void	get_ray_data(t_game_data *data, t_player *player)
 
 void	ray_casting(void *param)
 {
-	t_game_data	*data;
+	t_game	*data;
 
 	data = param;
 	get_ray_data(data, data->player);

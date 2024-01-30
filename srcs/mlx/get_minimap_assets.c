@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	get_minimap_assets(t_game_data *data, t_assets *assets)
+void	get_minimap_assets(t_game *data, t_assets *assets)
 {
 	assets->minimap_floor_img
 		= asset_to_image(data, "assets/minimap/minimap_floor.png");

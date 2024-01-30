@@ -14,7 +14,7 @@
 
 void	keyboard(void *param)
 {
-	t_game_data	*data;
+	t_game	*data;
 
 	data = param;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))

@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-char	**get_rgb(t_game_data *data, char *line)
+char	**get_rgb(t_game *data, char *line)
 {
 	char	**rgb;
 	int		i;
@@ -34,7 +34,7 @@ char	**get_rgb(t_game_data *data, char *line)
 	return (rgb);
 }
 
-t_map	*extract_data(t_game_data *data, t_parsing *parsing)
+t_map	*extract_data(t_game *data, t_parsing *parsing)
 {
 	t_map	*gps;
 

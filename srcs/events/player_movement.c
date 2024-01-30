@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	move_forward(t_game_data *data)
+void	move_forward(t_game *data)
 {
 	t_player	*player;
 
@@ -32,7 +32,7 @@ void	move_forward(t_game_data *data)
 		= player->x * data->gps->minimap_img_size;
 }
 
-void	move_backward(t_game_data *data)
+void	move_backward(t_game *data)
 {
 	t_player	*player;
 
@@ -52,7 +52,7 @@ void	move_backward(t_game_data *data)
 		= player->x * data->gps->minimap_img_size;
 }
 
-void	move_left(t_game_data *data)
+void	move_left(t_game *data)
 {
 	t_player	*player;
 
@@ -72,7 +72,7 @@ void	move_left(t_game_data *data)
 		= player->x * data->gps->minimap_img_size;
 }
 
-void	move_right(t_game_data *data)
+void	move_right(t_game *data)
 {
 	t_player	*player;
 

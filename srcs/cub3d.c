@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_game_data	data;
+	t_game	data;
 
 	data = game_data_init();
 	data.parsing = parsing(&data, argc, argv);

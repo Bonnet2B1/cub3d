@@ -6,13 +6,13 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 16:34:25 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/30 15:25:31 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/28 21:37:43 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../cub3d.h"
 
-void	put_floor_and_ceiling(t_game_data *data)
+void	put_floor_and_ceiling(t_game *data)
 {
 	int	i;
 	int	j;
@@ -22,13 +22,13 @@ void	put_floor_and_ceiling(t_game_data *data)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(data->big_mask, j, i, data->assets->ceiling_trgb);
+			mlx_put_pixel(data->big_mask, j, i, 0x0000FFFF);
 	}
 	while (i < WINDOW_HEIGHT)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(data->big_mask, j, i, data->assets->floor_trgb);
+			mlx_put_pixel(data->big_mask, j, i, 0x00FF00FF);
 		i++;
 	}
 }
@@ -56,7 +56,7 @@ void put_line(mlx_image_t *big_mask, t_ray *ray, int ray_idx, uint32_t color) //
 	}
 }
 
-void	put_wall(t_game_data *data, t_ray *ray, int ray_idx)
+void	put_wall(t_game *data, t_ray *ray, int ray_idx)
 {
 	if (ray->side == 'N')
 	{
@@ -77,7 +77,7 @@ void	put_wall(t_game_data *data, t_ray *ray, int ray_idx)
 	}
 }
 
-void	put_assets(t_game_data *data, t_ray **ray, char **map)
+void	put_assets(t_game *data, t_ray **ray, char **map)
 {
 	int	ray_idx;
 
@@ -88,12 +88,12 @@ void	put_assets(t_game_data *data, t_ray **ray, char **map)
 		if (ray[ray_idx]->map_x >= 0 && ray[ray_idx]->map_y >= 0 && ray[ray_idx]->map_x < data->gps->width && ray[ray_idx]->map_y < data->gps->height)
 			if (map[ray[ray_idx]->map_y][ray[ray_idx]->map_x] == '1') // * si le rayon tombe sur un mur
 				put_wall(data, ray[ray_idx], ray_idx); // * on une ligne verticale de mur
-		// else if (ray[ray_idx].type == 'C')
+		// else if (ray[ray_idx]->type == 'C')
 		// 	put_closed_door(data, &ray[ray_idx]);
 	}
 }
 
-void	game_display(t_game_data *data)
+void	game_display(t_game *data)
 {
 	(void)data;
 	put_floor_and_ceiling(data);

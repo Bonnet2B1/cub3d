@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-mlx_image_t	*extract_img(t_game_data *data, char *path)
+mlx_image_t	*extract_img(t_game *data, char *path)
 {
 	mlx_image_t		*img;
 
@@ -30,7 +30,7 @@ uint32_t	extract_color(char **color)
 			(unsigned char)ft_atoi_mod(color[2])));
 }
 
-void	get_dot_ber_assets(t_game_data *data, t_assets *assets,
+void	get_dot_ber_assets(t_game *data, t_assets *assets,
 	t_parsing *parsing)
 {
 	assets->north_img = extract_img(data, parsing->north_path);

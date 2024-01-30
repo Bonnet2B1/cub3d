@@ -12,16 +12,16 @@
 
 #include "../cub3d.h"
 
-t_ray	*ray_init(t_game_data *data, t_player *player)
+t_ray	*ray_init(t_game *data, t_player *player)
 {
 	t_ray	*ray;
-	
+
 	ray = x_malloc(&data->x_chain, sizeof(t_ray));
-	ray->vertical = x_malloc(&data->x_chain, sizeof(t_ray));
-	ray->horizontal = x_malloc(&data->x_chain, sizeof(t_ray));
+	ray->v = x_malloc(&data->x_chain, sizeof(t_ray));
+	ray->h = x_malloc(&data->x_chain, sizeof(t_ray));
 	ray->instance_amount = 0;
 	ray->x = &player->x;
 	ray->y = &player->y;
-	ray->lazer_img = NULL;
+	ray->ray_img = NULL;
 	return (ray);
 }

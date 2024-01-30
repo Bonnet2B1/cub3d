@@ -85,19 +85,18 @@ typedef struct s_ray
 
 	double			len;
 
-	double			one_piece_x;
-	double			one_piece_y;
+	double			op_x;
+	double			op_y;
 
 	int				map_x;
 	int				map_y;
 	char			side;
 
-	struct s_ray	*vertical;
-	struct s_ray	*horizontal;
+	struct s_ray	*v;
+	struct s_ray	*h;
 
-	mlx_image_t		*lazer_img; // ! temp
+	mlx_image_t		*ray_img; // ! temp
 	int				instance_amount;
-
 }				t_ray;
 
 typedef struct s_assets
@@ -137,7 +136,6 @@ typedef struct s_parsing
 	char			*east_path;
 	char			**floor_rgb;
 	char			**ceiling_rgb;
-
 }					t_parsing;
 
 typedef struct s_player
@@ -157,7 +155,7 @@ typedef struct s_player
 
 }					t_player;
 
-typedef struct s_game_data
+typedef struct s_game
 {
 	t_parsing		*parsing;
 	t_assets		*assets;
@@ -168,47 +166,47 @@ typedef struct s_game_data
 
 	mlx_image_t		*big_mask;
 	mlx_t			*mlx;
-}					t_game_data;
+}					t_game;
 
 /*================================ FUNCTIONS =================================*/
 
 /* OTHERS */
 	/* Error */
-void				exit_error(t_game_data *data, char *message);
+void				exit_error(t_game *data, char *message);
 	/* Memory */
 void				*x_malloc(t_list **lst, size_t size);
 void				x_free(t_list **x_chain);
-void				free_n_exit(t_game_data *data, int exit_code);
+void				free_n_exit(t_game *data, int exit_code);
 	/* Struc init */
-t_game_data			game_data_init(void);
-t_map				*map_init(t_game_data *data);
-t_assets			*assets_init(t_game_data *data);
-t_player			*player_init(t_game_data *data);
-t_ray				*ray_init(t_game_data *data, t_player *player);
+t_game			game_data_init(void);
+t_map				*map_init(t_game *data);
+t_assets			*assets_init(t_game *data);
+t_player			*player_init(t_game *data);
+t_ray				*ray_init(t_game *data, t_player *player);
 void				init_player_spec_sn(t_player *player);
 
 /* PARSING */
-t_parsing			*parsing(t_game_data *data, int argc, char **argv);
-void				check_file(t_game_data *data, char *file);
-char				**extract_file_to_tab(t_game_data *data, char *file);
-t_parsing			*parsing_init(t_game_data *data);
-void				valid_way(t_game_data *data, char **map, int x, int y);
+t_parsing			*parsing(t_game *data, int argc, char **argv);
+void				check_file(t_game *data, char *file);
+char				**extract_file_to_tab(t_game *data, char *file);
+t_parsing			*parsing_init(t_game *data);
+void				valid_way(t_game *data, char **map, int x, int y);
 int					find_player_y(char **map);
 int					find_player_x(char **map);
 char				**map_w_null_background(t_list **x_chain, char **map);
-void				format_error(t_game_data *data, t_parsing *parsing);
-t_map				*extract_data(t_game_data *data, t_parsing *parsing);
-void				verify_map_chars(t_game_data *data, char **map);
+void				format_error(t_game *data, t_parsing *parsing);
+t_map				*extract_data(t_game *data, t_parsing *parsing);
+void				verify_map_chars(t_game *data, char **map);
 int					ft_atoi_mod(const char *str);
 
 /* EVENTS */
 	/* mlx events */
 void				keyboard(void *param);
 	/* player movements */
-void				move_forward(t_game_data *data);
-void				move_backward(t_game_data *data);
-void				move_left(t_game_data *data);
-void				move_right(t_game_data *data);
+void				move_forward(t_game *data);
+void				move_backward(t_game *data);
+void				move_left(t_game *data);
+void				move_right(t_game *data);
 
 /* ENGINE */
 void				set_player_angle(t_player *player, char c);
@@ -217,23 +215,23 @@ void				rotate_left(t_player *player);
 void				rotate_right(t_player *player);
 void				ray_casting(void *param);
 void				deep_ray_cpy(t_ray *ray);
-double				get_len(t_game_data *data, t_ray *ray);
-double				get_len_to_vertical_collision(t_game_data *data, t_ray *ray);
-double				get_len_to_horizontal_collision(t_game_data *data, t_ray *ray);
+double				get_len(t_game *data, t_ray *ray);
+double				get_len_to_vertical_collision(t_game *data, t_ray *ray);
+double				get_len_to_horizontal_collision(t_game *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
-void				game_display(t_game_data *data);
+void				game_display(t_game *data);
 
 /* MLX */
-mlx_image_t			*asset_to_image(t_game_data *data, char *path);
-void				get_minimap_assets(t_game_data *data, t_assets *assets);
-void				get_dot_ber_assets(t_game_data *data, t_assets *assets,
+mlx_image_t			*asset_to_image(t_game *data, char *path);
+void				get_minimap_assets(t_game *data, t_assets *assets);
+void				get_dot_ber_assets(t_game *data, t_assets *assets,
 						t_parsing *parsing);
-void				load_assets(t_game_data *data);
-void				loops(t_game_data *data);
+void				load_assets(t_game *data);
+void				loops(t_game *data);
 
 /* MINIMAP */
 int					find_mimimap_img_size(int width, int height);
-void				create_minimap(t_game_data *data, int img_size);
+void				create_minimap(t_game *data, int img_size);
 
 /* LIB */
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -261,8 +259,8 @@ double				ft_rad_to_deg(double rad);
 double				ft_deg_to_rad(double deg);
 
 /* TEMP */
-void				draw_lazer(t_game_data *data, t_ray *ray);
-void				display_gride(t_game_data *data, int img_size, int depth);
+void				draw_lazer(t_game *data, t_ray *ray);
+void				display_gride(t_game *data, int img_size, int depth);
 void				print_file(char **file);
 void				print_map(char **map);
 

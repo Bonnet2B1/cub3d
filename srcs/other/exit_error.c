@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	exit_error(t_game_data *data, char *message)
+void	exit_error(t_game *data, char *message)
 {
 	ft_putstr_fd("Error\n", 2);
 	if (message)

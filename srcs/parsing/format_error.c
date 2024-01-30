@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	format_error(t_game_data *data, t_parsing *parsing)
+void	format_error(t_game *data, t_parsing *parsing)
 {
 	if (!parsing->file[0] || ft_strncmp(parsing->file[0], "NO ", 3) != 0
 		|| !parsing->file[1] || ft_strncmp(parsing->file[1], "SO ", 3) != 0

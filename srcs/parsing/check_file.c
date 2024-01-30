@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	check_file(t_game_data *data, char *file)
+void	check_file(t_game *data, char *file)
 {
 	int		fd;
 	char	buf[1];

@@ -72,7 +72,7 @@ char	**map_w_null_background(t_list **x_chain, char **map)
 	return (new);
 }
 
-void	valid_way(t_game_data *data, char **map, int x, int y)
+void	valid_way(t_game *data, char **map, int x, int y)
 {
 	if (map[y][x] == '\0' || map[y][x] == ' ')
 		exit_error(data, "map not closed");

@@ -12,9 +12,9 @@
 
 #include "../cub3d.h"
 
-t_game_data	game_data_init(void)
+t_game	game_data_init(void)
 {
-	t_game_data	data;
+	t_game	data;
 
 	data.x_chain = NULL;
 	data.assets = NULL;
@@ -24,7 +24,7 @@ t_game_data	game_data_init(void)
 	return (data);
 }
 
-t_parsing	*parsing_init(t_game_data *data)
+t_parsing	*parsing_init(t_game *data)
 {
 	t_parsing	*parsing;
 
@@ -40,7 +40,7 @@ t_parsing	*parsing_init(t_game_data *data)
 	return (parsing);
 }
 
-t_map	*map_init(t_game_data *data)
+t_map	*map_init(t_game *data)
 {
 	t_map	*map;
 
@@ -53,7 +53,7 @@ t_map	*map_init(t_game_data *data)
 	return (map);
 }
 
-t_assets	*assets_init(t_game_data *data)
+t_assets	*assets_init(t_game *data)
 {
 	t_assets	*assets;
 
@@ -67,7 +67,7 @@ t_assets	*assets_init(t_game_data *data)
 	return (assets);
 }
 
-t_player	*player_init(t_game_data *data)
+t_player	*player_init(t_game *data)
 {
 	t_player	*player;
 	int			i;

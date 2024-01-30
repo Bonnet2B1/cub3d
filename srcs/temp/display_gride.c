@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	display_gride(t_game_data *data, int img_size, int depth)
+void	display_gride(t_game *data, int img_size, int depth)
 {
 	int			i;
 	int			j;

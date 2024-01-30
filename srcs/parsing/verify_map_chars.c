@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	verify_map_chars(t_game_data *data, char **map)
+void	verify_map_chars(t_game *data, char **map)
 {
 	int	i;
 	int	j;

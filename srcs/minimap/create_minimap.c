@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	display_floor(t_game_data *data, int img_size, int depth)
+void	display_floor(t_game *data, int img_size, int depth)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,7 @@ void	display_floor(t_game_data *data, int img_size, int depth)
 	}
 }
 
-void	display_walls(t_game_data *data, int img_size, int depth)
+void	display_walls(t_game *data, int img_size, int depth)
 {
 	int	i;
 	int	j;
@@ -55,7 +55,7 @@ void	display_walls(t_game_data *data, int img_size, int depth)
 	}
 }
 
-void	display_doors(t_game_data *data, int img_size, int depth)
+void	display_doors(t_game *data, int img_size, int depth)
 {
 	int	i;
 	int	j;
@@ -78,7 +78,7 @@ void	display_doors(t_game_data *data, int img_size, int depth)
 	}
 }
 
-void	put_player(t_game_data *data, int img_size, int depth)
+void	put_player(t_game *data, int img_size, int depth)
 {
 	int	i;
 	int	j;
@@ -107,16 +107,16 @@ void	put_player(t_game_data *data, int img_size, int depth)
 	}
 }
 
-void	create_minimap(t_game_data *data, int img_size)
+void	create_minimap(t_game *data, int img_size)
 {
 	data->gps->minimap_img_size = img_size;
 	mlx_resize_image(data->assets->minimap_floor_img, img_size, img_size);
 	mlx_resize_image(data->assets->minimap_wall_img, img_size, img_size);
 	mlx_resize_image(data->assets->minimap_door_img, img_size, img_size);
 	mlx_resize_image(data->player->minimap_img, img_size / 5, img_size / 5);
-	display_floor(data, img_size, 20);
+	// display_floor(data, img_size, 20);
 	display_walls(data, img_size, 22);
 	display_doors(data, img_size, 22);
-	display_gride(data, img_size, 21);
+	// display_gride(data, img_size, 21);
 	put_player(data, img_size, 21);
 }
