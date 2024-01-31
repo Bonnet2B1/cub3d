@@ -70,15 +70,15 @@ void	display_doors(t_game *data, int img_size, int depth)
 		{
 			if (data->gps->map[i][j] == 'C')
 			{
-				mlx_image_to_window(data->mlx, data->assets->minimap_door_img,
+				mlx_image_to_window(data->mlx, data->assets->minimap_closed_door_img,
 					j * img_size, i * img_size);
-				data->assets->minimap_door_img->instances[++k].z = depth;
+				data->assets->minimap_closed_door_img->instances[++k].z = depth;
 			}
 		}
 	}
 }
 
-void	put_player(t_game *data, int img_size, int depth)
+void	put_player(t_game *data, double img_size, int depth)
 {
 	int	i;
 	int	j;
@@ -107,13 +107,33 @@ void	put_player(t_game *data, int img_size, int depth)
 	}
 }
 
+void	create_imgs(t_game *data, int img_size)
+{
+	int	i;
+	int	j;
+
+	data->assets->minimap_floor_img = mlx_new_image(data->mlx, img_size, img_size);
+	data->assets->minimap_closed_door_img = mlx_new_image(data->mlx, img_size, img_size);
+	data->assets->minimap_wall_img = mlx_new_image(data->mlx, img_size, img_size);
+	i = -1;
+	while (++i < img_size)
+	{
+		j = -1;
+		while (++j < img_size)
+		{
+			mlx_put_pixel(data->assets->minimap_floor_img, i, j, 0xFFFFFFFF);
+			mlx_put_pixel(data->assets->minimap_closed_door_img, i, j, 0x000000FF);
+			mlx_put_pixel(data->assets->minimap_wall_img, i, j, 0x000000FF);
+		}
+	}
+	data->player->minimap_img = mlx_new_image(data->mlx, 1, 1);
+	mlx_put_pixel(data->player->minimap_img, 0, 0, 0x000000FF);
+}
+
 void	create_minimap(t_game *data, int img_size)
 {
 	data->gps->minimap_img_size = img_size;
-	mlx_resize_image(data->assets->minimap_floor_img, img_size, img_size);
-	mlx_resize_image(data->assets->minimap_wall_img, img_size, img_size);
-	mlx_resize_image(data->assets->minimap_door_img, img_size, img_size);
-	mlx_resize_image(data->player->minimap_img, img_size / 5, img_size / 5);
+	create_imgs(data, img_size);
 	// display_floor(data, img_size, 20);
 	display_walls(data, img_size, 22);
 	display_doors(data, img_size, 22);

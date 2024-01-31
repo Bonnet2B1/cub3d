@@ -20,7 +20,10 @@ t_game	game_data_init(void)
 	data.assets = NULL;
 	data.gps = NULL;
 	data.parsing = NULL;
-	data.mlx = NULL;
+	data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", 0);
+	data.big_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT); // - ranger ça
+	mlx_image_to_window(data.mlx, data.big_mask, 0, 0); // - ranger ça
+	data.big_mask->instances->z = 0; // - ranger ça
 	return (data);
 }
 

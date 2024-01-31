@@ -31,4 +31,6 @@ void	keyboard(void *param)
 		rotate_left(data->player);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data->player);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_E))
+		open_door(data);
 }

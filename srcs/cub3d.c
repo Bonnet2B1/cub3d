@@ -18,13 +18,9 @@ int	main(int argc, char **argv)
 
 	data = game_data_init();
 	data.parsing = parsing(&data, argc, argv);
-	data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", 0);
 	load_assets(&data);
 	create_minimap(&data, find_mimimap_img_size(data.gps->width,
 			data.gps->height));
-	data.big_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT); // - ranger ça
-	mlx_image_to_window(data.mlx, data.big_mask, 0, 0); // - ranger ça
-	data.big_mask->instances->z = 0; // - ranger ça
 	loops(&data);
 	free_n_exit(&data, 0);
 }

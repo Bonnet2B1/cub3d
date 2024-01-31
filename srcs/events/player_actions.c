@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_assets.c                                      :+:      :+:    :+:   */
+/*   player_actions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 20:47:57 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/31 17:30:31 by edelarbr         ###   ########.fr       */
+/*   Created: 2024/01/31 17:17:53 by edelarbr          #+#    #+#             */
+/*   Updated: 2024/01/31 17:30:05 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	load_assets(t_game *data)
+void	open_door(t_game *data)
 {
-	data->assets = assets_init(data);
-	get_dot_ber_assets(data, data->assets, data->parsing);
-	get_custom_assets(data, data->assets);
+	t_player	*player;
+
+	player = data->player;
+	player->front->angle = player->angle;
+	deep_ray_cpy(player->front);
+	player->front->len = get_len(data, player->front);
+	if (player->front->type == 'C' && player->front->len <= 3)
+	{
+		check_beyond_the_wall(data, data->gps, player->front);
+		data->gps->map[player->front->map_y][player->front->map_x] = 'O';
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/30 19:47:46 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/31 17:31:13 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define PLAYER_SIZE		3
 
 /* PLAYER */
-# define STEP_LEN			0.02
+# define STEP_LEN			0.05
 # define ROTATE_SPEED		0.03
 
 /* DISPLAY */
@@ -90,6 +90,7 @@ typedef struct s_ray
 
 	double			sqrt_hit;
 
+	char			type;
 	int				map_x;
 	int				map_y;
 	char			side;
@@ -113,7 +114,9 @@ typedef struct s_assets
 
 	mlx_image_t		*minimap_wall_img;
 	mlx_image_t		*minimap_floor_img;
-	mlx_image_t		*minimap_door_img;
+	mlx_image_t		*minimap_closed_door_img;
+
+	mlx_image_t		*closed_door_img;
 }					t_assets;
 
 typedef struct s_map
@@ -209,6 +212,8 @@ void				move_forward(t_game *data);
 void				move_backward(t_game *data);
 void				move_left(t_game *data);
 void				move_right(t_game *data);
+	/* player actions */
+void				open_door(t_game *data);
 
 /* ENGINE */
 void				set_player_angle(t_player *player, char c);
@@ -223,13 +228,14 @@ double				get_len_to_horizontal_collision(t_game *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
 void				game_display(t_game *data);
 u_int32_t			get_color_coord(int x, int y, mlx_image_t *img);
-
+void				check_beyond_the_wall(t_game *data, t_map *gps, t_ray *ray);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);
 void				get_minimap_assets(t_game *data, t_assets *assets);
 void				get_dot_ber_assets(t_game *data, t_assets *assets,
 						t_parsing *parsing);
+void				get_custom_assets(t_game *data, t_assets *assets);
 void				load_assets(t_game *data);
 void				loops(t_game *data);
 

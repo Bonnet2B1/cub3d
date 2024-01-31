@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_assets.c                                      :+:      :+:    :+:   */
+/*   get_custom_assets.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/12 20:47:57 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/31 17:30:31 by edelarbr         ###   ########.fr       */
+/*   Created: 2024/01/31 17:31:16 by edelarbr          #+#    #+#             */
+/*   Updated: 2024/01/31 17:31:34 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	load_assets(t_game *data)
+void	get_custom_assets(t_game *data, t_assets *assets)
 {
-	data->assets = assets_init(data);
-	get_dot_ber_assets(data, data->assets, data->parsing);
-	get_custom_assets(data, data->assets);
+	assets->closed_door_img
+		= asset_to_image(data, "assets/custom/C.png");
 }
