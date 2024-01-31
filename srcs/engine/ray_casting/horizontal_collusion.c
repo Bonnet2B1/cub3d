@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_collusion.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:48:07 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/27 18:54:24 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/01/30 19:48:38 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ double	looking_left_up_h(t_ray *ray, t_map *gps)
 		ray->op_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->op_y -= 1;
 	}
+	ray->sqrt_hit = ray->op_x - floor(ray->op_x);
 	ray->map_x = (int)floor(ray->op_x);
 	ray->map_y = (int)floor(ray->op_y) - 1;
 	return (ray->len);
@@ -41,6 +42,7 @@ double	looking_left_down_h(t_ray *ray, t_map *gps)
 		ray->op_x -= sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->op_y += 1;
 	}
+	ray->sqrt_hit = ray->op_x - floor(ray->op_x);
 	ray->map_x = (int)floor(ray->op_x);
 	ray->map_y = (int)floor(ray->op_y);
 	return (ray->len);
@@ -58,6 +60,7 @@ double	looking_right_up_h(t_ray *ray, t_map *gps)
 		ray->op_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->op_y -= 1;
 	}
+	ray->sqrt_hit = ray->op_x - floor(ray->op_x);
 	ray->map_x = (int)floor(ray->op_x);
 	ray->map_y = (int)floor(ray->op_y) - 1;
 	return (ray->len);
@@ -75,6 +78,7 @@ double	looking_right_down_h(t_ray *ray, t_map *gps)
 		ray->op_x += sqrt(pow(sqrt(pow(1, 2) + pow(1 / tan(ray->angle), 2)), 2) - pow(1, 2));
 		ray->op_y += 1;
 	}
+	ray->sqrt_hit = ray->op_x - floor(ray->op_x);
 	ray->map_x = (int)floor(ray->op_x);
 	ray->map_y = (int)floor(ray->op_y);
 	return (ray->len);

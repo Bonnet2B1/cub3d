@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/30 18:17:22 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/30 19:47:46 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_ray
 
 	double			op_x;
 	double			op_y;
+
+	double			sqrt_hit;
 
 	int				map_x;
 	int				map_y;
@@ -220,6 +222,8 @@ double				get_len_to_vertical_collision(t_game *data, t_ray *ray);
 double				get_len_to_horizontal_collision(t_game *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
 void				game_display(t_game *data);
+u_int32_t			get_color_coord(int x, int y, mlx_image_t *img);
+
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);

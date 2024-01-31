@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_display.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 16:34:25 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/28 21:37:43 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/30 20:02:23 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,48 +33,72 @@ void	put_floor_and_ceiling(t_game *data)
 	}
 }
 
-
-void put_line(mlx_image_t *big_mask, t_ray *ray, int ray_idx, uint32_t color) // ! c'est (trop) brouillon mais ça marche (jsp encore trop pourquoi)
+void put_line(mlx_image_t *big_mask, t_ray *ray, int ray_idx, mlx_image_t *img) // ! c'est (trop) brouillon mais ça marche (jsp encore trop pourquoi)
 {
-	int line_height;
-	int first_pixel;
-	int last_pixel;
-	int	i;
+	int		line_height;
+	int		first_pixel;
+	int		last_pixel;
+	double	ratio;
+	int		actual_pixel;
+	double	img_x;
+	double	img_y;
 
-	line_height = (WINDOW_WIDTH)/(ray->len);
+	img_x = ray->sqrt_hit * ASSET_SIZE;
+	if (img_x > ASSET_SIZE - 1)
+		img_x = ASSET_SIZE - 1;
+	line_height = WINDOW_WIDTH / ray->len;
+	ratio = 1.0 * ASSET_SIZE / line_height;
 	first_pixel = (WINDOW_HEIGHT - line_height) / 2;
 	last_pixel = WINDOW_HEIGHT - first_pixel;
-	i = first_pixel;
-	if (i < 0)
-		i = 0;
-	while (i < last_pixel)
+	actual_pixel = first_pixel;
+	img_y = 0;
+	while (actual_pixel < 0)
 	{
-		if (i > WINDOW_HEIGHT - 1)
-			break ;
-		mlx_put_pixel(big_mask, ray_idx, i, color);
-		i++;
+		actual_pixel++;
+		img_y += ratio;
+	}
+	while (actual_pixel < last_pixel && actual_pixel < WINDOW_HEIGHT)
+	{
+		mlx_put_pixel(big_mask, ray_idx, actual_pixel, get_color_coord(round(img_x), round(img_y), img));
+		actual_pixel++;
+		img_y += ratio;
+		if (img_y > ASSET_SIZE - 1)
+			img_y = ASSET_SIZE - 1;
 	}
 }
+
+// void put_line(mlx_image_t *big_mask, t_ray *ray, int ray_idx, uint32_t color) // ! c'est (trop) brouillon mais ça marche (jsp encore trop pourquoi)
+// {
+// 	int line_height;
+// 	int first_pixel;
+// 	int last_pixel;
+// 	int	i;
+
+// 	line_height = (WINDOW_WIDTH)/(ray->len);
+// 	first_pixel = (WINDOW_HEIGHT - line_height) / 2;
+// 	last_pixel = WINDOW_HEIGHT - first_pixel;
+// 	i = first_pixel;
+// 	if (i < 0)
+// 		i = 0;
+// 	while (i < last_pixel)
+// 	{
+// 		if (i > WINDOW_HEIGHT - 1)
+// 			break ;
+// 		mlx_put_pixel(big_mask, ray_idx, i, color);
+// 		i++;
+// 	}
+// }
 
 void	put_wall(t_game *data, t_ray *ray, int ray_idx)
 {
 	if (ray->side == 'N')
-	{
-		put_line(data->big_mask, ray, ray_idx, 0xFF69B4FF);
-	}
+		put_line(data->big_mask, ray, ray_idx, data->assets->north_img);
 	if (ray->side == 'S')
-	{
-		put_line(data->big_mask, ray, ray_idx, 0xC2FFF5FF);
-	}
+		put_line(data->big_mask, ray, ray_idx, data->assets->south_img);
 	if (ray->side == 'E')
-	{
-		put_line(data->big_mask, ray, ray_idx, 0xFFA500FF);
-
-	}
+		put_line(data->big_mask, ray, ray_idx, data->assets->east_img);
 	if (ray->side == 'W')
-	{
-		put_line(data->big_mask, ray, ray_idx, 0xFFD700FF);
-	}
+		put_line(data->big_mask, ray, ray_idx, data->assets->west_img);
 }
 
 void	put_assets(t_game *data, t_ray **ray, char **map)

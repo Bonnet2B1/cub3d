@@ -26,7 +26,7 @@ void	draw_lazer(t_game *data, t_ray *ray)
 	if (!ray->ray_img)
 	{
 		ray->ray_img = mlx_new_image(data->mlx, 1, 1);
-		mlx_put_pixel(ray->ray_img, 0, 0, 0x00FF00FF);
+		mlx_put_pixel(ray->ray_img, 0, 0, 0xFFFFFFFF);
 		i = -1;
 		while (++i < 1500)
 		{

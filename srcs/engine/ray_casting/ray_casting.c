@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/30 18:19:40 by momox            ###   ########.fr       */
+/*   Updated: 2024/01/30 19:49:36 by edelarbr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ double	get_len(t_game *data, t_ray *ray)
 		ray->op_y = ray->h->op_y;
 		ray->map_x = ray->h->map_x;
 		ray->map_y = ray->h->map_y;
+		ray->sqrt_hit = ray->h->sqrt_hit;
 		ray->side = ray->h->side;
 		return (ray->h->len);
 	}
@@ -31,6 +32,7 @@ double	get_len(t_game *data, t_ray *ray)
 		ray->op_y = ray->v->op_y;
 		ray->map_x = ray->v->map_x;
 		ray->map_y = ray->v->map_y;
+		ray->sqrt_hit = ray->v->sqrt_hit;
 		ray->side = ray->v->side;
 		return (ray->v->len);
 	}
