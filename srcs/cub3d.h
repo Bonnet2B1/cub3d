@@ -15,12 +15,14 @@
 // ! crash
 
 // - bug
-// Sauf pour la map elle-même, les informations de chaque élément peuvent être
+// * eli
 // séparées par un ou plusieurs espace(s).
-// Le perso regarde pas droit
 
 // ? trucs à fiare si on a vraaaaaaaiment le temps
+// * eli
+// Faites pivoter le point de vue avec la souris.
 // verifier atoi en mettant des inputs étranges en RGB dans le .cub
+// nuit
 
 /*=============================== PROTECTIONS ================================*/
 
@@ -50,10 +52,13 @@
 /* PLAYER */
 # define STEP_LEN			0.05
 # define ROTATE_SPEED		0.03
+# define MOUSE_SPEED		0.003
 
 /* DISPLAY */
 # define FOV				60 /* in degree */
 # define ASSET_SIZE			64
+# define ANIMATION_SPEED	1
+# define DARNESS_INTENSITY	50
 
 /*================================= DEFINES ==================================*/
 
@@ -109,14 +114,28 @@ typedef struct s_assets
 	mlx_image_t		*west_img;
 	mlx_image_t		*east_img;
 
-	uint32_t		floor_trgb;
-	uint32_t		ceiling_trgb;
+	u_int32_t		floor_trgb;
+	u_int32_t		ceiling_trgb;
 
 	mlx_image_t		*minimap_wall_img;
 	mlx_image_t		*minimap_floor_img;
-	mlx_image_t		*minimap_closed_door_img;
+	mlx_image_t		*minimap_door_img;
+	mlx_image_t		*minimap_goal_img;
 
-	mlx_image_t		*closed_door_img;
+	mlx_image_t		*door_img;
+	mlx_image_t		*goal_img;
+	mlx_image_t		*spe_north_img;
+	mlx_image_t		*spe_south_img;
+	mlx_image_t		*mod_north_one_img;
+	mlx_image_t		*mod_south_one_img;
+	mlx_image_t		*mod_east_one_img;
+	mlx_image_t		*mod_north_two_anim[2];
+	mlx_image_t		*mod_south_two_img;
+	mlx_image_t		*mod_east_two_img;
+
+	u_int32_t		dark_shade[256];
+
+	int				frame;
 }					t_assets;
 
 typedef struct s_map
@@ -169,7 +188,10 @@ typedef struct s_game
 
 	t_list			*x_chain;
 
+	int				mouse;
+	char			*map_name;
 	mlx_image_t		*big_mask;
+	mlx_image_t		*darkness_mask;
 	mlx_t			*mlx;
 }					t_game;
 
@@ -183,7 +205,7 @@ void				*x_malloc(t_list **lst, size_t size);
 void				x_free(t_list **x_chain);
 void				free_n_exit(t_game *data, int exit_code);
 	/* Struc init */
-t_game			game_data_init(void);
+t_game				game_data_init(void);
 t_map				*map_init(t_game *data);
 t_assets			*assets_init(t_game *data);
 t_player			*player_init(t_game *data);
@@ -207,6 +229,9 @@ int					ft_atoi_mod(const char *str);
 /* EVENTS */
 	/* mlx events */
 void				keyboard(void *param);
+void				mouse(void *param);
+void				animation(void *param);
+
 	/* player movements */
 void				move_forward(t_game *data);
 void				move_backward(t_game *data);
@@ -214,12 +239,13 @@ void				move_left(t_game *data);
 void				move_right(t_game *data);
 	/* player actions */
 void				open_door(t_game *data);
+void				mod_wall(t_game *data);
 
 /* ENGINE */
 void				set_player_angle(t_player *player, char c);
 double				get_principal_measure(double angle);
-void				rotate_left(t_player *player);
-void				rotate_right(t_player *player);
+void				rotate_left(t_player *player, double speed);
+void				rotate_right(t_player *player, double speed);
 void				ray_casting(void *param);
 void				deep_ray_cpy(t_ray *ray);
 double				get_len(t_game *data, t_ray *ray);
@@ -228,7 +254,6 @@ double				get_len_to_horizontal_collision(t_game *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
 void				game_display(t_game *data);
 u_int32_t			get_color_coord(int x, int y, mlx_image_t *img);
-void				check_beyond_the_wall(t_game *data, t_map *gps, t_ray *ray);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);
@@ -256,12 +281,8 @@ char				**ft_split(t_list **x_chain, char *s, char c);
 int					ft_tablen(char **tab);
 char				**ft_tabdup(t_list **x_chain, char **tab);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
-int					create_trgb(unsigned char t, unsigned char r,
-						unsigned char g, unsigned char b);
-unsigned char		get_t(int trgb);
-unsigned char		get_r(int trgb);
-unsigned char		get_g(int trgb);
-unsigned char		get_b(int trgb);
+u_int32_t			create_rgbt(unsigned char r, unsigned char g,
+						unsigned char b, unsigned char t);
 char				*ft_strchr(const char *s, int c);
 int					ft_isdigit(int c);
 int					ft_str_is_num(char *str);

@@ -12,14 +12,14 @@
 
 #include "../cub3d.h"
 
-void	rotate_left(t_player *player)
+void	rotate_left(t_player *player, double speed)
 {
-	player->angle -= ROTATE_SPEED;
+	player->angle -= speed;
 	player->angle = get_principal_measure(player->angle);
 }
 
-void	rotate_right(t_player *player)
+void	rotate_right(t_player *player , double speed)
 {
-	player->angle += ROTATE_SPEED;
+	player->angle += speed;
 	player->angle = get_principal_measure(player->angle);
 }

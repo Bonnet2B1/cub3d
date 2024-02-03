@@ -15,6 +15,8 @@
 void	loops(t_game *data)
 {
 	mlx_loop_hook(data->mlx, keyboard, data);
+	mlx_loop_hook(data->mlx, mouse, data);
 	mlx_loop_hook(data->mlx, ray_casting, data);
+	mlx_loop_hook(data->mlx, animation, data);
 	mlx_loop(data->mlx);
 }

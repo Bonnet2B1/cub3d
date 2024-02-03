@@ -76,7 +76,7 @@ void	valid_way(t_game *data, char **map, int x, int y)
 {
 	if (map[y][x] == '\0' || map[y][x] == ' ')
 		exit_error(data, "map not closed");
-	if (map[y][x] == '1' || map[y][x] == 'C')
+	if (map[y][x] == '1' || map[y][x] == 'G')
 		return ;
 	map[y][x] = '1';
 	valid_way(data, map, (x + 1), y);

@@ -12,28 +12,8 @@
 
 #include "../cub3d.h"
 
-int	create_trgb(
-	unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+u_int32_t	create_rgbt(
+	unsigned char r, unsigned char g, unsigned char b, unsigned char t)
 {
-	return (*(int *)(unsigned char [4]){b, g, r, t});
-}
-
-unsigned char	get_t(int trgb)
-{
-	return (((unsigned char *)&trgb)[3]);
-}
-
-unsigned char	get_r(int trgb)
-{
-	return (((unsigned char *)&trgb)[2]);
-}
-
-unsigned char	get_g(int trgb)
-{
-	return (((unsigned char *)&trgb)[1]);
-}
-
-unsigned char	get_b(int trgb)
-{
-	return (((unsigned char *)&trgb)[0]);
+	return (*(int *)(unsigned char [4]){t, b, g, r});
 }

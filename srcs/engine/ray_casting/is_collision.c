@@ -16,7 +16,7 @@ int	is_collision(t_map *gps, int y, int x)
 {
 	if (x < 0 || y < 0 || x > gps->width - 2|| y > gps->height - 1)
 		return (1);
-	if (gps->map[y][x] == '0' || gps->map[y][x] == 'O')
+	if (gps->map[y][x] == '0')
 		return (0);
 	return (1);
 }

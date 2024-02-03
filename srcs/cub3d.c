@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_game	data;
 
 	data = game_data_init();
+	data.map_name = argv[1];
 	data.parsing = parsing(&data, argc, argv);
 	load_assets(&data);
 	create_minimap(&data, find_mimimap_img_size(data.gps->width,

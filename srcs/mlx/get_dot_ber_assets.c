@@ -24,10 +24,11 @@ mlx_image_t	*extract_img(t_game *data, char *path)
 
 uint32_t	extract_color(char **color)
 {
-	return (create_trgb(255,
+	return (create_rgbt(
 			(unsigned char)ft_atoi_mod(color[0]),
 			(unsigned char)ft_atoi_mod(color[1]),
-			(unsigned char)ft_atoi_mod(color[2])));
+			(unsigned char)ft_atoi_mod(color[2]),
+			255));
 }
 
 void	get_dot_ber_assets(t_game *data, t_assets *assets,

@@ -20,9 +20,26 @@ void	open_door(t_game *data)
 	player->front->angle = player->angle;
 	deep_ray_cpy(player->front);
 	player->front->len = get_len(data, player->front);
-	if (player->front->type == 'C' && player->front->len <= 3)
+	if (player->front->type == 'D' && player->front->len <= 3)
+		data->gps->map[player->front->map_y][player->front->map_x] = '0';
+}
+
+void	mod_wall(t_game *data)
+{
+	t_player	*player;
+
+	player = data->player;
+	player->front->angle = player->angle;
+	deep_ray_cpy(player->front);
+	player->front->len = get_len(data, player->front);
+	if (player->front->type == '3' && player->front->len <= 3)
 	{
-		check_beyond_the_wall(data, data->gps, player->front);
-		data->gps->map[player->front->map_y][player->front->map_x] = 'O';
+		data->gps->map[player->front->map_y][player->front->map_x] = '4';
+		usleep(70000);
+	}
+	else if (player->front->type == '4' && player->front->len <= 3)
+	{
+		data->gps->map[player->front->map_y][player->front->map_x] = '3';
+		usleep(70000);
 	}
 }

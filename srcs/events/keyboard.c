@@ -28,9 +28,12 @@ void	keyboard(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		move_right(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		rotate_left(data->player);
+		rotate_left(data->player, ROTATE_SPEED);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		rotate_right(data->player);
+		rotate_right(data->player, ROTATE_SPEED);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_E))
+	{
 		open_door(data);
+		mod_wall(data);
+	}
 }

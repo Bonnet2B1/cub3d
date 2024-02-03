@@ -27,7 +27,8 @@ void	verify_map_chars(t_game *data, char **map)
 		{
 			if (map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'W'
 				&& map[i][j] != 'E' && map[i][j] != '0' && map[i][j] != '1'
-				&& map[i][j] != ' ' && map[i][j] != 'C')
+				&& map[i][j] != ' ' && map[i][j] != 'D' && map[i][j] != '2'
+				&& map[i][j] != '3' && map[i][j] != 'G')
 				exit_error(data, "unauthorized character in map");
 			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')

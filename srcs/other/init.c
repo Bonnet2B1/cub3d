@@ -21,9 +21,12 @@ t_game	game_data_init(void)
 	data.gps = NULL;
 	data.parsing = NULL;
 	data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", 0);
-	data.big_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT); // - ranger ça
-	mlx_image_to_window(data.mlx, data.big_mask, 0, 0); // - ranger ça
-	data.big_mask->instances->z = 0; // - ranger ça
+	data.big_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_image_to_window(data.mlx, data.big_mask, 0, 0);
+	data.big_mask->instances->z = 0;
+	data.darkness_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	mlx_image_to_window(data.mlx, data.darkness_mask, 0, 0);
+	data.darkness_mask->instances->z = 1;
 	return (data);
 }
 
@@ -59,6 +62,7 @@ t_map	*map_init(t_game *data)
 t_assets	*assets_init(t_game *data)
 {
 	t_assets	*assets;
+	int			i;
 
 	assets = x_malloc(&data->x_chain, sizeof(t_assets));
 	if (!assets)
@@ -67,6 +71,10 @@ t_assets	*assets_init(t_game *data)
 	assets->south_img = NULL;
 	assets->west_img = NULL;
 	assets->east_img = NULL;
+	assets->frame = 0;
+	i = -1;
+	while (++i < 256)
+		assets->dark_shade[i] = create_rgbt(0, 0, 0, i);
 	return (assets);
 }
 

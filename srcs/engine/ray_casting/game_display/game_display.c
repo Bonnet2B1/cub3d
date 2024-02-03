@@ -16,13 +16,27 @@ void	put_floor_and_ceiling(t_game *data)
 {
 	int	i;
 	int	j;
+	// int	dark_index;
 
+	i = -1;
+	while (++i < WINDOW_HEIGHT) // clear the mask
+	{
+		j = -1;
+		while (++j < WINDOW_WIDTH)
+			mlx_put_pixel(data->darkness_mask, j, i, 0x00000000);
+	}
 	i = -1;
 	while (++i < WINDOW_HEIGHT / 2)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
+		{
 			mlx_put_pixel(data->big_mask, j, i, data->assets->ceiling_trgb);
+			// dark_index = i;
+			// if (dark_index > 255)
+			// 	dark_index = 255;
+			// mlx_put_pixel(data->darkness_mask, j, i, data->assets->dark_shade[dark_index]);
+		}
 	}
 	while (i < WINDOW_HEIGHT)
 	{
@@ -33,7 +47,7 @@ void	put_floor_and_ceiling(t_game *data)
 	}
 }
 
-void put_line(mlx_image_t *big_mask, t_ray *ray, int ray_idx, mlx_image_t *img)
+void put_line(t_game *data, mlx_image_t *big_mask, t_ray *ray, int ray_idx, mlx_image_t *img)
 {
 	int		line_height;
 	int		first_pixel;
@@ -62,21 +76,68 @@ void put_line(mlx_image_t *big_mask, t_ray *ray, int ray_idx, mlx_image_t *img)
 		if (img_y > ASSET_SIZE - 1)
 			img_y = ASSET_SIZE - 1;
 		mlx_put_pixel(big_mask, ray_idx, actual_pixel, get_color_coord(round(img_x), round(img_y), img));
+		int dark_index = ray->len * DARNESS_INTENSITY;
+		if (dark_index > 255)
+			dark_index = 255;
+		if (get_color_coord(round(img_x), round(img_y), img) == 0xffffff && ray->type == 'G')
+			;
+		else
+			mlx_put_pixel(data->darkness_mask, ray_idx, actual_pixel, data->assets->dark_shade[dark_index]);
 		actual_pixel++;
 		img_y += ratio;
 	}
 }
 
+void	put_spe(t_game *data, t_ray *ray, int ray_idx)
+{
+	if (ray->side == 'N')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->spe_north_img);
+	else if (ray->side == 'S')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->spe_south_img);
+	else
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->north_img);
+}
+
+void	put_mod_one(t_game *data, t_ray *ray, int ray_idx)
+{
+	if (ray->side == 'N')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_north_one_img);
+	else if (ray->side == 'S')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_south_one_img);
+	else if (ray->side == 'E')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_east_one_img);
+	else
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->north_img);
+
+}
+
+void	put_mod_two(t_game *data, t_ray *ray, int ray_idx)
+{
+	if (ray->side == 'N')
+	{
+		if (data->assets->frame < 6)
+			put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_north_two_anim[0]);
+		else
+			put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_north_two_anim[1]);
+	}
+	else if (ray->side == 'S')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_south_two_img);
+	else if (ray->side == 'E')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->mod_east_two_img);
+	else
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->north_img);
+}
+
 void	put_wall(t_game *data, t_ray *ray, int ray_idx)
 {
 	if (ray->side == 'N')
-		put_line(data->big_mask, ray, ray_idx, data->assets->north_img);
-	if (ray->side == 'S')
-		put_line(data->big_mask, ray, ray_idx, data->assets->south_img);
-	if (ray->side == 'E')
-		put_line(data->big_mask, ray, ray_idx, data->assets->east_img);
-	if (ray->side == 'W')
-		put_line(data->big_mask, ray, ray_idx, data->assets->west_img);
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->north_img);
+	else if (ray->side == 'S')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->south_img);
+	else if (ray->side == 'E')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->east_img);
+	else if (ray->side == 'W')
+		put_line(data, data->big_mask, ray, ray_idx, data->assets->west_img);
 }
 
 void	put_assets(t_game *data, t_ray **ray)
@@ -89,8 +150,16 @@ void	put_assets(t_game *data, t_ray **ray)
 		ray[ray_idx]->len *= cos(get_principal_measure(data->player->angle - ray[ray_idx]->angle));
 		if (ray[ray_idx]->type == '1')
 			put_wall(data, ray[ray_idx], ray_idx);
-		else if (ray[ray_idx]->type == 'C')
-			put_line(data->big_mask, ray[ray_idx], ray_idx, data->assets->closed_door_img);
+		else if (ray[ray_idx]->type == '2')
+			put_spe(data, ray[ray_idx], ray_idx);
+		else if (ray[ray_idx]->type == '3')
+			put_mod_one(data, ray[ray_idx], ray_idx);
+		else if (ray[ray_idx]->type == '4')
+			put_mod_two(data, ray[ray_idx], ray_idx);
+		else if (ray[ray_idx]->type == 'G')
+			put_line(data, data->big_mask, ray[ray_idx], ray_idx, data->assets->goal_img);
+		else if (ray[ray_idx]->type == 'D')
+			put_line(data, data->big_mask, ray[ray_idx], ray_idx, data->assets->door_img);
 	}
 }
 

@@ -45,7 +45,7 @@ void	display_walls(t_game *data, int img_size, int depth)
 		j = -1;
 		while (data->gps->map[i][++j])
 		{
-			if (data->gps->map[i][j] == '1')
+			if (data->gps->map[i][j] == '1' || data->gps->map[i][j] == '2' || data->gps->map[i][j] == '3')
 			{
 				mlx_image_to_window(data->mlx, data->assets->minimap_wall_img,
 					j * img_size, i * img_size);
@@ -68,11 +68,34 @@ void	display_doors(t_game *data, int img_size, int depth)
 		j = -1;
 		while (data->gps->map[i][++j])
 		{
-			if (data->gps->map[i][j] == 'C')
+			if (data->gps->map[i][j] == 'D')
 			{
-				mlx_image_to_window(data->mlx, data->assets->minimap_closed_door_img,
+				mlx_image_to_window(data->mlx, data->assets->minimap_door_img,
 					j * img_size, i * img_size);
-				data->assets->minimap_closed_door_img->instances[++k].z = depth;
+				data->assets->minimap_door_img->instances[++k].z = depth;
+			}
+		}
+	}
+}
+
+void	display_goal(t_game *data, int img_size, int depth)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	k = -1;
+	i = -1;
+	while (data->gps->map[++i])
+	{
+		j = -1;
+		while (data->gps->map[i][++j])
+		{
+			if (data->gps->map[i][j] == 'G')
+			{
+				mlx_image_to_window(data->mlx, data->assets->minimap_goal_img,
+					j * img_size, i * img_size);
+				data->assets->minimap_goal_img->instances[++k].z = depth;
 			}
 		}
 	}
@@ -113,8 +136,9 @@ void	create_imgs(t_game *data, int img_size)
 	int	j;
 
 	data->assets->minimap_floor_img = mlx_new_image(data->mlx, img_size, img_size);
-	data->assets->minimap_closed_door_img = mlx_new_image(data->mlx, img_size, img_size);
+	data->assets->minimap_door_img = mlx_new_image(data->mlx, img_size, img_size);
 	data->assets->minimap_wall_img = mlx_new_image(data->mlx, img_size, img_size);
+	data->assets->minimap_goal_img = mlx_new_image(data->mlx, img_size, img_size);
 	i = -1;
 	while (++i < img_size)
 	{
@@ -122,8 +146,9 @@ void	create_imgs(t_game *data, int img_size)
 		while (++j < img_size)
 		{
 			mlx_put_pixel(data->assets->minimap_floor_img, i, j, 0xFFFFFFFF);
-			mlx_put_pixel(data->assets->minimap_closed_door_img, i, j, 0x000000FF);
-			mlx_put_pixel(data->assets->minimap_wall_img, i, j, 0x000000FF);
+			mlx_put_pixel(data->assets->minimap_door_img, i, j, 0x636363FF);
+			mlx_put_pixel(data->assets->minimap_wall_img, i, j, 0x3b3b3bFF);
+			mlx_put_pixel(data->assets->minimap_goal_img, i, j, 0xffd700FF);
 		}
 	}
 	data->player->minimap_img = mlx_new_image(data->mlx, 1, 1);
@@ -137,6 +162,7 @@ void	create_minimap(t_game *data, int img_size)
 	// display_floor(data, img_size, 20);
 	display_walls(data, img_size, 22);
 	display_doors(data, img_size, 22);
+	display_goal(data, img_size, 22);
 	// display_gride(data, img_size, 21);
 	put_player(data, img_size, 21);
 }
