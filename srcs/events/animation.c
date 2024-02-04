@@ -3,13 +3,9 @@
 void	animation(void *param)
 {
 	t_game	*data;
-	int		couldown;
 
 	data = (t_game *)param;
-	couldown = 0;
-	while (couldown < ANIMATION_SPEED)
-		couldown++;
 	data->assets->frame++;
-	if (data->assets->frame > 12)
+	if (data->assets->frame > ANIMATION_SPEED)
 		data->assets->frame = 0;
 }

@@ -20,12 +20,12 @@ void	move_forward(t_game *data)
 	player->front->angle = player->angle;
 	deep_ray_cpy(player->front);
 	player->front->len = get_len(data, player->front);
-	if (STEP_LEN >= player->front->len)
+	if (player->step_len >= player->front->len)
 		return ;
-	player->y += (STEP_LEN * sin(player->angle));
+	player->y += (player->step_len * sin(player->angle));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (STEP_LEN * cos(player->angle));
+	player->x += (player->step_len * cos(player->angle));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }
@@ -38,12 +38,12 @@ void	move_backward(t_game *data)
 	player->back->angle = get_principal_measure(player->angle - M_PI);
 	deep_ray_cpy(player->back);
 	player->back->len = get_len(data, player->back);
-	if (STEP_LEN >= player->back->len)
+	if (player->step_len >= player->back->len)
 		return ;
-	player->y += (STEP_LEN * sin(get_principal_measure(player->angle + M_PI)));
+	player->y += (player->step_len * sin(get_principal_measure(player->angle + M_PI)));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (STEP_LEN * cos(get_principal_measure(player->angle + M_PI)));
+	player->x += (player->step_len * cos(get_principal_measure(player->angle + M_PI)));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }
@@ -56,12 +56,12 @@ void	move_left(t_game *data)
 	player->left->angle = get_principal_measure(player->angle - M_PI / 2);
 	deep_ray_cpy(player->left);
 	player->left->len = get_len(data, player->left);
-	if (STEP_LEN >= player->left->len)
+	if (player->step_len >= player->left->len)
 		return ;
-	player->y += (STEP_LEN * sin(get_principal_measure(player->left->angle)));
+	player->y += (player->step_len * sin(get_principal_measure(player->left->angle)));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (STEP_LEN * cos(get_principal_measure(player->left->angle)));
+	player->x += (player->step_len * cos(get_principal_measure(player->left->angle)));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }
@@ -74,12 +74,12 @@ void	move_right(t_game *data)
 	player->right->angle = get_principal_measure(player->angle + M_PI / 2);
 	deep_ray_cpy(player->right);
 	player->right->len = get_len(data, player->right);
-	if (STEP_LEN >= player->right->len)
+	if (player->step_len >= player->right->len)
 		return ;
-	player->y += (STEP_LEN * sin(get_principal_measure(player->right->angle)));
+	player->y += (player->step_len * sin(get_principal_measure(player->right->angle)));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (STEP_LEN * cos(get_principal_measure(player->right->angle)));
+	player->x += (player->step_len * cos(get_principal_measure(player->right->angle)));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }

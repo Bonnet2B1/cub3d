@@ -14,8 +14,8 @@
 
 double	get_len(t_game *data, t_ray *ray)
 {
-	get_len_to_vertical_collision(data, ray->v);
 	get_len_to_horizontal_collision(data, ray->h);
+	get_len_to_vertical_collision(data, ray->v);
 	if (ray->h->len < ray->v->len)
 	{
 		ray->op_x = ray->h->op_x;

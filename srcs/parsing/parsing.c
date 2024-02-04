@@ -30,5 +30,6 @@ t_parsing	*parsing(t_game *data, int argc, char **argv)
 	parsing->temp_map = map_w_null_background(&data->x_chain, data->gps->map);
 	valid_way(data, parsing->temp_map,
 		find_player_x(data->gps->map) + 1, find_player_y(data->gps->map) + 1);
+	fill_with_spaces(data, data->gps);
 	return (parsing);
 }

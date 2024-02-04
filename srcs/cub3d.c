@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 	load_assets(&data);
 	create_minimap(&data, find_mimimap_img_size(data.gps->width,
 			data.gps->height));
+	load_masks(&data, data.assets);
 	loops(&data);
 	free_n_exit(&data, 0);
 }
+

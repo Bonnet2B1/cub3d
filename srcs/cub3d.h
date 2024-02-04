@@ -15,14 +15,24 @@
 // ! crash
 
 // - bug
-// * eli
-// séparées par un ou plusieurs espace(s).
+// verifier atoi en mettant des inputs étranges en RGB dans le .cub
 
 // ? trucs à fiare si on a vraaaaaaaiment le temps
-// * eli
-// Faites pivoter le point de vue avec la souris.
-// verifier atoi en mettant des inputs étranges en RGB dans le .cub
-// nuit
+// - faire une belle map
+// - corriger l'angle inital du player qui bug 1 fois sur 2
+// - faire une main qui tient une torche
+// - decouvrir ce qu'il se cache sous un mlx_loop_hook (thread ?)
+
+// ! trucs à faire
+// - déplacer la vignette pour le refresh qu'une fois
+// - separer le darkness des blocs et du ciel/sol pour le refresh qu'une fois
+// - faux segfault
+// - verifier si DARKNESS_EFFECT est ok à 0
+// - corriger l'asset momie
+// - implementer Ra qui danse
+// - norme
+// - verifer si tout est ok avec le sujet
+// - leaks
 
 /*=============================== PROTECTIONS ================================*/
 
@@ -51,14 +61,15 @@
 
 /* PLAYER */
 # define STEP_LEN			0.05
-# define ROTATE_SPEED		0.03
+# define SPRINT_MULTIPLIER	2
+# define ROTATE_SPEED		0.05
 # define MOUSE_SPEED		0.003
 
 /* DISPLAY */
 # define FOV				60 /* in degree */
 # define ASSET_SIZE			64
-# define ANIMATION_SPEED	1
-# define DARNESS_INTENSITY	50
+# define ANIMATION_SPEED	20
+# define DARKNESS_EFFECT	1
 
 /*================================= DEFINES ==================================*/
 
@@ -122,20 +133,27 @@ typedef struct s_assets
 	mlx_image_t		*minimap_door_img;
 	mlx_image_t		*minimap_goal_img;
 
+	mlx_image_t		*anubis_chill_img;
+	mlx_image_t		*anubis_not_happy_img;
+	mlx_image_t		*basic_wall_img;
 	mlx_image_t		*door_img;
 	mlx_image_t		*goal_img;
-	mlx_image_t		*spe_north_img;
-	mlx_image_t		*spe_south_img;
-	mlx_image_t		*mod_north_one_img;
-	mlx_image_t		*mod_south_one_img;
-	mlx_image_t		*mod_east_one_img;
-	mlx_image_t		*mod_north_two_anim[2];
-	mlx_image_t		*mod_south_two_img;
-	mlx_image_t		*mod_east_two_img;
+	mlx_image_t		*mummy_left_img;
+	mlx_image_t		*mummy_right_img;
+	mlx_image_t		*peacock_img;
+	mlx_image_t		*pillar_img;
+	mlx_image_t		*sarcophagus_img;
+	mlx_image_t		*wall_w_hole_img;
 
 	u_int32_t		dark_shade[256];
 
 	int				frame;
+
+	mlx_image_t		*background_mask;
+	mlx_image_t		*darkness_background_mask;
+	mlx_image_t		*textures_mask;
+	mlx_image_t		*darkness_textures_mask;
+	mlx_image_t		*vignette_mask;
 }					t_assets;
 
 typedef struct s_map
@@ -177,6 +195,9 @@ typedef struct s_player
 	t_ray			*right;
 	t_ray			*back;
 
+	double			step_len;
+	double			rotate_speed;
+
 }					t_player;
 
 typedef struct s_game
@@ -190,8 +211,6 @@ typedef struct s_game
 
 	int				mouse;
 	char			*map_name;
-	mlx_image_t		*big_mask;
-	mlx_image_t		*darkness_mask;
 	mlx_t			*mlx;
 }					t_game;
 
@@ -225,6 +244,7 @@ void				format_error(t_game *data, t_parsing *parsing);
 t_map				*extract_data(t_game *data, t_parsing *parsing);
 void				verify_map_chars(t_game *data, char **map);
 int					ft_atoi_mod(const char *str);
+void				fill_with_spaces(t_game *data, t_map *gps);
 
 /* EVENTS */
 	/* mlx events */
@@ -254,6 +274,7 @@ double				get_len_to_horizontal_collision(t_game *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
 void				game_display(t_game *data);
 u_int32_t			get_color_coord(int x, int y, mlx_image_t *img);
+void				load_masks(t_game *data, t_assets *assets);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);

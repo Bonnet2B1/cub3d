@@ -20,13 +20,8 @@ t_game	game_data_init(void)
 	data.assets = NULL;
 	data.gps = NULL;
 	data.parsing = NULL;
+	data.mouse = 0;
 	data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", 0);
-	data.big_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mlx_image_to_window(data.mlx, data.big_mask, 0, 0);
-	data.big_mask->instances->z = 0;
-	data.darkness_mask = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mlx_image_to_window(data.mlx, data.darkness_mask, 0, 0);
-	data.darkness_mask->instances->z = 1;
 	return (data);
 }
 
@@ -90,6 +85,7 @@ t_player	*player_init(t_game *data)
 	player->x = -1;
 	player->y = -1;
 	player->angle = -1;
+	player->step_len = STEP_LEN;
 	player->front = ray_init(data, player);
 	player->back = ray_init(data, player);
 	player->left = ray_init(data, player);

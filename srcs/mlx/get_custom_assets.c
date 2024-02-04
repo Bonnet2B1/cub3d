@@ -14,26 +14,26 @@
 
 void	get_custom_assets(t_game *data, t_assets *assets)
 {
+	assets->anubis_chill_img
+		= asset_to_image(data, "assets/maze/anubis_chill.png");
+	assets->anubis_not_happy_img
+		= asset_to_image(data, "assets/maze/anubis_not_happy.png");
+	assets->basic_wall_img
+		= asset_to_image(data, "assets/maze/basic_wall.png");
 	assets->door_img
-		= asset_to_image(data, "assets/maze/D.png");
+		= asset_to_image(data, "assets/maze/door.png");
 	assets->goal_img
-		= asset_to_image(data, "assets/maze/G.png");
-	assets->spe_north_img
-		= asset_to_image(data, "assets/maze/2_N.png");
-	assets->spe_south_img
-		= asset_to_image(data, "assets/maze/2_S.png");
-	assets->mod_north_one_img
-		= asset_to_image(data, "assets/maze/3_N.png");
-	assets->mod_south_one_img
-		= asset_to_image(data, "assets/maze/3_S.png");
-	assets->mod_east_one_img
-		= asset_to_image(data, "assets/maze/3_E.png");
-	assets->mod_north_two_anim[0]
-		= asset_to_image(data, "assets/maze/4_N_1.png");
-	assets->mod_north_two_anim[1]
-		= asset_to_image(data, "assets/maze/4_N_2.png");
-	assets->mod_south_two_img
-		= asset_to_image(data, "assets/maze/4_S.png");
-	assets->mod_east_two_img
-		= asset_to_image(data, "assets/maze/4_E.png");
+		= asset_to_image(data, "assets/maze/goal.png");
+	assets->mummy_left_img
+		= asset_to_image(data, "assets/maze/mummy_left.png");
+	assets->mummy_right_img
+		= asset_to_image(data, "assets/maze/mummy_right.png");
+	assets->peacock_img
+		= asset_to_image(data, "assets/maze/peacock.png");
+	assets->pillar_img
+		= asset_to_image(data, "assets/maze/pillar.png");
+	assets->sarcophagus_img
+		= asset_to_image(data, "assets/maze/sarcophagus.png");
+	assets->wall_w_hole_img
+		= asset_to_image(data, "assets/maze/wall_w_hole.png");
 }

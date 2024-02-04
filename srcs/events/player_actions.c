@@ -35,11 +35,11 @@ void	mod_wall(t_game *data)
 	if (player->front->type == '3' && player->front->len <= 3)
 	{
 		data->gps->map[player->front->map_y][player->front->map_x] = '4';
-		usleep(70000);
+		usleep(100000);
 	}
 	else if (player->front->type == '4' && player->front->len <= 3)
 	{
 		data->gps->map[player->front->map_y][player->front->map_x] = '3';
-		usleep(70000);
+		usleep(100000);
 	}
 }
