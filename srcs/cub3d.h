@@ -15,7 +15,6 @@
 // ! crash
 
 // - bug
-// verifier atoi en mettant des inputs étranges en RGB dans le .cub
 
 // ? trucs à fiare si on a vraaaaaaaiment le temps
 // - faire une belle map
@@ -23,13 +22,13 @@
 // - faire une main qui tient une torche
 // - decouvrir ce qu'il se cache sous un mlx_loop_hook (thread ?)
 
+
 // ! trucs à faire
-// - déplacer la vignette pour le refresh qu'une fois
-// - separer le darkness des blocs et du ciel/sol pour le refresh qu'une fois
 // - faux segfault
 // - verifier si DARKNESS_EFFECT est ok à 0
 // - corriger l'asset momie
 // - implementer Ra qui danse
+// - verifier atoi en mettant des inputs étranges en RGB dans le .cub
 // - norme
 // - verifer si tout est ok avec le sujet
 // - leaks
