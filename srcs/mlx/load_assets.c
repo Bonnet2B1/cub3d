@@ -15,6 +15,6 @@
 void	load_assets(t_game *data)
 {
 	data->assets = assets_init(data);
-	get_dot_ber_assets(data, data->assets, data->parsing);
+	get_dot_cub_assets(data, data->assets, data->parsing);
 	get_custom_assets(data, data->assets);
 }
