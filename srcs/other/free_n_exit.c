@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_n_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:24:14 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/15 15:50:06 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:14:47 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	del_all_imgs_three(t_game *data)
 		mlx_delete_image(data->mlx, data->assets->darkness_textures_mask);
 	if (data->assets->vignette_mask)
 		mlx_delete_image(data->mlx, data->assets->vignette_mask);
+	if (data->assets->collapse_img)
+		mlx_delete_image(data->mlx, data->assets->collapse_img);
 }
 
 void	del_all_imgs_two(t_game *data)

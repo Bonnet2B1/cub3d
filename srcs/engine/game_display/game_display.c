@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 16:34:25 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/02/04 19:54:03 by momox            ###   ########.fr       */
+/*   Updated: 2024/02/05 19:14:57 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	put_assets(t_game *data, t_ray **ray)
 			put_line(data, ray[ray_idx], ray_idx, data->assets->goal_img);
 		else if (ray[ray_idx]->type == 'D')
 			put_line(data, ray[ray_idx], ray_idx, data->assets->door_img);
+		else if (ray[ray_idx]->type == 'C')
+			put_line(data, ray[ray_idx], ray_idx, data->assets->collapse_img);
 	}
 }
 

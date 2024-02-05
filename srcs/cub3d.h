@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/02/04 20:15:08 by momox            ###   ########.fr       */
+/*   Updated: 2024/02/05 19:50:04 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_assets
 	mlx_image_t		*basic_wall_img;
 	mlx_image_t		*door_img;
 	mlx_image_t		*goal_img;
+	mlx_image_t		*collapse_img;
 	mlx_image_t		*mummy_left_img;
 	mlx_image_t		*mummy_right_img;
 	mlx_image_t		*peacock_img;
@@ -160,7 +161,7 @@ typedef struct s_parsing
 
 	char			**temp_map;
 	int				map_hole;
-;
+
 	char			*north_path;
 	char			*south_path;
 	char			*west_path;
@@ -278,6 +279,7 @@ void				get_minimap_assets(t_game *data, t_assets *assets);
 void				get_dot_ber_assets(t_game *data, t_assets *assets,
 						t_parsing *parsing);
 void				get_custom_assets(t_game *data, t_assets *assets);
+void				end_game(void *param);
 void				load_assets(t_game *data);
 void				loops(t_game *data);
 

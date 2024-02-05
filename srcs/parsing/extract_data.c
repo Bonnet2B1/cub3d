@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:40:17 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/12/17 22:38:23 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:49:33 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,17 @@ t_map	*extract_data(t_game *data, t_parsing *parsing)
 	while (++i < 6 && parsing->file[i])
 	{
 		if (ft_strncmp(parsing->file[i], "NO ", 3) == 0)
-			parsing->north_path = ft_strdup(&data->x_chain, &parsing->file[i][3]);
+			parsing->north_path
+				= ft_strdup(&data->x_chain, &parsing->file[i][3]);
 		else if (ft_strncmp(parsing->file[i], "SO ", 3) == 0)
-			parsing->south_path = ft_strdup(&data->x_chain, &parsing->file[i][3]);
+			parsing->south_path
+				= ft_strdup(&data->x_chain, &parsing->file[i][3]);
 		else if (ft_strncmp(parsing->file[i], "WE ", 3) == 0)
-			parsing->west_path = ft_strdup(&data->x_chain, &parsing->file[i][3]);
+			parsing->west_path
+				= ft_strdup(&data->x_chain, &parsing->file[i][3]);
 		else if (ft_strncmp(parsing->file[i], "EA ", 3) == 0)
-			parsing->east_path = ft_strdup(&data->x_chain, &parsing->file[i][3]);
+			parsing->east_path
+				= ft_strdup(&data->x_chain, &parsing->file[i][3]);
 		else if (ft_strncmp(parsing->file[i], "F ", 2) == 0)
 			parsing->floor_rgb = get_rgb(data, &parsing->file[i][2]);
 		else if (ft_strncmp(parsing->file[i], "C ", 2) == 0)

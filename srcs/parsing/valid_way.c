@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_way.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:41:18 by edelarbr          #+#    #+#             */
-/*   Updated: 2023/10/12 19:28:55 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/05 19:21:01 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	valid_way(t_game *data, char **map, int x, int y)
 {
 	if (map[y][x] == '\0' || map[y][x] == ' ')
 		exit_error(data, "map not closed");
-	if (map[y][x] == '1' || map[y][x] == 'G')
+	if (map[y][x] == '1' || map[y][x] == 'G' || map[y][x] == 'C'
+		|| map[y][x] == '2' || map[y][x] == '3')
 		return ;
 	map[y][x] = '1';
 	valid_way(data, map, (x + 1), y);

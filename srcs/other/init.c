@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 02:12:06 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/30 18:19:03 by momox            ###   ########.fr       */
+/*   Updated: 2024/02/05 19:12:22 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	assets_init_two(t_assets *assets)
 	assets->basic_wall_img = NULL;
 	assets->door_img = NULL;
 	assets->goal_img = NULL;
+	assets->collapse_img = NULL;
 	assets->mummy_left_img = NULL;
 	assets->mummy_right_img = NULL;
 	assets->peacock_img = NULL;

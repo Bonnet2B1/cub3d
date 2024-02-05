@@ -6,7 +6,7 @@
 #    By: momox <momox@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/22 16:59:43 by edelarbr          #+#    #+#              #
-#    Updated: 2024/02/05 15:15:08 by momox            ###   ########.fr        #
+#    Updated: 2024/02/05 19:40:55 by momox            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRCS		:=	srcs/cub3d.c										\
 				srcs/minimap/create_minimap.c						\
 				srcs/minimap/find_minimap_img_size.c				\
 				srcs/mlx/asset_to_image.c							\
+				srcs/mlx/end_game.c									\
 				srcs/mlx/get_custom_assets.c						\
 				srcs/mlx/get_dot_ber_assets.c						\
 				srcs/mlx/load_assets.c								\
