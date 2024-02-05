@@ -39,31 +39,27 @@ void	display_darkness_background(t_assets *assets, mlx_image_t *mask)
 {
 	int		i;
 	int		j;
-	double	dark_index;
+	double	dark_idx;
 
-	i = WINDOW_HEIGHT / 2;
-	dark_index = 255;
-	while (i >= 0)
+	i = WINDOW_HEIGHT / 2 + 1;
+	dark_idx = 255;
+	while (--i >= 0)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(mask, j, i,
-				assets->dark_shade[(int)round(dark_index)]);
-		i--;
-		if (i < 400 && dark_index > 0)
-			dark_index -= 0.5;
+			mlx_put_pixel(mask, j, i, assets->dark_shade[(int)dark_idx]);
+		if (i < 400 && dark_idx > 0)
+			dark_idx -= 0.5;
 	}
-	i = WINDOW_HEIGHT / 2;
-	dark_index = 255;
-	while (i < WINDOW_HEIGHT)
+	i = WINDOW_HEIGHT / 2 - 1;
+	dark_idx = 255;
+	while (++i < WINDOW_HEIGHT)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(mask, j, i,
-				assets->dark_shade[(int)round(dark_index)]);
-		i++;
-		if (i > WINDOW_HEIGHT - 400 && dark_index > 0)
-			dark_index -= 0.5;
+			mlx_put_pixel(mask, j, i, assets->dark_shade[(int)dark_idx]);
+		if (i > WINDOW_HEIGHT - 400 && dark_idx > 0)
+			dark_idx -= 0.5;
 	}
 }
 
@@ -71,24 +67,24 @@ void	display_vignette(t_assets *assets, mlx_image_t *mask)
 {
 	int	i;
 	int	j;
-	int	dark_index;
-	int	center_x = WINDOW_WIDTH / 2;
-	int	center_y = WINDOW_HEIGHT / 2;
-	int	max_distance = sqrt(center_x * center_x + center_y * center_y);
+	int	dark_idx;
+	int	max_distance;
 	int	distance;
 
+	max_distance = sqrt(WINDOW_WIDTH / 2 * WINDOW_WIDTH / 2
+			+ WINDOW_HEIGHT / 2 * WINDOW_HEIGHT / 2);
 	i = -1;
 	while (++i < WINDOW_HEIGHT)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
 		{
-			distance = sqrt((center_x - j)
-					* (center_x - j) + (center_y - i) * (center_y - i));
-			dark_index = (int)((double)distance / max_distance * 255);
-			if (dark_index > 255)
-				dark_index = 255;
-			mlx_put_pixel(mask, j, i, assets->dark_shade[dark_index]);
+			distance = sqrt((WINDOW_WIDTH / 2 - j) * (WINDOW_WIDTH / 2 - j)
+					+ (WINDOW_HEIGHT / 2 - i) * (WINDOW_HEIGHT / 2 - i));
+			dark_idx = (int)((double)distance / max_distance * 255);
+			if (dark_idx > 255)
+				dark_idx = 255;
+			mlx_put_pixel(mask, j, i, assets->dark_shade[dark_idx]);
 		}
 	}
 }

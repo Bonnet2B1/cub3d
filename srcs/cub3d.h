@@ -272,8 +272,14 @@ double				get_len_to_vertical_collision(t_game *data, t_ray *ray);
 double				get_len_to_horizontal_collision(t_game *data, t_ray *ray);
 int					is_collision(t_map *gps, int y, int x);
 void				game_display(t_game *data);
-u_int32_t			get_color_coord(int x, int y, mlx_image_t *img);
+u_int32_t			get_color(int x, int y, mlx_image_t *img);
 void				load_masks(t_game *data, t_assets *assets);
+void				put_line(t_game *data, t_ray *ray, int ray_idx,
+						mlx_image_t *img);
+void				put_wall(t_game *data, t_ray *ray, int ray_idx);
+void				put_spe(t_game *data, t_ray *ray, int ray_idx);
+void				put_mod_one(t_game *data, t_ray *ray, int ray_idx);
+void				put_mod_two(t_game *data, t_ray *ray, int ray_idx);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);
@@ -287,6 +293,7 @@ void				loops(t_game *data);
 /* MINIMAP */
 int					find_mimimap_img_size(int width, int height);
 void				create_minimap(t_game *data, int img_size);
+void				create_imgs(t_game *data, int img_size);
 
 /* LIB */
 int					ft_strncmp(const char *s1, const char *s2, size_t n);

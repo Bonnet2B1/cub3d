@@ -26,7 +26,7 @@ u_int32_t	get_rgba_tex(u_int32_t color)
 	return (r << 8 | g << 16 | b << 24 | a << 0);
 }
 
-u_int32_t	get_color_coord(int x, int y, mlx_image_t *img)
+u_int32_t	get_color(int x, int y, mlx_image_t *img)
 {
 	uint32_t	*pixel;
 	u_int32_t	color;

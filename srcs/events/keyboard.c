@@ -12,6 +12,27 @@
 
 #include "../cub3d.h"
 
+void	keyboard_two(t_game *data)
+{
+	if (mlx_is_key_down(data->mlx, MLX_KEY_E)
+		|| (data->mouse == 1 && mlx_is_mouse_down(data->mlx,
+				MLX_MOUSE_BUTTON_LEFT)))
+	{
+		open_door(data);
+		mod_wall(data);
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
+	{
+		data->player->step_len = STEP_LEN * SPRINT_MULTIPLIER;
+		data->player->rotate_speed = ROTATE_SPEED * SPRINT_MULTIPLIER;
+	}
+	else
+	{
+		data->player->step_len = STEP_LEN;
+		data->player->rotate_speed = ROTATE_SPEED;
+	}
+}
+
 void	keyboard(void *param)
 {
 	t_game	*data;
@@ -31,21 +52,5 @@ void	keyboard(void *param)
 		rotate_left(data->player, data->player->rotate_speed);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data->player, data->player->rotate_speed);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_E)
-		|| (data->mouse == 1 && mlx_is_mouse_down(data->mlx,
-				MLX_MOUSE_BUTTON_LEFT)))
-	{
-		open_door(data);
-		mod_wall(data);
-	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
-	{
-		data->player->step_len = STEP_LEN * SPRINT_MULTIPLIER;
-		data->player->rotate_speed = ROTATE_SPEED * SPRINT_MULTIPLIER;
-	}
-	else
-	{
-		data->player->step_len = STEP_LEN;
-		data->player->rotate_speed = ROTATE_SPEED;
-	}
+	keyboard_two(data);
 }
