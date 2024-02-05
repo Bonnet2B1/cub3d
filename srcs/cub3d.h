@@ -275,7 +275,7 @@ void				put_dancing_ra(t_game *data, t_ray *ray, int ray_idx);
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);
 void				get_minimap_assets(t_game *data, t_assets *assets);
-void				get_dot_ber_assets(t_game *data, t_assets *assets,
+void				get_dot_cub_assets(t_game *data, t_assets *assets,
 						t_parsing *parsing);
 void				get_custom_assets(t_game *data, t_assets *assets);
 void				load_assets(t_game *data);

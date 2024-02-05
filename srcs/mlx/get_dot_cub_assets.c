@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_dot_ber_assets.c                               :+:      :+:    :+:   */
+/*   get_dot_cub_assets.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -31,7 +31,7 @@ uint32_t	extract_color(char **color)
 			255));
 }
 
-void	get_dot_ber_assets(t_game *data, t_assets *assets,
+void	get_dot_cub_assets(t_game *data, t_assets *assets,
 	t_parsing *parsing)
 {
 	assets->north_img = extract_img(data, parsing->north_path);
