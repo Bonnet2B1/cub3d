@@ -160,7 +160,7 @@ typedef struct s_parsing
 
 	char			**temp_map;
 	int				map_hole;
-
+;
 	char			*north_path;
 	char			*south_path;
 	char			*west_path;

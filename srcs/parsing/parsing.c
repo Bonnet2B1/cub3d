@@ -24,7 +24,6 @@ t_parsing	*parsing(t_game *data, int argc, char **argv)
 		exit_error(data, "too many arguments");
 	check_file(data, argv[1]);
 	parsing->file = extract_file_to_tab(data, argv[1]);
-	format_error(data, parsing);
 	data->gps = extract_data(data, parsing);
 	verify_map_chars(data, data->gps->map);
 	parsing->temp_map = map_w_null_background(&data->x_chain, data->gps->map);
