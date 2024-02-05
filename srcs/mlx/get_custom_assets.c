@@ -12,6 +12,22 @@
 
 #include "../cub3d.h"
 
+void	get_custom_assets_two(t_game *data, t_assets *assets)
+{
+	assets->dancing_ra_imgs[0]
+		= asset_to_image(data, "assets/maze/dancing_ra1.png");
+	assets->dancing_ra_imgs[1]
+		= asset_to_image(data, "assets/maze/dancing_ra2.png");
+	assets->dancing_ra_imgs[2]
+		= asset_to_image(data, "assets/maze/dancing_ra3.png");
+	assets->dancing_ra_imgs[3]
+		= asset_to_image(data, "assets/maze/dancing_ra4.png");
+	assets->dancing_ra_imgs[4]
+		= asset_to_image(data, "assets/maze/dancing_ra5.png");
+	assets->dancing_ra_imgs[5]
+		= asset_to_image(data, "assets/maze/dancing_ra6.png");
+}
+
 void	get_custom_assets(t_game *data, t_assets *assets)
 {
 	assets->anubis_chill_img
@@ -36,4 +52,5 @@ void	get_custom_assets(t_game *data, t_assets *assets)
 		= asset_to_image(data, "assets/maze/sarcophagus.png");
 	assets->wall_w_hole_img
 		= asset_to_image(data, "assets/maze/wall_w_hole.png");
+	get_custom_assets_two(data, assets);
 }

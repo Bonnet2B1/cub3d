@@ -54,6 +54,33 @@ t_map	*map_init(t_game *data)
 	return (map);
 }
 
+void	assets_init_two(t_assets *assets)
+{
+	assets->north_img = NULL;
+	assets->south_img = NULL;
+	assets->west_img = NULL;
+	assets->east_img = NULL;
+	assets->minimap_wall_img = NULL;
+	assets->minimap_door_img = NULL;
+	assets->minimap_goal_img = NULL;
+	assets->anubis_chill_img = NULL;
+	assets->anubis_not_happy_img = NULL;
+	assets->basic_wall_img = NULL;
+	assets->door_img = NULL;
+	assets->goal_img = NULL;
+	assets->mummy_left_img = NULL;
+	assets->mummy_right_img = NULL;
+	assets->peacock_img = NULL;
+	assets->pillar_img = NULL;
+	assets->sarcophagus_img = NULL;
+	assets->wall_w_hole_img = NULL;
+	assets->background_mask = NULL;
+	assets->darkness_background_mask = NULL;
+	assets->textures_mask = NULL;
+	assets->darkness_textures_mask = NULL;
+	assets->vignette_mask = NULL;
+}
+
 t_assets	*assets_init(t_game *data)
 {
 	t_assets	*assets;
@@ -62,37 +89,13 @@ t_assets	*assets_init(t_game *data)
 	assets = x_malloc(&data->x_chain, sizeof(t_assets));
 	if (!assets)
 		exit_error(data, "malloc error");
-	assets->north_img = NULL;
-	assets->south_img = NULL;
-	assets->west_img = NULL;
-	assets->east_img = NULL;
 	assets->frame = 0;
+	i = -1;
+	while (++i < 4)
+		assets->dancing_ra_imgs[i] = NULL;
 	i = -1;
 	while (++i < 256)
 		assets->dark_shade[i] = create_rgbt(0, 0, 0, i);
+	assets_init_two(assets);
 	return (assets);
-}
-
-t_player	*player_init(t_game *data)
-{
-	t_player	*player;
-	int			i;
-
-	player = x_malloc(&data->x_chain, sizeof(t_player));
-	if (!player)
-		exit_error(data, "malloc error");
-	player->minimap_img = NULL;
-	player->x = -1;
-	player->y = -1;
-	player->angle = -1;
-	player->step_len = STEP_LEN;
-	player->front = ray_init(data, player);
-	player->back = ray_init(data, player);
-	player->left = ray_init(data, player);
-	player->right = ray_init(data, player);
-	player->ray = x_malloc(&data->x_chain, sizeof(t_ray *) * WINDOW_WIDTH);
-	i = -1;
-	while (++i < WINDOW_WIDTH)
-		player->ray[i] = ray_init(data, player);
-	return (player);
 }

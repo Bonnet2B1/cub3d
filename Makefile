@@ -19,10 +19,12 @@ SRCS		:=	srcs/cub3d.c										\
 				srcs/engine/game_display/get_color_coord.c			\
 				srcs/engine/game_display/masks.c					\
 				srcs/engine/game_display/put_assets.c				\
+				srcs/engine/game_display/put_assets_two.c			\
 				srcs/engine/ray_casting/horizontal_collusion.c		\
 				srcs/engine/ray_casting/vertical_collusion.c		\
 				srcs/engine/ray_casting/is_collision.c				\
 				srcs/engine/ray_casting/ray_casting.c				\
+				srcs/engine/ray_casting/draw_lazer.c				\
 				srcs/engine/get_principal_measure.c					\
 				srcs/engine/set_player_angle.c						\
 				srcs/events/animation.c								\
@@ -71,7 +73,6 @@ SRCS		:=	srcs/cub3d.c										\
 				srcs/parsing/parsing.c								\
 				srcs/parsing/valid_way.c							\
 				srcs/parsing/verify_map_chars.c						\
-				srcs/temp/draw_lazer.c								\
 
 OBJ_DIR		:=	.objs
 OBJS		:=	$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

@@ -26,9 +26,9 @@ void	put_assets(t_game *data, t_ray **ray)
 		else if (ray[ray_idx]->type == '2')
 			put_spe(data, ray[ray_idx], ray_idx);
 		else if (ray[ray_idx]->type == '3')
-			put_mod_one(data, ray[ray_idx], ray_idx);
+			put_modable(data, ray[ray_idx], ray_idx);
 		else if (ray[ray_idx]->type == '4')
-			put_mod_two(data, ray[ray_idx], ray_idx);
+			put_moded(data, ray[ray_idx], ray_idx);
 		else if (ray[ray_idx]->type == 'G')
 			put_line(data, ray[ray_idx], ray_idx, data->assets->goal_img);
 		else if (ray[ray_idx]->type == 'D')

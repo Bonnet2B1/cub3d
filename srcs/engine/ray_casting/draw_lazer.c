@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../cub3d.h"
 
 void	draw_lazer_next(t_game *data, t_ray *ray,
 		double lazer_pos_x, double lazer_pos_y)

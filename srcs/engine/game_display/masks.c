@@ -82,8 +82,7 @@ void	display_vignette(t_assets *assets, mlx_image_t *mask)
 			distance = sqrt((WINDOW_WIDTH / 2 - j) * (WINDOW_WIDTH / 2 - j)
 					+ (WINDOW_HEIGHT / 2 - i) * (WINDOW_HEIGHT / 2 - i));
 			dark_idx = (int)((double)distance / max_distance * 255);
-			if (dark_idx > 255)
-				dark_idx = 255;
+			dark_idx = fmin(dark_idx, 255);
 			mlx_put_pixel(mask, j, i, assets->dark_shade[dark_idx]);
 		}
 	}
@@ -104,12 +103,9 @@ void	load_masks(t_game *data, t_assets *assets)
 	data->assets->background_mask = init_mask(data, 0);
 	data->assets->textures_mask = init_mask(data, 2);
 	display_background(assets, assets->background_mask);
-	if (DARKNESS_EFFECT)
-	{
-		data->assets->darkness_background_mask = init_mask(data, 1);
-		data->assets->darkness_textures_mask = init_mask(data, 3);
-		data->assets->vignette_mask = init_mask(data, 4);
-		display_darkness_background(assets, assets->darkness_background_mask);
-		display_vignette(assets, assets->vignette_mask);
-	}
+	data->assets->darkness_background_mask = init_mask(data, 1);
+	data->assets->darkness_textures_mask = init_mask(data, 3);
+	data->assets->vignette_mask = init_mask(data, 4);
+	display_darkness_background(assets, assets->darkness_background_mask);
+	display_vignette(assets, assets->vignette_mask);
 }

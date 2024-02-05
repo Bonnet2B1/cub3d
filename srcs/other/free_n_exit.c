@@ -14,6 +14,12 @@
 
 void	del_all_imgs_three(t_game *data)
 {
+	int	i;
+
+	i = -1;
+	while (++i < 6)
+		if (data->assets->dancing_ra_imgs[i])
+			mlx_delete_image(data->mlx, data->assets->dancing_ra_imgs[i]);
 	if (data->assets->textures_mask)
 		mlx_delete_image(data->mlx, data->assets->textures_mask);
 	if (data->assets->darkness_textures_mask)
@@ -69,8 +75,6 @@ void	del_all_imgs(t_game *data)
 		mlx_delete_image(data->mlx, data->assets->east_img);
 	if (data->assets->minimap_wall_img)
 		mlx_delete_image(data->mlx, data->assets->minimap_wall_img);
-	if (data->assets->minimap_floor_img)
-		mlx_delete_image(data->mlx, data->assets->minimap_floor_img);
 	if (data->assets->minimap_door_img)
 		mlx_delete_image(data->mlx, data->assets->minimap_door_img);
 	if (data->assets->minimap_goal_img)

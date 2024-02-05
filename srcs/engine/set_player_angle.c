@@ -23,7 +23,3 @@ void	set_player_angle(t_player *player, char c)
 	else if (c == 'N')
 		player->angle = 3 * M_PI / 2;
 }
-
-// /* et t'en peux plus là ? T'as trop envie de chier ? chie toi dessus */
-// ?????? completement fou toi
-// C'est ton easter egg nullos

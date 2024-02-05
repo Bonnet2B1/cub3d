@@ -18,20 +18,11 @@
 
 // ? trucs à fiare si on a vraaaaaaaiment le temps
 // - faire une belle map
-// - corriger l'angle inital du player qui bug 1 fois sur 2
 // - faire une main qui tient une torche
 
 // ! trucs à faire
-// - faux segfault
-// - verifier si DARKNESS_EFFECT est ok à 0
-// - implementer Ra qui danse
-// - verifier atoi en mettant des inputs étranges en RGB dans le .cub
-// - norme
 // - verifer si tout est ok avec le sujet
 // - leaks
-// - changer couleurs minimap
-// - vérifier headers
-// - makefile
 
 /*=============================== PROTECTIONS ================================*/
 
@@ -67,8 +58,7 @@
 /* DISPLAY */
 # define FOV				60 /* in degree */
 # define ASSET_SIZE			64
-# define ANIMATION_SPEED	20
-# define DARKNESS_EFFECT	1
+# define ANIMATION_SPEED	60
 
 /*================================= DEFINES ==================================*/
 
@@ -113,7 +103,7 @@ typedef struct s_ray
 	struct s_ray	*v;
 	struct s_ray	*h;
 
-	mlx_image_t		*ray_img; // ! temp
+	mlx_image_t		*ray_img;
 	int				instance_amount;
 }				t_ray;
 
@@ -128,7 +118,6 @@ typedef struct s_assets
 	u_int32_t		ceiling_trgb;
 
 	mlx_image_t		*minimap_wall_img;
-	mlx_image_t		*minimap_floor_img;
 	mlx_image_t		*minimap_door_img;
 	mlx_image_t		*minimap_goal_img;
 
@@ -143,6 +132,7 @@ typedef struct s_assets
 	mlx_image_t		*pillar_img;
 	mlx_image_t		*sarcophagus_img;
 	mlx_image_t		*wall_w_hole_img;
+	mlx_image_t		*dancing_ra_imgs[6];
 
 	u_int32_t		dark_shade[256];
 
@@ -278,8 +268,9 @@ void				put_line(t_game *data, t_ray *ray, int ray_idx,
 						mlx_image_t *img);
 void				put_wall(t_game *data, t_ray *ray, int ray_idx);
 void				put_spe(t_game *data, t_ray *ray, int ray_idx);
-void				put_mod_one(t_game *data, t_ray *ray, int ray_idx);
-void				put_mod_two(t_game *data, t_ray *ray, int ray_idx);
+void				put_modable(t_game *data, t_ray *ray, int ray_idx);
+void				put_moded(t_game *data, t_ray *ray, int ray_idx);
+void				put_dancing_ra(t_game *data, t_ray *ray, int ray_idx);
 
 /* MLX */
 mlx_image_t			*asset_to_image(t_game *data, char *path);
