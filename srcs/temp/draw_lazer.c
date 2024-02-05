@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:36:58 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/02/04 19:43:03 by momox            ###   ########.fr       */
+/*   Updated: 2024/02/05 15:23:28 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_lazer(t_game *data, t_ray *ray)
 	if (!ray->ray_img)
 	{
 		ray->ray_img = mlx_new_image(data->mlx, 1, 1);
-		mlx_put_pixel(ray->ray_img, 0, 0, 0xFFFFFFFF);
+		mlx_put_pixel(ray->ray_img, 0, 0, 0xFFFFFF60);
 		i = -1;
 		while (++i < 1500)
 		{
