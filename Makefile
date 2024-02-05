@@ -68,7 +68,6 @@ SRCS		:=	srcs/cub3d.c										\
 				srcs/parsing/extract_data.c							\
 				srcs/parsing/extract_file_to_tab.c					\
 				srcs/parsing/fill_with_spaces.c						\
-				srcs/parsing/format_error.c							\
 				srcs/parsing/ft_atoi_mod.c							\
 				srcs/parsing/parsing.c								\
 				srcs/parsing/valid_way.c							\
