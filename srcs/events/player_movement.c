@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 15:27:01 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/31 17:23:54 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:08:42 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	move_backward(t_game *data)
 	player->back->len = get_len(data, player->back);
 	if (player->step_len >= player->back->len)
 		return ;
-	player->y += (player->step_len * sin(get_principal_measure(player->angle + M_PI)));
+	player->y += (player->step_len
+			* sin(get_principal_measure(player->angle + M_PI)));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (player->step_len * cos(get_principal_measure(player->angle + M_PI)));
+	player->x += (player->step_len
+			* cos(get_principal_measure(player->angle + M_PI)));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }
@@ -58,10 +60,12 @@ void	move_left(t_game *data)
 	player->left->len = get_len(data, player->left);
 	if (player->step_len >= player->left->len)
 		return ;
-	player->y += (player->step_len * sin(get_principal_measure(player->left->angle)));
+	player->y += (player->step_len
+			* sin(get_principal_measure(player->left->angle)));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (player->step_len * cos(get_principal_measure(player->left->angle)));
+	player->x += (player->step_len
+			* cos(get_principal_measure(player->left->angle)));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }
@@ -76,10 +80,12 @@ void	move_right(t_game *data)
 	player->right->len = get_len(data, player->right);
 	if (player->step_len >= player->right->len)
 		return ;
-	player->y += (player->step_len * sin(get_principal_measure(player->right->angle)));
+	player->y += (player->step_len
+			* sin(get_principal_measure(player->right->angle)));
 	player->minimap_img->instances[0].y
 		= player->y * data->gps->minimap_img_size;
-	player->x += (player->step_len * cos(get_principal_measure(player->right->angle)));
+	player->x += (player->step_len
+			* cos(get_principal_measure(player->right->angle)));
 	player->minimap_img->instances[0].x
 		= player->x * data->gps->minimap_img_size;
 }

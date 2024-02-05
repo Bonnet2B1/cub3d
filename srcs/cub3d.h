@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 20:38:43 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/31 17:31:13 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:15:08 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@
 // - faire une belle map
 // - corriger l'angle inital du player qui bug 1 fois sur 2
 // - faire une main qui tient une torche
-// - decouvrir ce qu'il se cache sous un mlx_loop_hook (thread ?)
-
 
 // ! trucs à faire
 // - faux segfault
 // - verifier si DARKNESS_EFFECT est ok à 0
-// - corriger l'asset momie
 // - implementer Ra qui danse
 // - verifier atoi en mettant des inputs étranges en RGB dans le .cub
 // - norme
 // - verifer si tout est ok avec le sujet
 // - leaks
+// - changer couleurs minimap
+// - vérifier headers
+// - makefile
 
 /*=============================== PROTECTIONS ================================*/
 

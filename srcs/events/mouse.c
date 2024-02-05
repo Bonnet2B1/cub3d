@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/04 19:47:20 by momox             #+#    #+#             */
+/*   Updated: 2024/02/04 19:48:22 by momox            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	mouse_on_off(t_game *data)
@@ -18,8 +30,8 @@ void	mouse_on_off(t_game *data)
 void	mouse(void *param)
 {
 	t_game	*data;
-	int	old_x;
-	int	old_y;
+	int		old_x;
+	int		old_y;
 
 	data = (t_game *)param;
 	old_y = 0;
@@ -29,12 +41,10 @@ void	mouse(void *param)
 	if (data->mouse == 1)
 	{
 		if (old_x > WINDOW_WIDTH / 2)
-		{
-			rotate_right(data->player, MOUSE_SPEED * ((double)old_x -(WINDOW_WIDTH / 2)));
-		}
+			rotate_right(data->player,
+				MOUSE_SPEED * ((double)old_x -(WINDOW_WIDTH / 2)));
 		if (old_x < WINDOW_WIDTH / 2)
-		{
-			rotate_left(data->player, MOUSE_SPEED * ((double)(WINDOW_WIDTH / 2) - old_x));
-		}
+			rotate_left(data->player,
+				MOUSE_SPEED * ((double)(WINDOW_WIDTH / 2) - old_x));
 	}
 }

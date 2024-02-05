@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 17:34:53 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/27 23:34:30 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:09:05 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	keyboard(void *param)
 		rotate_left(data->player, data->player->rotate_speed);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data->player, data->player->rotate_speed);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_E) || (data->mouse == 1 && mlx_is_mouse_down(data->mlx, MLX_MOUSE_BUTTON_LEFT)))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_E)
+		|| (data->mouse == 1 && mlx_is_mouse_down(data->mlx,
+				MLX_MOUSE_BUTTON_LEFT)))
 	{
 		open_door(data);
 		mod_wall(data);

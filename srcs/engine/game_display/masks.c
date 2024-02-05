@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   masks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/04 19:54:14 by momox             #+#    #+#             */
+/*   Updated: 2024/02/04 19:55:45 by momox            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3d.h"
 
 void	display_background(t_assets *assets, mlx_image_t *mask)
@@ -35,7 +47,8 @@ void	display_darkness_background(t_assets *assets, mlx_image_t *mask)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(mask, j, i, assets->dark_shade[(int)round(dark_index)]);
+			mlx_put_pixel(mask, j, i,
+				assets->dark_shade[(int)round(dark_index)]);
 		i--;
 		if (i < 400 && dark_index > 0)
 			dark_index -= 0.5;
@@ -46,7 +59,8 @@ void	display_darkness_background(t_assets *assets, mlx_image_t *mask)
 	{
 		j = -1;
 		while (++j < WINDOW_WIDTH)
-			mlx_put_pixel(mask, j, i, assets->dark_shade[(int)round(dark_index)]);
+			mlx_put_pixel(mask, j, i,
+				assets->dark_shade[(int)round(dark_index)]);
 		i++;
 		if (i > WINDOW_HEIGHT - 400 && dark_index > 0)
 			dark_index -= 0.5;
@@ -55,13 +69,13 @@ void	display_darkness_background(t_assets *assets, mlx_image_t *mask)
 
 void	display_vignette(t_assets *assets, mlx_image_t *mask)
 {
-	int i;
-	int j;
-	int dark_index;
-	int center_x = WINDOW_WIDTH / 2;
-	int center_y = WINDOW_HEIGHT / 2;
-	int max_distance = sqrt(center_x * center_x + center_y * center_y);
-	int distance;
+	int	i;
+	int	j;
+	int	dark_index;
+	int	center_x = WINDOW_WIDTH / 2;
+	int	center_y = WINDOW_HEIGHT / 2;
+	int	max_distance = sqrt(center_x * center_x + center_y * center_y);
+	int	distance;
 
 	i = -1;
 	while (++i < WINDOW_HEIGHT)
@@ -69,7 +83,8 @@ void	display_vignette(t_assets *assets, mlx_image_t *mask)
 		j = -1;
 		while (++j < WINDOW_WIDTH)
 		{
-			distance = sqrt((center_x - j) * (center_x - j) + (center_y - i) * (center_y - i));
+			distance = sqrt((center_x - j)
+					* (center_x - j) + (center_y - i) * (center_y - i));
 			dark_index = (int)((double)distance / max_distance * 255);
 			if (dark_index > 255)
 				dark_index = 255;
@@ -77,6 +92,7 @@ void	display_vignette(t_assets *assets, mlx_image_t *mask)
 		}
 	}
 }
+
 mlx_image_t	*init_mask(t_game *data, int depth)
 {
 	mlx_image_t	*mask;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 01:43:15 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/27 17:45:02 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:12:30 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ int	main(int argc, char **argv)
 	loops(&data);
 	free_n_exit(&data, 0);
 }
-

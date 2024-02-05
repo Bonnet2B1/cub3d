@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edelarbr <edelarbr@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:08 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/01/31 17:29:00 by edelarbr         ###   ########.fr       */
+/*   Updated: 2024/02/04 20:11:32 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,18 @@ void	get_ray_data(t_game *data, t_player *player)
 	int		i;
 	double	first_ray_angle;
 
-	first_ray_angle = get_principal_measure(data->player->angle - ft_deg_to_rad((float)FOV/2));
+	first_ray_angle = get_principal_measure(data->player->angle
+			- ft_deg_to_rad((float)FOV / 2));
 	i = -1;
 	while (++i < WINDOW_WIDTH)
 	{
-		player->ray[i]->angle = get_principal_measure(first_ray_angle + i * ft_deg_to_rad((float)FOV/(WINDOW_WIDTH - 1)));
+		player->ray[i]->angle = get_principal_measure(first_ray_angle
+				+ i * ft_deg_to_rad((float)FOV / (WINDOW_WIDTH - 1)));
 		deep_ray_cpy(player->ray[i]);
 		player->ray[i]->len = get_len(data, player->ray[i]);
 	}
 	i = 0;
-	while(i < WINDOW_WIDTH)
+	while (i < WINDOW_WIDTH)
 	{
 		draw_lazer(data, data->player->ray[i]);
 		i += 15;
