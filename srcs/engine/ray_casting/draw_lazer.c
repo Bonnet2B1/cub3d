@@ -6,7 +6,7 @@
 /*   By: momox <momox@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 16:36:58 by edelarbr          #+#    #+#             */
-/*   Updated: 2024/02/06 12:21:21 by momox            ###   ########.fr       */
+/*   Updated: 2024/02/06 16:48:30 by momox            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	draw_lazer_next(t_game *data, t_ray *ray,
 	int	i;
 
 	i = -1;
-	while (++i < ray->len * data->gps->minimap_img_size)
+	while (++i < fmin(ray->len, 5) * data->gps->minimap_img_size)
 	{
 		if (i + 1 > ray->instance_amount)
 		{
