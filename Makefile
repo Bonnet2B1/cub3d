@@ -57,7 +57,7 @@ SRCS		:=	srcs/cub3d.c										\
 				srcs/mlx/asset_to_image.c							\
 				srcs/mlx/end_game.c									\
 				srcs/mlx/get_custom_assets.c						\
-				srcs/mlx/get_dot_ber_assets.c						\
+				srcs/mlx/get_dot_cub_assets.c						\
 				srcs/mlx/load_assets.c								\
 				srcs/mlx/loops.c									\
 				srcs/other/exit_error.c								\
