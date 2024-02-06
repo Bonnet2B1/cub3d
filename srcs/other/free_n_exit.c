@@ -65,7 +65,8 @@ void	del_all_imgs(t_game *data)
 
 	i = -1;
 	while (++i < WINDOW_WIDTH)
-		if (data->player->ray[i]->ray_img)
+		if (data->player && data->player->ray[i]
+			&& data->player->ray[i]->ray_img)
 			mlx_delete_image(data->mlx, data->player->ray[i]->ray_img);
 	if (data->assets->north_img)
 		mlx_delete_image(data->mlx, data->assets->north_img);
@@ -88,8 +89,8 @@ void	del_all_imgs(t_game *data)
 
 void	free_n_exit(t_game *data, int exit_code)
 {
-	if (data->assets)
-		del_all_imgs(data);
+	// if (data->assets)
+	// 	del_all_imgs(data);
 	if (data->mlx)
 		mlx_terminate(data->mlx);
 	x_free(&data->x_chain);
