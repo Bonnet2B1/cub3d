@@ -74,7 +74,7 @@ char	**ft_split(t_list **x_chain, char *s, char c)
 	y = 0;
 	if (!s)
 		return (NULL);
-	tab = malloc(sizeof(char *) * (wordcount(s, c) + 1));
+	tab = x_malloc(x_chain, sizeof(char *) * (wordcount(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	while (y < wordcount(s, c))
