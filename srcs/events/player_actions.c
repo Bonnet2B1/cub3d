@@ -38,12 +38,12 @@ void	mod_wall(t_game *data)
 	{
 		data->gps->map[player->front->map_y][player->front->map_x] = '4';
 		while (++i < 5000000)
-			printf("");
+			printf("%c", '\0');
 	}
 	else if (player->front->type == '4' && player->front->len <= 3)
 	{
 		data->gps->map[player->front->map_y][player->front->map_x] = '3';
 		while (++i < 5000000)
-			printf("");
+			printf("%c", '\0');
 	}
 }
