@@ -15,6 +15,7 @@ To play this game, copy the following commands in your terminal.
 
 ## How to play Cub3D
 
+### Launch
 To play this game, copy the following commands in your terminal.
 
 	cd ~/Cub3D    # go to the game folder
@@ -22,15 +23,13 @@ To play this game, copy the following commands in your terminal.
 	./Cub3D maps/maze.cub    # play the game with the map (here maze.cub)
 
 ### Controls
-
-Use 'W', 'A', 'S' and 'D' keys to move the player.
-Use the left and right arrows to move the camera.
-If you press the M key, you can use your mouse/trackpad to move the camera.
+Use 'W', 'A', 'S' and 'D' keys to move the player. \
+Use the left and right arrows to move the camera. \
+If you press the M key, you can use your mouse/trackpad to move the camera. \
 Press 'E' while looking at a special wall to discover features about the game.
 
 
 ## How to uninstall Cub3D (or if something goes wrong)
-
 To uninstall this game, copy the following commands in your terminal.
 
 	cd ~    # go to your home directory
