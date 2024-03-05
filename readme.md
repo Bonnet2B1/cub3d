@@ -1,4 +1,4 @@
-# My First 3D Game : Cub3D
+# My First 3D Game : Cub3D (in cooperation with [Momox](https://github.com/momoox))
 
 ## How to install Cub3D
 
