@@ -89,8 +89,8 @@ void	del_all_imgs(t_game *data)
 
 void	free_n_exit(t_game *data, int exit_code)
 {
-	// if (data->assets)
-	// 	del_all_imgs(data);
+	if (data->assets)
+		del_all_imgs(data);
 	if (data->mlx)
 		mlx_terminate(data->mlx);
 	x_free(&data->x_chain);
