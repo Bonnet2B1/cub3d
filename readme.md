@@ -28,6 +28,9 @@ Use the left and right arrows to move the camera. \
 If you press the M key, you can use your mouse/trackpad to move the camera. \
 Press 'E' while looking at a special wall to discover features about the game.
 
+### Goal
+The goal of the game is to reach the exit of the labyrinth. \
+Pro tip: use the hidden doors.
 
 ## How to uninstall Cub3D (or if something goes wrong)
 To uninstall this game, copy the following commands in your terminal.
